@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#185fa5">
+<title>ทบทวนสอบ 0299005 Data Analysis with ML</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<style>
+:root{--surface-2:#fff;--surface-1:#f7f7f5;--bg-neutral:#f1efe8;--bg-accent:#e6f1fb;--text-accent:#185fa5;--border-accent:#85b7eb;--bg-success:#eaf3de;--text-success:#3b6d11;--bg-danger:#fcebeb;--text-danger:#a32d2d;--bg-warning:#faeeda;--text-warning:#854f0b;--text-primary:#0b0b0b;--text-secondary:#52514e;--text-muted:#898781;--border:rgba(11,11,11,.1);--border-strong:rgba(11,11,11,.22);--border-stronger:rgba(11,11,11,.4);--radius:8px;--font-sans:"Noto Sans Thai","Sarabun","Leelawadee UI",Tahoma,"Segoe UI",Arial,sans-serif;--font-mono:"DejaVu Sans Mono",ui-monospace,Menlo,Consolas,"Noto Sans Thai",monospace}
+@media (prefers-color-scheme:dark){:root{--surface-2:#1f1f1e;--surface-1:#151515;--bg-neutral:#2c2c2a;--bg-accent:#0c447c;--text-accent:#b5d4f4;--border-accent:#378add;--bg-success:#27500a;--text-success:#c0dd97;--bg-danger:#791f1f;--text-danger:#f7c1c1;--bg-warning:#633806;--text-warning:#fac775;--text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#898781;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.22);--border-stronger:rgba(255,255,255,.4)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface-1);color:var(--text-primary);font-family:var(--font-sans);font-size:16px;line-height:1.6}
+main{max-width:760px;margin:0 auto;padding:1.25rem 1rem 4rem}
+button{font-family:var(--font-sans);font-size:14px;color:var(--text-primary);background:var(--surface-2);border:0.5px solid var(--border-strong);border-radius:var(--radius);padding:6px 12px;cursor:pointer;line-height:1.4}
+button:hover{background:var(--bg-neutral)}
+button:active{transform:scale(.98)}
+input:not([type]),select{font-family:var(--font-sans);font-size:14px;color:var(--text-primary);background:var(--surface-2);border:0.5px solid var(--border-strong);border-radius:var(--radius);height:34px;padding:0 8px}
+input.mono{font-family:var(--font-mono)}
+input[type=range]{accent-color:#378add}
+svg text{font-family:var(--font-sans)}
+svg .t,svg .th{font-size:14px;fill:var(--text-primary)}svg .th{font-weight:500}svg .ts{font-size:12px;fill:var(--text-secondary)}
+svg .arr{stroke:var(--text-secondary);stroke-width:1.5;fill:none}
+.c-gray>rect{fill:#F1EFE8;stroke:#5F5E5A}.c-gray>.th{fill:#444441}.c-gray>.ts{fill:#5F5E5A}
+.c-purple>rect{fill:#EEEDFE;stroke:#534AB7}.c-purple>.th{fill:#3C3489}.c-purple>.ts{fill:#534AB7}
+.c-teal>rect{fill:#E1F5EE;stroke:#0F6E56}.c-teal>.th{fill:#085041}.c-teal>.ts{fill:#0F6E56}
+.c-coral>rect{fill:#FAECE7;stroke:#993C1D}.c-coral>.th{fill:#712B13}.c-coral>.ts{fill:#993C1D}
+@media (prefers-color-scheme:dark){.c-gray>rect{fill:#444441;stroke:#B4B2A9}.c-gray>.th{fill:#D3D1C7}.c-gray>.ts{fill:#B4B2A9}.c-purple>rect{fill:#3C3489;stroke:#AFA9EC}.c-purple>.th{fill:#CECBF6}.c-purple>.ts{fill:#AFA9EC}.c-teal>rect{fill:#085041;stroke:#5DCAA5}.c-teal>.th{fill:#9FE1CB}.c-teal>.ts{fill:#5DCAA5}.c-coral>rect{fill:#712B13;stroke:#F0997B}.c-coral>.th{fill:#F5C4B3}.c-coral>.ts{fill:#F0997B}}
+.on{background:var(--bg-accent)!important;color:var(--text-accent)!important;border-color:var(--border-accent)!important}
+#nav{position:sticky;top:0;z-index:5;background:var(--surface-1);padding:8px 0 10px;margin:0 0 1rem;border-bottom:0.5px solid var(--border);display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:6px}
+.nv{font-size:13px;padding:6px 10px;text-align:left;line-height:1.35}
+.nv small{display:block;font-size:11px;color:var(--text-secondary)}
+.nv.on small{color:var(--text-accent)}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 1.25rem}
+.toc button{font-size:13px;padding:5px 10px;display:inline-flex;align-items:center;gap:6px}
+.md{background:var(--surface-2);border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem 1.25rem;margin:0 0 1.25rem;scroll-margin-top:120px}
+.mh{display:flex;align-items:center;gap:10px;padding:0 0 .7rem;border-bottom:0.5px solid var(--border)}
+.mn{font-size:12px;color:var(--text-accent);background:var(--bg-accent);padding:2px 8px;border-radius:var(--radius);white-space:nowrap;font-weight:400}
+.mt{font-size:18px;font-weight:500;margin:0;line-height:1.4}
+.sec{margin:1.1rem 0 0}
+.lb{font-size:13px;font-weight:500;color:var(--text-secondary);margin:0 0 8px;display:flex;align-items:center;gap:6px}
+.lb i{font-size:16px}
+.kp{margin:0;padding-left:1.2rem;font-size:14.5px;line-height:1.75}
+.kp li{margin:3px 0}
+.kp b,.why b{font-weight:500}
+.fxg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+.fx{background:var(--bg-neutral);border-radius:var(--radius);padding:9px 12px}
+.fxm{font-family:var(--font-mono);font-size:13.5px;font-weight:500;line-height:1.55}
+.fxe{font-size:12.5px;color:var(--text-secondary);margin-top:4px;line-height:1.5}
+.lab{border:0.5px dashed var(--border-strong);border-radius:12px;padding:12px 14px}
+.h{font-size:16px;font-weight:500;margin:0 0 2px}
+.s{font-size:13px;color:var(--text-secondary);margin:0 0 10px;line-height:1.6}
+.rw{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;font-size:13px}
+.st{background:var(--bg-neutral);border-radius:var(--radius);padding:6px 12px;min-width:84px}
+.st b{display:block;font-size:18px;font-weight:500}.st span{font-size:12px;color:var(--text-secondary)}
+.pill{font-size:13px;padding:4px 10px;border-radius:var(--radius);display:inline-block;line-height:1.5}
+.g{background:var(--bg-success)!important;color:var(--text-success)!important}.r{background:var(--bg-danger)!important;color:var(--text-danger)!important}.y{background:var(--bg-warning);color:var(--text-warning)}.a{background:var(--bg-accent);color:var(--text-accent)}
+.fc{min-height:72px;font-size:13px;text-align:center;padding:8px;line-height:1.45}
+.fc.on{font-size:12.5px}
+.qt{font-size:14px;margin:14px 0 6px;font-weight:500;line-height:1.5}
+.q:first-child .qt{margin-top:0}
+.op{display:block;width:100%;text-align:left;margin:4px 0;font-size:13.5px;padding:8px 10px;line-height:1.45}
+.op.g,.op.r{border-color:transparent}
+.why{font-size:13px;margin:4px 0 0}
+.mono{font-family:var(--font-mono)}
+.bit{width:32px;height:32px;padding:0;font-family:var(--font-mono);font-size:14px;display:inline-flex;align-items:center;justify-content:center;border:0.5px solid var(--border-strong);border-radius:var(--radius)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text-secondary);margin:4px 0}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.ex{font-size:15px;line-height:1.85;margin:0 0 12px}
+.ex:last-child{margin-bottom:0}
+.gl{display:grid;grid-template-columns:minmax(120px,200px) minmax(0,1fr);border:0.5px solid var(--border-strong);border-radius:var(--radius);overflow:hidden}
+.gt,.gd{padding:9px 12px;border-bottom:0.5px solid var(--border);font-size:14px;line-height:1.6}
+.gt{font-weight:500;background:var(--bg-neutral)}
+.gl>:nth-last-child(-n+2){border-bottom:none}
+.gx{display:block;font-size:12.5px;color:var(--text-secondary);margin-top:2px}
+.fxl{display:flex;flex-direction:column;gap:8px}
+.fxx{font-size:13.5px;margin-top:8px;line-height:1.6}
+.fxx span{font-size:11.5px;color:var(--text-accent);background:var(--bg-accent);padding:1px 7px;border-radius:4px;margin-right:6px}
+.fx .fxe{font-size:13.5px}
+.tp{margin:0;padding-left:1.2rem;font-size:14px;line-height:1.75}
+.tp li{margin:3px 0}
+.tb{width:100%;border-collapse:collapse;font-size:13.5px}
+.tb th,.tb td{border:0.5px solid var(--border-strong);padding:7px 8px;text-align:center}
+.tf{background:var(--bg-accent);color:var(--text-accent);font-weight:500}
+.tt{background:var(--bg-warning);color:var(--text-warning);font-weight:500}
+.tq td{font-weight:500;background:var(--bg-neutral)}
+@media (max-width:560px){.gl{grid-template-columns:1fr}.gt{border-bottom:none;padding-bottom:2px}}
+.fig{border:0.5px solid var(--border);border-radius:12px;padding:12px 14px;margin:0 0 12px;background:var(--surface-1)}
+.fh{font-size:15px;font-weight:500;margin:0 0 4px}
+.hl{background:var(--bg-accent);color:var(--text-accent);font-weight:500}
+.hl2{background:var(--bg-warning);color:var(--text-warning);border-radius:4px;padding:0 4px}
+.bh{font-size:16.5px;font-weight:500;margin:1.6rem 0 .5rem;display:flex;align-items:center;gap:8px;line-height:1.4}
+.bh::before{content:"";width:6px;height:18px;border-radius:3px;background:var(--text-accent);flex:none}
+.goal{font-size:13.5px;color:var(--text-secondary);margin:.7rem 0 0;display:flex;gap:6px;align-items:flex-start;line-height:1.6}
+.note{display:flex;gap:8px;align-items:flex-start;background:var(--bg-warning);color:var(--text-warning);border-radius:var(--radius);padding:10px 12px;margin:12px 0;font-size:14px;line-height:1.6}
+.stp{border:0.5px solid var(--border-accent);border-radius:12px;padding:12px 14px;margin:14px 0;background:var(--surface-1)}
+.stn{display:flex;flex-wrap:wrap;gap:6px}
+.stn button{font-size:13px;padding:5px 10px;display:inline-flex;align-items:center;gap:6px;text-align:left}
+.sn{display:inline-flex;width:20px;height:20px;border-radius:50%;align-items:center;justify-content:center;background:var(--bg-neutral);font-size:12px;flex:none}
+.stn button.on .sn{background:var(--text-accent);color:var(--surface-2)}
+.stn button.dn{color:var(--text-secondary)}
+.stn button.dn .sn{background:var(--bg-success);color:var(--text-success)}
+.stb{margin-top:10px;padding:12px 14px;background:var(--bg-accent);border-radius:var(--radius)}
+.stt{font-weight:500;margin:0 0 4px;color:var(--text-accent)}
+.stb .ex{color:var(--text-primary)}
+.tipbox{background:var(--bg-neutral);border-radius:var(--radius);padding:10px 14px;margin-top:1.4rem}
+.md .fx{margin:10px 0}.md .fig{margin:12px 0}.md .lab{margin:12px 0}.md .gl{margin:10px 0}
+.fcg{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+@media (max-width:640px){
+main{padding:.7rem .55rem 3rem}
+h1{font-size:19px!important}
+#nav{display:flex;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+#nav .nv{flex:0 0 auto;min-width:108px}
+.md{padding:.85rem .8rem 1rem}
+.mt{font-size:17px}
+.ex{font-size:15.5px;line-height:1.85}
+.sx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sx svg{min-width:500px}
+.fig .fh::after,.lab .lb::after{content:"  ← เลื่อนภาพซ้ายขวาได้";font-size:11px;font-weight:400;color:var(--text-muted)}
+.gl{grid-template-columns:1fr}
+.gt{border-bottom:none;padding-bottom:2px}
+.grid{grid-template-columns:1fr!important}
+.fcg{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rw>span[style*="min-width"]{min-width:0!important;flex-basis:100%}
+.toc button,.stn button{font-size:12.5px;padding:4px 8px}
+.fxm{font-size:13px;word-break:break-word}
+.tb{font-size:12.5px}
+.tb th,.tb td{padding:6px 4px}
+.lab,.fig,.stp{padding:10px}
+}
+</style>
+</head>
+<body>
+<main>
+<h1 style="font-size:22px;font-weight:500;margin:0 0 2px">ทบทวนสอบ 0299005 Data Analysis with ML</h1>
+<p class="s" style="margin:0 0 6px">สอบจันทร์ 23 พ.ย. 2569 เวลา 09:00–12:00 น. · ปรนัย 50 ข้อ · 50% มาจากควิซในคอร์ส · เรียนตามเลขในแถบด้านล่าง (เริ่มจาก 1) แต่ละบทมีคำอธิบายแบบเริ่มจากศูนย์ คำศัพท์ สูตรพร้อมตัวอย่าง แล็บ จุดที่ข้อสอบชอบถาม และควิซ</p>
+<div id="nav"></div>
+<div id="view"><p class="s">กำลังโหลดบทเรียน…</p></div>
+<script>
+const $=id=>document.getElementById(id);
+const C={b:'#2a78d6',o:'#eb6834',v:'#6250d6',t:'#1baf7a',gr:'#888780',r:'#e34948',am:'#EF9F27'};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function rng(s){return()=>(s=s*16807%2147483647)/2147483647}
+function gau(r){return Math.sqrt(-2*Math.log(r()+1e-12))*Math.cos(2*Math.PI*r())}
+function plot(el,ser,o){const W=640,H=o.h||200,p=16,sx=x=>p+(x-o.x0)/(o.x1-o.x0)*(W-2*p),cl=y=>Math.max(o.y0,Math.min(o.y1,y)),sy=y=>H-p-(cl(y)-o.y0)/(o.y1-o.y0)*(H-2*p);let s='';if(o.zero&&o.y0<0&&o.y1>0)s+=`<line x1="${p}" x2="${W-p}" y1="${sy(0)}" y2="${sy(0)}" stroke="var(--border-strong)" stroke-width="0.5"/>`;s+=`<line x1="${p}" x2="${W-p}" y1="${H-p}" y2="${H-p}" stroke="var(--border-strong)" stroke-width="0.5"/>`;for(const q of ser){if(q.line)s+=`<polyline fill="none" stroke="${q.c}" stroke-width="${q.w||2}" ${q.d?'stroke-dasharray="5 4"':''} stroke-linejoin="round" stroke-linecap="round" points="${q.pts.map(a=>sx(a[0]).toFixed(1)+','+sy(a[1]).toFixed(1)).join(' ')}"/>`;if(q.dot)for(const a of q.pts)s+=`<circle cx="${sx(a[0]).toFixed(1)}" cy="${sy(a[1]).toFixed(1)}" r="${q.r||4}" fill="${q.ho?'none':q.c}" stroke="${q.c}" stroke-width="1.5"/>`}el.setAttribute('viewBox',`0 0 ${W} ${H}`);el.innerHTML=s}
+function polyfit(xs,ys,d,l){const n=d+1,A=[...Array(n)].map(()=>Array(n+1).fill(0));for(let k=0;k<xs.length;k++){const p=[];let v=1;for(let i=0;i<n;i++){p.push(v);v*=xs[k]}for(let i=0;i<n;i++){for(let j=0;j<n;j++)A[i][j]+=p[i]*p[j];A[i][n]+=p[i]*ys[k]}}for(let i=1;i<n;i++)A[i][i]+=(l+1e-9)*xs.length;for(let c=0;c<n;c++){let m=c;for(let r=c+1;r<n;r++)if(Math.abs(A[r][c])>Math.abs(A[m][c]))m=r;[A[c],A[m]]=[A[m],A[c]];const pv=A[c][c]||1e-12;for(let r=0;r<n;r++){if(r===c)continue;const f=A[r][c]/pv;for(let k=c;k<=n;k++)A[r][k]-=f*A[c][k]}}return A.map((r,i)=>r[n]/(r[i]||1e-12))}
+const pv=(w,x)=>w.reduceRight((a,c)=>a*x+c,0);
+function box(x,y,w,h,c,t1,t2){return `<g class="c-${c}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" stroke-width="0.5"/><text class="th" x="${x+w/2}" y="${t2?y+h/2-8:y+h/2}" text-anchor="middle" dominant-baseline="central">${t1}</text>${t2?`<text class="ts" x="${x+w/2}" y="${y+h/2+10}" text-anchor="middle" dominant-baseline="central">${t2}</text>`:''}</g>`}
+const ar=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="arr" marker-end="url(#arrow)"/>`;
+const DEF='<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>';
+const sld=(id,label,min,max,step,val,lw=120)=>`<div class="rw"><span style="min-width:${lw}px">${label}</span><input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${val}" style="flex:1"><b id="${id}v" style="min-width:36px;text-align:right">${val}</b></div>`;
+
+const L={
+overfit:{h:'Overfitting เห็นด้วยตา',s:'เลื่อน degree แล้วดูเส้นโมเดล (ม่วง) ว่าวิ่งผ่านจุด train (น้ำเงิน) และทายจุด test (ส้มกลวง) ได้ดีแค่ไหน ลองตั้ง degree 9 แล้วเลือก λ = 0.001 เส้นจะกลับมาเรียบ ถ้า λ แรงเกินไปจะกลายเป็น underfitting',
+html:`<div class="rw"><span style="min-width:120px">Polynomial degree</span><input type="range" id="dg" min="1" max="9" step="1" value="1" style="flex:1"><b id="dgv" style="min-width:16px">1</b></div>
+<div class="rw"><span style="min-width:120px">Ridge λ (L2)</span><select id="lm"><option value="0">0 ไม่มี regularization</option><option value="0.001">0.001</option><option value="0.01">0.01</option><option value="0.2">0.2 แรงเกินไป</option></select></div>
+<div class="lg"><span><i style="background:${C.b}"></i>train</span><span><i style="background:${C.o}"></i>test</span><span><i style="background:${C.v}"></i>เส้นโมเดล</span></div>
+<svg id="fs" width="100%" role="img" aria-label="จุดข้อมูลและเส้นโมเดล polynomial"></svg>
+<div class="rw"><div class="st"><span>Train error</span><b id="e1">-</b></div><div class="st"><span>Test error</span><b id="e2">-</b></div><span id="vd" class="pill"></span></div>
+<p class="s" style="margin:10px 0 2px">Error ทุก degree: train (น้ำเงิน) ลดลงเรื่อย ๆ ส่วน test (ส้มเส้นประ) ลดลงก่อนแล้วพุ่งขึ้น</p>
+<svg id="es" width="100%" role="img" aria-label="error ตาม degree"></svg>`,
+init(){const r=rng(11),f=x=>Math.sin(2*Math.PI*x);const tr=[...Array(10)].map((_,i)=>{const x=(i+.5)/10+(r()-.5)*.04;return[x,f(x)+gau(r)*.3]}),te=[...Array(11)].map((_,i)=>{const x=i/10;return[x,f(x)+gau(r)*.3]});const z=x=>2*x-1,fit=(d,l)=>polyfit(tr.map(a=>z(a[0])),tr.map(a=>a[1]),d,l),mse=(w,ps)=>ps.reduce((s,a)=>s+(pv(w,z(a[0]))-a[1])**2,0)/ps.length;
+const up=()=>{const d=+$('dg').value,l=+$('lm').value;$('dgv').textContent=d;const w=fit(d,l);plot($('fs'),[{pts:[...Array(161)].map((_,i)=>[i/160,pv(w,z(i/160))]),c:C.v,line:1},{pts:tr,c:C.b,dot:1},{pts:te,c:C.o,dot:1,ho:1}],{x0:0,x1:1,y0:-1.9,y1:1.9,h:210,zero:1});
+const E=[...Array(9)].map((_,i)=>{const v=fit(i+1,l);return[i+1,mse(v,tr),mse(v,te)]});const a=E[d-1][1],b=E[d-1][2],best=Math.min(...E.map(e=>e[2]));$('e1').textContent=a.toFixed(3);$('e2').textContent=b>99?'> 99':b.toFixed(3);
+const v=$('vd');if(d<=2||a>.15){v.className='pill y';v.textContent='Underfitting: bias สูง โมเดลง่ายเกินไปหรือ λ แรงเกินไป'}else if(b>best*1.8&&b>2*a){v.className='pill r';v.textContent='Overfitting: variance สูง จำ train ได้แต่ทาย test พลาด'}else{v.className='pill g';v.textContent='พอดี: error ต่ำทั้ง train และ test'}
+plot($('es'),[{pts:E.map(e=>[e[0],e[1]]),c:C.b,line:1,dot:1,r:3},{pts:E.map(e=>[e[0],e[2]]),c:C.o,line:1,dot:1,r:3,d:1},{pts:[[d,0],[d,.6]],c:C.gr,line:1,w:1,d:1}],{x0:1,x1:9,y0:0,y1:.6,h:130})};
+$('dg').oninput=up;$('lm').onchange=up;up()}},
+confusion:{h:'Confusion matrix และ metrics',s:'ปรับ TP, FN, FP, TN แล้วดูทุก metric เปลี่ยนตาม กดปุ่ม Imbalanced ดูว่าทำไม accuracy อย่างเดียวหลอกตาได้',
+html:`<div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px">${['TP','FN','FP','TN'].map(k=>`<label class="rw" style="margin:2px 0"><span style="min-width:26px" class="mono">${k}</span><input type="range" id="c${k}" min="0" max="100" step="1" value="0" style="flex:1"><b id="v${k}" style="min-width:24px">0</b></label>`).join('')}</div>
+<div style="display:grid;grid-template-columns:80px minmax(0,1fr) minmax(0,1fr);gap:6px;margin:12px 0;font-size:13px;text-align:center;align-items:center">
+<span></span><span class="s" style="margin:0">โมเดลทายว่า บวก</span><span class="s" style="margin:0">โมเดลทายว่า ลบ</span>
+<span class="s" style="margin:0">ของจริง บวก</span><span class="pill g" id="mTP" style="padding:12px"></span><span class="pill r" id="mFN" style="padding:12px"></span>
+<span class="s" style="margin:0">ของจริง ลบ</span><span class="pill r" id="mFP" style="padding:12px"></span><span class="pill g" id="mTN" style="padding:12px"></span></div>
+<div class="rw"><div class="st"><span>Accuracy</span><b id="mA"></b></div><div class="st"><span>Precision</span><b id="mP"></b></div><div class="st"><span>Recall</span><b id="mR"></b></div><div class="st"><span>F1</span><b id="mF"></b></div></div>
+<p class="s mono" id="mX" style="margin:4px 0"></p>
+<div class="rw"><button id="p1">สมดุล</button><button id="p2">Imbalanced: ทายลบหมด</button><button id="p3">ทายบวกเยอะเกิน</button></div>
+<span class="pill" id="mW"></span>`,
+init(){const K=['TP','FN','FP','TN'],set=a=>{K.forEach((k,i)=>$('c'+k).value=a[i]);up()};const P=x=>x==null?'—':Math.round(x*100)+'%';
+const up=()=>{const[tp,fn,fp,tn]=K.map(k=>+$('c'+k).value);K.forEach((k,i)=>{$('v'+k).textContent=[tp,fn,fp,tn][i];$('m'+k).textContent=k+' = '+[tp,fn,fp,tn][i]});const n=tp+fn+fp+tn,acc=n?(tp+tn)/n:null,pr=tp+fp?tp/(tp+fp):null,re=tp+fn?tp/(tp+fn):null,f1=pr&&re?2*pr*re/(pr+re):(pr===0||re===0?0:null);
+$('mA').textContent=P(acc);$('mP').textContent=P(pr);$('mR').textContent=P(re);$('mF').textContent=P(f1);$('mX').textContent=`Precision = ${tp}/${tp+fp}   ·   Recall = ${tp}/${tp+fn}   ·   Accuracy = ${tp+tn}/${n}`;
+const w=$('mW');if(acc>=.9&&(re??0)<.5){w.className='pill r';w.textContent='Accuracy สูงมาก แต่ Recall ต่ำ: ข้อมูล imbalanced ทำให้ accuracy หลอกตา'}else if(pr!=null&&re!=null&&Math.abs(pr-re)>.3){w.className='pill y';w.textContent='Precision กับ Recall ต่างกันมาก: ต้องดูคู่กัน หรือดู F1'}else{w.className='pill a';w.textContent='Precision = ทายว่าบวกแล้วถูกกี่ % · Recall = ของบวกจริงจับได้กี่ %'}};
+K.forEach(k=>$('c'+k).oninput=up);$('p1').onclick=()=>set([40,20,10,30]);$('p2').onclick=()=>set([0,5,0,95]);$('p3').onclick=()=>set([50,2,40,8]);set([40,20,10,30])}},
+gini:{h:'คำนวณ Gini ของ node',s:'ปรับจำนวน sample สองคลาสใน node เดียว ดูว่า Gini เป็น 0 เมื่อบริสุทธิ์ และสูงสุด 0.5 เมื่อปนกันครึ่งต่อครึ่ง',
+html:`${sld('gA','คลาส A (น้ำเงิน)',0,20,1,8)}${sld('gB','คลาส B (ส้ม)',0,20,1,2)}<div id="gd" style="display:flex;flex-wrap:wrap;gap:4px;margin:8px 0;min-height:16px"></div><div class="rw"><div class="st"><span>Gini</span><b id="gG"></b></div><div class="st"><span>Entropy</span><b id="gE"></b></div><span id="gM" class="pill"></span></div><p class="s mono" id="gX" style="margin:0"></p>`,
+init(){const up=()=>{const a=+$('gA').value,b=+$('gB').value,n=a+b;$('gAv').textContent=a;$('gBv').textContent=b;$('gd').innerHTML=Array(a).fill(C.b).concat(Array(b).fill(C.o)).map(c=>`<span style="width:14px;height:14px;border-radius:50%;background:${c}"></span>`).join('');if(!n){$('gG').textContent='—';$('gE').textContent='—';$('gM').className='';$('gM').textContent='';$('gX').textContent='';return}const p=a/n,q=b/n,g=1-p*p-q*q,e=-[p,q].filter(x=>x>0).reduce((s,x)=>s+x*Math.log2(x),0);$('gG').textContent=g.toFixed(3);$('gE').textContent=e.toFixed(3);$('gX').textContent=`Gini = 1 − (${a}/${n})² − (${b}/${n})² = ${g.toFixed(3)}`;const m=$('gM');if(g<1e-9){m.className='pill g';m.textContent='บริสุทธิ์: Gini = 0'}else if(Math.abs(g-.5)<1e-9){m.className='pill r';m.textContent='ปนกันมากสุด: Gini = 0.5'}else{m.className='pill a';m.textContent='ยิ่งใกล้ 0 ยิ่งบริสุทธิ์'}};$('gA').oninput=up;$('gB').oninput=up;up()}},
+ensemble:{h:'Bagging กับ Boosting',s:'สลับดูสองแบบ ข้อสอบชอบถามว่าแบบไหนสร้างขนานได้ และ AdaBoost ต่างจาก Gradient Boosting อย่างไร',
+html:`<div class="rw"><button id="eb">Bagging · Random Forest</button><button id="eo">Boosting · AdaBoost / GBoost</button></div><svg id="ev" width="100%" viewBox="0 0 680 236" role="img" aria-label="แผนภาพ ensemble learning"></svg><p class="s" id="et" style="margin:6px 0 0"></p>`,
+init(){const bag=()=>{let s=DEF+box(250,8,180,36,'gray','ข้อมูล train');[60,260,460].forEach((x,i)=>{s+=ar(340,44,x+80,74)+box(x,76,160,36,'purple','สุ่มชุดที่ '+(i+1))+ar(x+80,112,x+80,128)+`<polygon points="${x+80},130 ${x+50},170 ${x+110},170" fill="${C.t}" opacity="0.75"/>`+ar(x+80,172,340,194)});s+=box(250,196,180,34,'coral','โหวต / เฉลี่ย');$('ev').innerHTML=s;$('et').textContent='สร้างหลายต้นพร้อมกัน (parallel) จากข้อมูลที่สุ่มต่างกัน แล้วรวมด้วยโหวตหรือค่าเฉลี่ย ช่วยลด variance · Random Forest = Bagging + สุ่ม feature';$('eb').className='on';$('eo').className=''};
+const bst=()=>{let s=DEF;const D=[[30,30],[70,60],[110,25],[40,90],[100,95],[140,60]],W=[[2,4],[5],[]],X=[20,250,480];X.forEach((x,k)=>{s+=`<rect x="${x}" y="8" width="180" height="130" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="0.5" stroke-dasharray="4 3"/>`;D.forEach((p,i)=>{const big=k>0&&W[k-1].includes(i),bad=W[k].includes(i);s+=`<circle cx="${x+p[0]+10}" cy="${p[1]+18}" r="${big?11:5}" fill="${bad?C.r:C.t}" opacity="${bad?1:.8}"/>`});s+=`<text class="ts" x="${x+90}" y="156" text-anchor="middle">${['ต้นที่ 1','ต้นที่ 2: เน้นจุดที่ผิด','ต้นที่ 3'][k]}</text>`;if(k<2)s+=ar(x+182,73,x+228,73);s+=ar(x+90,164,340,190)});s+=box(200,192,280,38,'coral','รวมทุกต้นแบบถ่วงน้ำหนัก');$('ev').innerHTML=s;$('et').textContent='สร้างทีละต้นต่อกัน (sequential จึงทำขนานไม่ได้) ต้นใหม่แก้จุดที่ต้นก่อนพลาด (สีแดง) ช่วยลด bias · AdaBoost = เพิ่มน้ำหนักจุดที่ผิด (จุดใหญ่ขึ้น) · Gradient Boosting / XGBoost = fit residual';$('eo').className='on';$('eb').className=''};
+$('eb').onclick=bag;$('eo').onclick=bst;bag()}},
+pipeline:{h:'เรียงขั้นตอน pipeline ไม่ให้ข้อมูลรั่ว',s:'กดขั้นตอนตามลำดับที่ถูกต้อง ข้อสอบชอบถามว่าลำดับไหน "ไม่เหมาะสม" เช่น oversample หรือ fit_transform ก่อน split',
+html:`<div class="rw" id="pq"></div><div class="rw" id="pa" style="min-height:40px;padding:8px;border:0.5px dashed var(--border-strong);border-radius:var(--radius)"></div><div class="rw"><button id="px"><i class="ti ti-refresh" aria-hidden="true"></i> เริ่มใหม่</button><span id="pm" class="pill"></span></div>`,
+init(){const ok=['แบ่ง train / test','fit_transform บน train','transform บน test','เทรน + CV หา hyper-parameter','ประเมินผลบน test'],sh=[ok[3],ok[0],ok[4],ok[2],ok[1]];let seq=[];
+const draw=()=>{const left=sh.filter(x=>!seq.includes(x));$('pq').innerHTML=left.map(x=>`<button data-x="${x}">${x}</button>`).join('')||'<span class="s" style="margin:0">เลือกครบแล้ว</span>';$('pa').innerHTML=seq.length?seq.map((x,i)=>`<span class="pill a">${i+1}. ${x}</span>`).join(' <i class="ti ti-arrow-right" aria-hidden="true"></i> '):'<span class="s" style="margin:0">กดขั้นตอนด้านบนตามลำดับ</span>';$('pq').querySelectorAll('button').forEach(b=>b.onclick=()=>{seq.push(b.dataset.x);draw()});
+const m=$('pm');if(seq.length===5){const I=j=>seq.indexOf(ok[j]),g=I(0)===0&&I(1)>0&&I(2)>I(1)&&I(3)>I(1)&&I(4)===4;m.className='pill '+(g?'g':'r');m.textContent=g?'ถูกต้อง: ทุกอย่างที่เรียนรู้จากข้อมูลต้องทำหลัง split และ fit กับ train เท่านั้น':'ยังไม่ถูก: ถ้าใช้ข้อมูล test ก่อนเวลาอันควรจะเกิด data leakage ลองใหม่'}else{m.className='';m.textContent=''}};
+$('px').onclick=()=>{seq=[];draw()};draw()}},
+quad:{h:'ตาราง 4 กลุ่มนิยาม AI',s:'กดแต่ละช่องเพื่อดูความหมายและตัวอย่าง แถว = คิด / ทำ · คอลัมน์ = เหมือนมนุษย์ / มีเหตุผล',
+html:`<div style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1fr);gap:6px;font-size:13px;text-align:center;align-items:center"><span></span><span class="s" style="margin:0">เหมือนมนุษย์</span><span class="s" style="margin:0">มีเหตุผล</span><span class="s" style="margin:0">คิด</span><button class="qd" data-q="0">Think like human<br><small>Strong AI</small></button><button class="qd" data-q="1">Think rationally<br><small>ใช้ตรรกะ</small></button><span class="s" style="margin:0">ทำ</span><button class="qd" data-q="2">Act like human<br><small>Weak AI</small></button><button class="qd" data-q="3">Act rationally<br><small>ผลสมเหตุสมผล</small></button></div><div id="qdd" style="margin:12px 0 0;padding:12px;background:var(--bg-neutral);border-radius:var(--radius);font-size:13px;line-height:1.6"></div>`,
+init(){const D=['<b>Think like human (Strong AI)</b>: พยายามเลียนแบบการคิดของสมองจริง ๆ ยากมากเพราะเรายังไม่รู้ว่าสมองแปลภาพหรือเสียงเป็นความเข้าใจได้อย่างไร','<b>Think rationally</b>: ใช้กฎตรรกะ เช่น "ฝนตก → พื้นเปียก" แต่ถ้าเห็นพื้นเปียก ไม่ได้แปลว่าฝนตกเสมอ ระบบต้องหาสาเหตุจริงให้ได้','<b>Act like human (Weak AI)</b>: ไม่ต้องคิดเหมือนคน ขอแค่ผลลัพธ์เหมือนคน เทียบกับพี่น้องไรท์ที่ทำเครื่องบินบินได้โดยไม่ต้องกระพือปีก<svg width="100%" viewBox="0 0 680 128" role="img" aria-label="Turing test">'+DEF+box(30,40,150,44,'gray','ผู้ประเมิน','ถามผ่านข้อความ')+'<line x1="250" y1="6" x2="250" y2="122" stroke="var(--border-strong)" stroke-dasharray="4 4"/>'+ar(182,56,318,30)+ar(182,70,318,98)+box(320,8,140,40,'teal','A: คน')+box(320,80,140,40,'purple','B: เครื่อง')+'<text class="ts" x="480" y="60">Turing test: แยกไม่ออก</text><text class="ts" x="480" y="78">ว่าใครคือเครื่อง = ผ่าน</text></svg><b>Chinese Room</b>: คนในห้องไม่รู้ภาษาจีน แต่เปิดคู่มือจับคู่คำถามกับคำตอบ คนนอกห้องเลยเห็นเหมือน "เข้าใจภาษาจีน" = ทำเหมือนเข้าใจโดยไม่เข้าใจจริง','<b>Act rationally</b>: การกระทำออกมาสมเหตุสมผล ไม่จำเป็นต้องคิดแบบมีเหตุผลทุกขั้น เช่น รถไร้คนขับที่ขับได้ปลอดภัย'];const sel=i=>{document.querySelectorAll('.qd').forEach(b=>b.classList.toggle('on',+b.dataset.q===i));$('qdd').innerHTML=D[i]};document.querySelectorAll('.qd').forEach(b=>b.onclick=()=>sel(+b.dataset.q));sel(2)}},
+search:{h:'BFS กับ DFS ใน state space',s:'เลือกวิธีแล้วกด "เล่นจนจบ" คลิกโหนดไหนก็ได้เพื่อย้ายเป้าหมาย สังเกตว่า BFS เก็บ frontier เยอะ (กินหน่วยความจำ) ส่วน DFS ลงลึกจนสุดกิ่ง (ถ้าเป้าหมายอยู่อีกกิ่งจะเสียเวลา)',
+html:`<div class="rw"><button id="bB">BFS · กว้างก่อน</button><button id="bD">DFS · ลึกก่อน</button><button id="bS"><i class="ti ti-player-track-next" aria-hidden="true"></i> ก้าวถัดไป</button><button id="bP"><i class="ti ti-player-play" aria-hidden="true"></i> เล่นจนจบ</button></div>
+<svg id="tv" width="100%" viewBox="0 0 680 220" role="img" aria-label="ต้นไม้ค้นหา"></svg>
+<div class="lg"><span><i style="background:${C.v}"></i>เยี่ยมแล้ว</span><span><i style="border:2px solid ${C.am}"></i>รอใน frontier (กินหน่วยความจำ)</span><span><i style="background:${C.t}"></i>เป้าหมาย</span></div>
+<div class="rw"><div class="st"><span>เยี่ยมแล้ว</span><b id="bn">0</b></div><div class="st"><span>Frontier ตอนนี้</span><b id="bf">1</b></div><div class="st"><span>Frontier สูงสุด</span><b id="bm">1</b></div></div><span id="bt" class="pill"></span>`,
+init(){let mode='B',goal=7,vis=[],fr=[1],mx=1,done=false,tm=null;const pos=n=>{const L=Math.floor(Math.log2(n)),i=n-2**L;return[20+(i+.5)*640/2**L,20+L*46]};
+const draw=()=>{let s='';for(let n=2;n<32;n++){const[a,b]=pos(n),[c,d]=pos(n>>1);s+=`<line x1="${c}" y1="${d}" x2="${a}" y2="${b}" stroke="var(--border-strong)" stroke-width="0.5"/>`}for(let n=1;n<32;n++){const[a,b]=pos(n),v=vis.includes(n),f=fr.includes(n),g=n===goal;s+=`<circle data-n="${n}" cx="${a}" cy="${b}" r="10" fill="${g&&v?C.t:v?C.v:'var(--surface-1)'}" stroke="${g?C.t:f?C.am:'var(--border-strong)'}" stroke-width="${g||f?2.5:0.5}" style="cursor:pointer"/>`}$('tv').innerHTML=s;$('tv').querySelectorAll('circle').forEach(c=>c.onclick=()=>{goal=+c.dataset.n;reset()});$('bn').textContent=vis.length;$('bf').textContent=fr.length;$('bm').textContent=mx;$('bB').className=mode==='B'?'on':'';$('bD').className=mode==='D'?'on':''};
+const reset=()=>{clearInterval(tm);vis=[];fr=[1];mx=1;done=false;$('bt').className='';$('bt').textContent='';draw()};
+const step=()=>{if(!$('tv')){clearInterval(tm);return}if(done)return;const n=mode==='B'?fr.shift():fr.pop();vis.push(n);if(n===goal){done=true;const t=$('bt');t.className='pill a';t.textContent=mode==='B'?`BFS เจอใน ${vis.length} ก้าว · frontier สูงสุด ${mx} โหนด → จุดอ่อนคือหน่วยความจำ`:`DFS เจอใน ${vis.length} ก้าว · frontier สูงสุดแค่ ${mx} → ประหยัดหน่วยความจำ แต่ต้องลงลึกให้สุดกิ่งก่อน จุดอ่อนคือเวลา`}else if(n<16){mode==='B'?fr.push(2*n,2*n+1):fr.push(2*n+1,2*n)}mx=Math.max(mx,fr.length);if(!fr.length)done=true;draw()};
+$('bB').onclick=()=>{mode='B';reset()};$('bD').onclick=()=>{mode='D';reset()};$('bS').onclick=step;$('bP').onclick=()=>{clearInterval(tm);tm=setInterval(()=>{step();if(done)clearInterval(tm)},300)};reset()}},
+fitline:{h:'หาเส้นตรงที่ทำให้ E ต่ำสุด',s:'ปรับความชัน m และจุดตัด c ให้เส้นผ่านข้อมูล เส้นแดงคือ error ของแต่ละจุด E คือผลรวม error กำลังสองคูณ ½ ลองหามือก่อนแล้วค่อยกดปุ่มให้คำนวณเส้นที่ดีที่สุด',
+html:`${sld('lnm','ความชัน m',-1,3,0.01,0.5)}${sld('lnc','จุดตัด c',-2,4,0.01,1)}<svg id="lns" width="100%" role="img" aria-label="ข้อมูลและเส้นตรง"></svg><div class="rw"><div class="st"><span>E = ½Σ(t − o)²</span><b id="lnE"></b></div><div class="st"><span>E ต่ำสุดที่เป็นไปได้</span><b id="lnB"></b></div><button id="lnF">หาเส้นที่ E ต่ำสุด</button></div><p class="s mono" id="lnX" style="margin:0"></p>`,
+init(){const P=[[1,2],[2,3.5],[3,3.8],[4,5.5],[5,6.2]],n=5,sx=15,sy=P.reduce((s,p)=>s+p[1],0),sxy=P.reduce((s,p)=>s+p[0]*p[1],0),sxx=55,bm=(n*sxy-sx*sy)/(n*sxx-sx*sx),bc=(sy-bm*sx)/n,E=(m,c)=>.5*P.reduce((s,p)=>s+(p[1]-(m*p[0]+c))**2,0);$('lnB').textContent=E(bm,bc).toFixed(3);
+const up=()=>{const m=+$('lnm').value,c=+$('lnc').value;$('lnmv').textContent=m.toFixed(2);$('lncv').textContent=c.toFixed(2);const ser=[{pts:[[0,c],[6,6*m+c]],c:C.v,line:1}];P.forEach(p=>ser.push({pts:[p,[p[0],m*p[0]+c]],c:C.r,line:1,w:1.5}));ser.push({pts:P,c:C.b,dot:1,r:5});plot($('lns'),ser,{x0:0,x1:6,y0:0,y1:8,h:200});const e=E(m,c);$('lnE').textContent=e.toFixed(3);$('lnX').textContent=`y = ${m.toFixed(2)}x + ${c.toFixed(2)}   ·   เส้นที่ดีที่สุด y = ${bm.toFixed(2)}x + ${bc.toFixed(2)}`};
+$('lnm').oninput=up;$('lnc').oninput=up;$('lnF').onclick=()=>{$('lnm').value=bm.toFixed(2);$('lnc').value=bc.toFixed(2);up()};up()}},
+cost:{h:'Error แต่ละแบบมีต้นทุนไม่เท่ากัน',s:'ตัวอย่างจากวิดีโอบทที่ 9 กดเปลี่ยนสถานการณ์แล้วดูว่า error แบบไหนร้ายแรงกว่า',
+html:`<div class="rw"><button class="ec" data-s="0">ATK ช่วงระบาดแรก</button><button class="ec" data-s="1">ATK ช่วงโรคประจำถิ่น</button><button class="ec" data-s="2">อนุมัติสินเชื่อ</button></div><div id="ecv"></div>`,
+init(){const S=[[['ติดเชื้อ แต่ผลเป็นลบ (False Negative)','ออกไปข้างนอกแล้วแพร่เชื้อต่อ',95],['ไม่ติด แต่ผลเป็นบวก (False Positive)','ต้องกักตัวโดยไม่จำเป็น',30]],[['ติดเชื้อ แต่ผลเป็นลบ (False Negative)','คนส่วนใหญ่ฉีดวัคซีนแล้วและระวังตัว แพร่ได้น้อยลง',40],['ไม่ติด แต่ผลเป็นบวก (False Positive)','เสียโอกาสทำงานหรือไปเรียน',65]],[['ลูกค้าจะจ่ายได้ แต่ระบบปฏิเสธ','ธนาคารเสียโอกาสได้ลูกค้า',45],['ลูกค้าจะไม่จ่าย แต่ระบบอนุมัติ','เกิดหนี้เสีย ต้องตามทวงหนี้',90]]];
+const sel=i=>{document.querySelectorAll('.ec').forEach(b=>b.classList.toggle('on',+b.dataset.s===i));$('ecv').innerHTML=S[i].map(e=>`<div style="margin:12px 0"><div style="font-size:13px;font-weight:500">${e[0]}</div><div style="font-size:12px;color:var(--text-secondary);margin:2px 0 4px">${e[1]}</div><div style="background:var(--bg-neutral);border-radius:3px;height:10px"><div style="width:${e[2]}%;height:10px;border-radius:3px;background:${e[2]>60?C.r:C.am}"></div></div></div>`).join('')+'<span class="pill a">ต้นทุนของ error เปลี่ยนตามสถานการณ์ จึงต้องเลือก metric (precision หรือ recall) ให้ตรงกับต้นทุนจริง</span>'};document.querySelectorAll('.ec').forEach(b=>b.onclick=()=>sel(+b.dataset.s));sel(0)}},
+boom:{h:'ทำไม AI / ML บูม',s:'สามเหตุผลจากวิดีโอบทที่ 10',
+html:`<svg width="100%" viewBox="0 0 680 124" role="img" aria-label="3 เหตุผลที่ AI บูม">${DEF}${box(20,10,190,50,'purple','Algorithm','พัฒนาต่อยอดกัน')}${box(245,10,190,50,'purple','Tools','ใช้ง่ายขึ้น')}${box(470,10,190,50,'purple','Computing power','GPU จากวงการเกม')}${ar(115,62,290,86)}${ar(340,62,340,84)}${ar(565,62,390,86)}${box(240,88,200,32,'coral','AI / ML บูม')}</svg>`},
+decomp:{h:'แยกส่วนประกอบและทำให้ stationary',s:'เปิดหรือปิด trend, seasonal, noise แล้วลองแปลงข้อมูลด้วย log และ differencing ดูว่าเมื่อไหร่ rolling mean (ส้ม) นิ่งจนเป็น stationary',
+html:`<div class="rw"><label><input type="checkbox" id="tT" checked> Trend</label><label><input type="checkbox" id="tS" checked> Seasonal (คาบ 12)</label><label><input type="checkbox" id="tN" checked> Noise</label><select id="tM"><option value="a">Additive</option><option value="m">Multiplicative</option></select></div>
+<div class="rw"><span>แปลงข้อมูล</span><label><input type="checkbox" id="xL"> log</label><label><input type="checkbox" id="x1"> differencing lag 1</label><label><input type="checkbox" id="x12"> seasonal differencing lag 12</label></div>
+<div class="lg"><span><i style="background:${C.b}"></i>ข้อมูล</span><span><i style="background:${C.o}"></i>rolling mean 12 จุด</span></div>
+<svg id="tsg" width="100%" role="img" aria-label="กราฟ time series"></svg>
+<span id="tsv" class="pill"></span><p id="tsr" class="s" style="margin:6px 0 0"></p>`,
+init(){const r=rng(3),n=96,e=[...Array(n)].map(()=>gau(r));
+const up=()=>{const tr=$('tT').checked,se=$('tS').checked,no=$('tN').checked,m=$('tM').value==='m',L=$('xL').checked,d1=$('x1').checked,d12=$('x12').checked;let y=[...Array(n)].map((_,t)=>{const T=tr?20+.35*t:30,S=se?Math.sin(2*Math.PI*t/12):0,E=no?e[t]:0;return m?T*(1+.3*S)*(1+.03*E):T+4*S+E});if(L)y=y.map(Math.log);let p=y.map((v,t)=>[t,v]);if(d1)p=p.slice(1).map((a,i)=>[a[0],a[1]-p[i][1]]);if(d12)p=p.slice(12).map((a,i)=>[a[0],a[1]-p[i][1]]);
+const rm=p.slice(11).map((a,i)=>[a[0],p.slice(i,i+12).reduce((s,b)=>s+b[1],0)/12]),vs=p.map(a=>a[1]),lo=Math.min(...vs),hi=Math.max(...vs),pd=(hi-lo)*.1||1;plot($('tsg'),[{pts:p,c:C.b,line:1,w:1.5},{pts:rm,c:C.o,line:1,d:1}],{x0:0,x1:n-1,y0:lo-pd,y1:hi+pd,h:190,zero:1});
+const R=[];if(tr&&!d1&&!d12)R.push('ยังมี trend: mean เปลี่ยนไปตามเวลา → ลอง differencing lag 1');if(se&&!d12)R.push('ยังมี seasonal → ลอง seasonal differencing lag 12');if(m&&tr&&se&&!L)R.push('Multiplicative: แกว่งกว้างขึ้นตามระดับข้อมูล → ลอง log ให้กลายเป็น additive');const v=$('tsv');if(R.length){v.className='pill r';v.textContent='Non-stationary';$('tsr').innerHTML=R.join('<br>')}else{v.className='pill g';v.textContent='Stationary';$('tsr').textContent='mean และ variance คงที่ตลอดเวลา ถ้าทำ ADF test น่าจะได้ p < 0.05 พร้อมใช้ ARIMA ได้'}};
+['tT','tS','tN','tM','xL','x1','x12'].forEach(k=>$(k).onchange=up);up()}},
+smooth:{h:'Moving average กับ EMA',s:'MA ให้น้ำหนักทุกจุดเท่ากัน ส่วน EMA ให้จุดล่าสุดหนักกว่า ปรับดูว่าเส้นเรียบขึ้นและตามข้อมูลทันแค่ไหน',
+html:`${sld('sw','MA window',1,15,1,6)}${sld('sa','EMA α',0.05,1,0.05,0.3)}<div class="lg"><span><i style="background:${C.gr}"></i>ข้อมูลจริง</span><span><i style="background:${C.b}"></i>Moving average</span><span><i style="background:${C.o}"></i>EMA</span></div><svg id="sg" width="100%" role="img" aria-label="กราฟ smoothing"></svg>`,
+init(){const r=rng(9),y=[...Array(72)].map((_,t)=>10+3*Math.sin(2*Math.PI*t/12)+gau(r)*1.2);const up=()=>{const w=+$('sw').value,a=+$('sa').value;$('swv').textContent=w;$('sav').textContent=a.toFixed(2);const ma=y.map((_,t)=>t<w-1?null:[t,y.slice(t-w+1,t+1).reduce((s,v)=>s+v,0)/w]).filter(Boolean);let s=y[0];const em=y.map((v,t)=>{s=t?a*v+(1-a)*s:v;return[t,s]});plot($('sg'),[{pts:y.map((v,t)=>[t,v]),c:C.gr,line:1,w:1},{pts:ma,c:C.b,line:1},{pts:em,c:C.o,line:1,d:1}],{x0:0,x1:71,y0:4,y1:16,h:180})};$('sw').oninput=up;$('sa').oninput=up;up()}},
+dist:{h:'Euclidean, Manhattan และ Cosine',s:'ปรับตำแหน่งจุด A และ B เส้นม่วงคือ Euclidean (เส้นตรง) เส้นส้มประคือ Manhattan (เดินตามช่องตาราง) เส้นเทาจากจุดกำเนิดใช้คิด cosine',
+html:`<div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px">${sld('dax','A: x',0,8,1,1)}${sld('day','A: y',0,8,1,2)}${sld('dbx','B: x',0,8,1,4)}${sld('dby','B: y',0,8,1,6)}</div><svg id="dsv" width="100%" viewBox="0 0 680 300" role="img" aria-label="ระยะห่างระหว่างจุด A และ B"></svg><div class="rw"><div class="st"><span>Euclidean</span><b id="dE"></b></div><div class="st"><span>Manhattan</span><b id="dM"></b></div><div class="st"><span>Cosine similarity</span><b id="dC"></b></div></div><p class="s mono" id="dX" style="margin:0"></p>`,
+init(){const X=x=>210+x*32.5,Y=y=>280-y*32.5;const up=()=>{const a=[+$('dax').value,+$('day').value],b=[+$('dbx').value,+$('dby').value];['dax','day','dbx','dby'].forEach(k=>$(k+'v').textContent=$(k).value);let s='';for(let i=0;i<=8;i++){s+=`<line x1="${X(i)}" y1="${Y(0)}" x2="${X(i)}" y2="${Y(8)}" stroke="var(--border)" stroke-width="0.5"/><line x1="${X(0)}" y1="${Y(i)}" x2="${X(8)}" y2="${Y(i)}" stroke="var(--border)" stroke-width="0.5"/>`}s+=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(a[0])}" y2="${Y(a[1])}" stroke="${C.gr}" stroke-width="1"/><line x1="${X(0)}" y1="${Y(0)}" x2="${X(b[0])}" y2="${Y(b[1])}" stroke="${C.gr}" stroke-width="1"/><polyline points="${X(a[0])},${Y(a[1])} ${X(b[0])},${Y(a[1])} ${X(b[0])},${Y(b[1])}" fill="none" stroke="${C.o}" stroke-width="2.5" stroke-dasharray="6 4"/><line x1="${X(a[0])}" y1="${Y(a[1])}" x2="${X(b[0])}" y2="${Y(b[1])}" stroke="${C.v}" stroke-width="2.5"/><circle cx="${X(a[0])}" cy="${Y(a[1])}" r="7" fill="${C.b}"/><circle cx="${X(b[0])}" cy="${Y(b[1])}" r="7" fill="${C.r}"/><text class="th" x="${X(a[0])-12}" y="${Y(a[1])-12}" text-anchor="end">A</text><text class="th" x="${X(b[0])+12}" y="${Y(b[1])-12}">B</text><text class="ts" x="${X(0)}" y="${Y(0)+16}" text-anchor="middle">0</text>`;$('dsv').innerHTML=s;const dx=b[0]-a[0],dy=b[1]-a[1],eu=Math.hypot(dx,dy),mh=Math.abs(dx)+Math.abs(dy),na=Math.hypot(...a),nb=Math.hypot(...b),cs=na&&nb?(a[0]*b[0]+a[1]*b[1])/(na*nb):null;$('dE').textContent=+eu.toFixed(3);$('dM').textContent=mh;$('dC').textContent=cs==null?'—':cs.toFixed(3);$('dX').textContent=`Euclidean = √(${dx}² + ${dy}²) · Manhattan = |${dx}| + |${dy}| · Cosine = (A·B)/(‖A‖‖B‖)`};['dax','day','dbx','dby'].forEach(k=>$(k).oninput=up);up()}},
+moons:{h:'k-means กับ DBSCAN บนข้อมูลรูปพระจันทร์',s:'ข้อสอบมีรูปนี้จริง กด k-means แล้วดู centroid (X) ขยับทีละรอบ จากนั้นเทียบกับ DBSCAN ว่าแบบไหนแยกสองวงได้',
+html:`<div class="rw"><button id="mk"><i class="ti ti-player-play" aria-hidden="true"></i> k-means (k=2)</button><button id="md">DBSCAN</button><button id="mr"><i class="ti ti-refresh" aria-hidden="true"></i> รีเซ็ต</button></div><svg id="mv" width="100%" viewBox="0 0 680 290" role="img" aria-label="ข้อมูล two moons"></svg><span id="mt" class="pill"></span>`,
+init(){const r=rng(5),P=[];for(let i=0;i<80;i++){const a=Math.PI*i/79;P.push([Math.cos(a)+gau(r)*.07,Math.sin(a)+gau(r)*.07]);P.push([1-Math.cos(a)+gau(r)*.07,.5-Math.sin(a)+gau(r)*.07])}const sx=x=>20+(x+1.3)/3.6*640,sy=y=>270-(y+.8)/2.1*250;let tm=null;
+const draw=(lb,ce)=>{let s='';P.forEach((p,i)=>{const l=lb?lb[i]:null;s+=`<circle cx="${sx(p[0]).toFixed(1)}" cy="${sy(p[1]).toFixed(1)}" r="4" fill="${l===0?C.b:l===1?C.o:l===-1?'var(--border-stronger)':C.gr}" opacity="${l==null?.5:.9}"/>`});(ce||[]).forEach(c=>{const x=sx(c[0]),y=sy(c[1]);s+=`<path d="M${x-8} ${y-8}L${x+8} ${y+8}M${x+8} ${y-8}L${x-8} ${y+8}" stroke="var(--text-primary)" stroke-width="3" fill="none"/>`});$('mv').innerHTML=s};
+const km=()=>{clearInterval(tm);let ce=[[-.8,.9],[2,-.3]],it=0,lb;const t=$('mt');t.className='pill a';tm=setInterval(()=>{if(!$('mv')){clearInterval(tm);return}lb=P.map(p=>{const d=ce.map(c=>(p[0]-c[0])**2+(p[1]-c[1])**2);return d[0]<=d[1]?0:1});const nc=[0,1].map(k=>{const q=P.filter((_,i)=>lb[i]===k);return[q.reduce((s,p)=>s+p[0],0)/q.length,q.reduce((s,p)=>s+p[1],0)/q.length]});const mv=Math.hypot(nc[0][0]-ce[0][0],nc[0][1]-ce[0][1]);ce=nc;it++;draw(lb,ce);t.textContent='k-means รอบที่ '+it;if(mv<1e-4||it>12){clearInterval(tm);t.textContent=`k-means เสร็จใน ${it} รอบ: แบ่งด้วยเส้นตรง จึงผ่าแต่ละวงเป็นสองท่อน แยกรูปทรงโค้งไม่ได้`}},500)};
+const db=()=>{clearInterval(tm);const eps=.25,mp=5,N=P.map(p=>P.map((q,j)=>Math.hypot(p[0]-q[0],p[1]-q[1])<=eps?j:-1).filter(j=>j>=0)),lb=Array(P.length).fill(null);let c=0;P.forEach((_,i)=>{if(lb[i]!==null||N[i].length<mp)return;const st=[i];lb[i]=c;while(st.length){const j=st.pop();if(N[j].length<mp)continue;N[j].forEach(k=>{if(lb[k]===null||lb[k]===-1){const was=lb[k];lb[k]=c;if(was===null)st.push(k)}})}c++});P.forEach((_,i)=>{if(lb[i]===null)lb[i]=-1});draw(lb.map(l=>l>1?-1:l));const t=$('mt');t.className='pill g';t.textContent=`DBSCAN ได้ ${c} กลุ่มตามรูปทรงวง (รวมจุดที่หนาแน่นติดกัน) ไม่ต้องกำหนดจำนวนกลุ่มล่วงหน้า และจุดที่อยู่โดดเดี่ยวจะเป็น noise`};
+$('mk').onclick=km;$('md').onclick=db;$('mr').onclick=()=>{clearInterval(tm);draw();$('mt').className='';$('mt').textContent=''};draw()}},
+assoc:{h:'Association rule: ขนมปัง → นม',s:'ตะกร้าสินค้า 100 ใบ แต่ละช่องคือ 1 ตะกร้า ปรับจำนวนแล้วดู support, confidence และ lift',
+html:`${sld('aA','ตะกร้าที่มีขนมปัง',0,100,1,40)}${sld('aB','ตะกร้าที่มีนม',0,100,1,50)}${sld('aX','มีทั้งสองอย่าง',0,100,1,30)}
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center"><div id="ag" style="display:grid;grid-template-columns:repeat(10,18px);gap:3px"></div><div class="lg" style="flex-direction:column;gap:4px"><span><i style="background:${C.v}"></i>ขนมปัง + นม</span><span><i style="background:${C.b}"></i>ขนมปังอย่างเดียว</span><span><i style="background:${C.o}"></i>นมอย่างเดียว</span></div></div>
+<div class="rw"><div class="st"><span>Support</span><b id="sS"></b></div><div class="st"><span>Confidence</span><b id="sC"></b></div><div class="st"><span>Lift</span><b id="sL"></b></div></div><p class="s mono" id="sF" style="margin:0 0 6px"></p><span id="sM" class="pill a"></span>`,
+init(){const up=()=>{let A=+$('aA').value,B=+$('aB').value,X=+$('aX').value;X=Math.min(X,A,B);if(A+B-X>100)X=A+B-100;$('aX').value=X;['aA','aB','aX'].forEach((k,i)=>$(k+'v').textContent=[A,B,X][i]);let g='';for(let i=0;i<100;i++){const c=i<X?C.v:i<A?C.b:i<A+B-X?C.o:'var(--bg-neutral)';g+=`<span style="width:18px;height:18px;border-radius:3px;background:${c}"></span>`}$('ag').innerHTML=g;const sup=X/100,conf=A?X/A:0,lift=B&&A?conf/(B/100):0;$('sS').textContent=sup.toFixed(2);$('sC').textContent=conf.toFixed(2);$('sL').textContent=lift.toFixed(2);$('sF').textContent=`support = ${X}/100 · confidence = ${X}/${A} · lift = confidence ÷ (${B}/100)`;$('sM').textContent=lift>1.05?'Lift > 1: ซื้อด้วยกันบ่อยกว่าที่ควรเป็นโดยบังเอิญ (สัมพันธ์ทางบวก)':lift<.95?'Lift < 1: ซื้อด้วยกันน้อยกว่าบังเอิญ (สัมพันธ์ทางลบ)':'Lift ≈ 1: สองอย่างไม่สัมพันธ์กัน'};['aA','aB','aX'].forEach(k=>$(k).oninput=up);up()}},
+binary:{h:'เลขฐานสอง',s:'กดบิตเพื่อสลับ 0 กับ 1 ค่าตั้งต้นคือ 10010000 จากควิซ',
+html:`<div class="rw" id="bits" style="gap:6px"></div><div class="rw"><div class="st"><span>Unsigned</span><b id="bu"></b></div><div class="st"><span>Sign-magnitude</span><b id="bs"></b></div><div class="st"><span>Two’s complement</span><b id="b2"></b></div></div><p class="s mono" id="bx" style="margin:0"></p>`,
+init(){const b=[1,0,0,1,0,0,0,0];const up=()=>{$('bits').innerHTML=b.map((v,i)=>`<div style="text-align:center"><button class="bit${v?' on':''}" data-i="${i}">${v}</button><div style="font-size:11px;color:var(--text-muted);margin-top:2px">${2**(7-i)}</div></div>`).join('');$('bits').querySelectorAll('button').forEach(x=>x.onclick=()=>{b[+x.dataset.i]^=1;up()});const u=b.reduce((s,v,i)=>s+v*2**(7-i),0),lo=u&127;$('bu').textContent=u;$('bs').textContent=(b[0]?'−':'+')+lo;$('b2').textContent=b[0]?u-256:u;$('bx').textContent='= '+(b.map((v,i)=>v?2**(7-i):0).filter(Boolean).join(' + ')||'0')};up()}},
+logic:{h:'เกตตรรกะแบบ 4 บิต',s:'กดบิตของ A และ B แล้วดูผลทีละหลัก ค่าตั้งต้นคือ A = 0100 และ B = 0010 จากควิซ',
+html:`<div id="lgx"></div>`,
+init(){const A=[0,1,0,0],B=[0,0,1,0];const cell=(v,k,i)=>k?`<button class="bit${v?' on':''}" data-k="${k}" data-i="${i}">${v}</button>`:`<span class="bit${v?' on':''}">${v}</span>`;const row=(l,a,k)=>`<div class="rw" style="gap:6px;margin:4px 0"><span style="min-width:110px" class="mono">${l}</span>${a.map((v,i)=>cell(v,k,i)).join('')}</div>`;const up=()=>{const op=f=>A.map((a,i)=>f(a,B[i]));$('lgx').innerHTML=row('A',A,'A')+row('B',B,'B')+'<div style="border-top:0.5px solid var(--border);margin:6px 0"></div>'+row('A AND B',op((a,b)=>a&b))+row('A OR B',op((a,b)=>a|b))+row('A XOR B',op((a,b)=>a^b))+row('NOT A',A.map(a=>1-a))+row('¬(¬A·¬B)',op((a,b)=>1-((1-a)&(1-b))));$('lgx').querySelectorAll('button').forEach(x=>x.onclick=()=>{(x.dataset.k==='A'?A:B)[+x.dataset.i]^=1;up()})};up()}},
+memory:{h:'ลำดับชั้นหน่วยความจำ',s:'ยิ่งอยู่บนยิ่งเร็วและแพง แต่จุได้น้อย สีบอกว่าข้อมูลหายเมื่อไฟดับหรือไม่',
+html:`<svg width="100%" viewBox="0 0 680 236" role="img" aria-label="พีระมิดหน่วยความจำ">${[['Register (ใน CPU)',170,'coral'],['Cache',250,'coral'],['RAM',350,'coral'],['SSD',450,'teal'],['HDD',550,'teal']].map((a,i)=>box(340-a[1]/2,10+i*44,a[1],38,a[2],a[0])).join('')}</svg><div class="lg"><span><i style="background:#F0997B"></i>Volatile: ไฟดับข้อมูลหาย</span><span><i style="background:#5DCAA5"></i>Non-volatile: เก็บได้แม้ไม่มีไฟ (Disk, SSD, ROM)</span></div>`},
+slice:{h:'เห็นภาพ string slicing',s:'พิมพ์ start, stop, step (เว้นว่างได้ ใช้เลขติดลบได้) ช่องที่ถูกเลือกจะเปลี่ยนสี ตัวเลขด้านบนคือ index บวก ด้านล่างคือ index ลบ',
+html:`<div class="rw"><span class="mono">s =</span><input id="ss" value="Hello, it's me" maxlength="16" class="mono" style="flex:1;min-width:160px"></div><div class="rw mono" style="gap:4px"><span>s[</span><input id="sa" value="1" style="width:60px"><span>:</span><input id="sb" value="-5" style="width:60px"><span>:</span><input id="sc" value="2" style="width:60px"><span>]</span></div><div id="sv" style="display:flex;gap:3px;flex-wrap:wrap;margin:10px 0"></div><div class="rw"><span>ผลลัพธ์</span><b class="mono" id="so" style="font-size:16px"></b><span id="se" style="font-size:13px;color:var(--text-danger)"></span></div>`,
+init(){const up=()=>{const s=$('ss').value,n=s.length,v=['sa','sb','sc'].map(k=>$(k).value.trim());$('se').textContent='';if(v.some(x=>x!==''&&!/^-?\d+$/.test(x))){$('se').textContent='ใส่จำนวนเต็มหรือเว้นว่างเท่านั้น';return}const st=v[2]===''?1:+v[2];if(st===0){$('se').textContent='step ห้ามเป็น 0';return}let a,b;const I=[];if(st>0){a=v[0]===''?0:+v[0];b=v[1]===''?n:+v[1];a=a<0?Math.max(0,a+n):Math.min(a,n);b=b<0?Math.max(0,b+n):Math.min(b,n);for(let i=a;i<b;i+=st)I.push(i)}else{a=v[0]===''?n-1:+v[0];a=a<0?Math.max(-1,a+n):Math.min(a,n-1);if(v[1]==='')b=-1;else{b=+v[1];b=b<0?Math.max(-1,b+n):Math.min(b,n-1)}for(let i=a;i>b;i+=st)I.push(i)}
+$('sv').innerHTML=[...s].map((c,i)=>{const k=I.indexOf(i);return `<div style="text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)"><div>${i}</div><div style="width:32px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:15px;border:0.5px solid var(--border-strong);${k>=0?'background:var(--bg-accent);color:var(--text-accent);':'color:var(--text-primary);'}">${c===' '?'␣':esc(c)}</div><div>${i-n}</div></div>`}).join('');$('so').textContent=JSON.stringify(I.map(i=>s[i]).join(''))};['ss','sa','sb','sc'].forEach(k=>$(k).oninput=up);up()}},
+predict:{h:'ทายผลโค้ด',s:'นึกคำตอบในใจก่อน แล้วกดดูเฉลยทีละใบ',
+html:`<div id="pc" class="grid" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))"></div>`,
+init(){const Q=[['5 + 1 ** 2 / 2','5.5','** ทำก่อน แล้วหาร แล้วบวก'],['13 // 2, 13 % 2','(6, 1)','// คือหารปัดลง'],['not not (3 > 5) == True','False','== ทำก่อน not'],['"Dog"[:1].find("g")','-1','"D" ไม่มีตัว g'],['len("Hello For!")','10','นับช่องว่างและ ! ด้วย'],['for i in range(1, 15, 2)\n วนกี่รอบ','7','1, 3, 5, 7, 9, 11, 13'],['print(" 1 " + 2)','TypeError','เอา str บวกกับ int ไม่ได้'],['tuple("1234")',"('1','2','3','4')",'สมาชิกเป็น string'],['{1, 2, 2, 3}','{1, 2, 3}','set ตัดค่าซ้ำ'],['x = 2; y = 4\ny /= x; print(y)','2.0','/ ได้ float เสมอ'],['def f(*a, b=True)\nเรียก f() ได้ไหม','ได้','*a รับกี่ค่าก็ได้ รวมถึง 0'],['S = "Cat"; S[0] = "R"','TypeError','string เป็น immutable']];$('pc').innerHTML=Q.map((q,i)=>`<div class="st" style="padding:10px"><pre class="mono" style="margin:0 0 8px;font-size:12px;white-space:pre-wrap">${esc(q[0])}</pre><button data-i="${i}" style="font-size:12px">ดูคำตอบ</button><div id="pr${i}" style="font-size:13px;margin-top:6px"></div></div>`).join('');$('pc').querySelectorAll('button').forEach(b=>b.onclick=()=>{const q=Q[+b.dataset.i],d=$('pr'+b.dataset.i);d.innerHTML=d.innerHTML?'':`<b class="mono">${esc(q[1])}</b><div style="color:var(--text-secondary);font-size:12px">${esc(q[2])}</div>`})}}
+,datatable:{h:'หน้าตาของข้อมูลที่ ML ใช้',s:'ตัวอย่างข้อมูลราคาคอนโด ให้ดูว่าส่วนไหนคือ feature ส่วนไหนคือ target',
+html:`<table class="tb"><thead><tr><th class="tf">ขนาด (ตร.ม.)</th><th class="tf">ห้องนอน</th><th class="tf">ห่าง BTS (กม.)</th><th class="tt">ราคา (ล้านบาท)</th></tr></thead><tbody><tr><td>30</td><td>1</td><td>0.5</td><td>3.2</td></tr><tr><td>45</td><td>2</td><td>1.2</td><td>4.1</td></tr><tr><td>60</td><td>2</td><td>3.0</td><td>4.5</td></tr><tr><td>80</td><td>3</td><td>0.8</td><td>7.9</td></tr><tr class="tq"><td>55</td><td>2</td><td>1.0</td><td>? ← ให้โมเดลทาย</td></tr></tbody></table>
+<div class="lg" style="margin-top:8px"><span><i style="background:var(--bg-accent);border:0.5px solid var(--border-accent)"></i>feature = ข้อมูลที่รู้ (input)</span><span><i style="background:var(--bg-warning);border:0.5px solid var(--border-strong)"></i>target = คำตอบที่อยากให้ทาย (output)</span></div>
+<p class="s" style="margin:8px 0 0">แต่ละแถวคือตัวอย่าง 1 ตัว (คอนโด 1 ห้อง) สี่แถวบนมีคำตอบแล้ว ใช้ฝึกโมเดล แถวล่างสุดคือห้องใหม่ที่ยังไม่รู้ราคา โมเดลต้องทายให้ ถ้าคำตอบเป็นตัวเลขแบบนี้เรียกว่า regression ถ้าคำตอบเป็นกลุ่ม เช่น "แพง" หรือ "ไม่แพง" เรียกว่า classification</p>`},
+};
+const svg=(h,inner,lab)=>`<svg width="100%" viewBox="0 0 680 ${h}" role="img" aria-label="${lab}">${DEF}${inner}</svg>`;
+const tx=(x,y,s,c='ts',a='start')=>`<text class="${c}" x="${x}" y="${y}" text-anchor="${a}" dominant-baseline="central">${s}</text>`;
+const dot=(x,y,r,c,o=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" opacity="${o}"/>`;
+const F={
+aiml_nest:{h:'AI, Machine learning และ Deep learning ซ้อนกันอย่างไร',s:'กล่องใหญ่ครอบกล่องเล็ก: deep learning เป็นส่วนหนึ่งของ machine learning และ machine learning เป็นส่วนหนึ่งของ AI',
+html:svg(214,`<g class="c-gray"><rect x="40" y="8" width="600" height="198" rx="16" stroke-width="0.5"/>${tx(64,32,'AI (ปัญญาประดิษฐ์)','th')}${tx(64,52,'ทุกระบบที่ทำสิ่งที่ต้องใช้ความฉลาด เช่น ค้นหาเส้นทาง, fuzzy logic')}</g><g class="c-purple"><rect x="64" y="70" width="552" height="126" rx="12" stroke-width="0.5"/>${tx(88,94,'Machine learning','th')}${tx(88,114,'เรียนรู้กฎจากข้อมูลเอง เช่น decision tree, linear regression')}</g><g class="c-teal"><rect x="88" y="130" width="504" height="56" rx="10" stroke-width="0.5"/>${tx(112,150,'Deep learning','th')}${tx(112,170,'neural network หลายชั้น เช่น CNN สำหรับรูปภาพ')}</g>`,'AI ครอบ ML ครอบ Deep learning')},
+ml_flow:{h:'ML ทำงานอย่างไร: เทรนก่อน แล้วค่อยใช้ทาย',s:'แถวบนคือขั้นเทรน (ใช้ข้อมูลที่มีคำตอบ) แถวล่างคือขั้นใช้งาน (ข้อมูลใหม่ที่ยังไม่มีคำตอบ)',
+html:svg(176,box(20,14,170,56,'purple','ข้อมูลฝึก','มี feature + target')+ar(190,42,236,42)+box(238,14,150,56,'purple','เทรน','ปรับจน error ต่ำ')+`<path d="M388 42 L470 42 L470 64" fill="none" class="arr" marker-end="url(#arrow)"/>`+box(410,66,120,48,'teal','โมเดล')+box(20,108,170,56,'gray','ข้อมูลใหม่','มีแต่ feature')+`<path d="M190 136 L470 136 L470 116" fill="none" class="arr" marker-end="url(#arrow)"/>`+ar(530,90,556,90)+box(558,66,110,48,'coral','คำตอบที่ทาย'),'ขั้นตอนเทรนและทาย')},
+fuzzy:{h:'Fuzzy logic: ตัดเด็ดขาด เทียบกับให้เป็นระดับ',s:'แกนนอนคือความสูง 150 ถึง 200 ซม. แกนตั้งคือระดับความเป็น "คนสูง" 0 ถึง 1 เส้นเทาประคือแบบตัดเด็ดขาดที่ 180 ซม. เส้นม่วงคือ fuzzy ที่ค่อย ๆ เพิ่มขึ้น',
+html:`${sld('fzh','ความสูง (ซม.)',150,200,1,179)}<svg id="fzs" width="100%" role="img" aria-label="กราฟ fuzzy membership"></svg><div class="rw"><div class="st"><span>แบบเด็ดขาด</span><b id="fz1"></b></div><div class="st"><span>แบบ fuzzy</span><b id="fz2"></b></div></div>`,
+init(){const mu=h=>Math.max(0,Math.min(1,(h-165)/20)),cr=h=>h>=180?1:0;const up=()=>{const h=+$('fzh').value;$('fzhv').textContent=h;const xs=[...Array(51)].map((_,i)=>150+i);plot($('fzs'),[{pts:xs.map(x=>[x,cr(x)]),c:C.gr,line:1,d:1},{pts:xs.map(x=>[x,mu(x)]),c:C.v,line:1},{pts:[[h,0],[h,1.05]],c:C.am,line:1,w:1},{pts:[[h,cr(h)]],c:C.gr,dot:1,r:5},{pts:[[h,mu(h)]],c:C.v,dot:1,r:6}],{x0:150,x1:200,y0:0,y1:1.08,h:170});$('fz1').textContent=cr(h)?'สูง (1)':'ไม่สูง (0)';$('fz2').textContent='สูงระดับ '+mu(h).toFixed(2)};$('fzh').oninput=up;up()}},
+puzzle:{h:'8-Puzzle: ช่องว่างอยู่ตรงไหน เลื่อนได้กี่ทาง',s:'กดช่องไหนก็ได้เพื่อย้ายช่องว่างไปตรงนั้น ช่องสีฟ้าคือแผ่นที่เลื่อนเข้าช่องว่างได้',
+html:`<div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><div id="pz" style="display:grid;grid-template-columns:repeat(3,56px);gap:4px"></div><div><div class="st"><span>เลื่อนได้</span><b id="pzn"></b></div><p class="s" id="pzt" style="margin:8px 0 0;max-width:320px"></p></div></div>`,
+init(){let b=4;const up=()=>{const r=Math.floor(b/3),c=b%3,nb=[];if(r>0)nb.push(b-3);if(r<2)nb.push(b+3);if(c>0)nb.push(b-1);if(c<2)nb.push(b+1);let k=1;$('pz').innerHTML=[...Array(9)].map((_,i)=>i===b?`<button data-i="${i}" style="height:56px;background:var(--bg-neutral);border-style:dashed;font-size:12px">ว่าง</button>`:`<button data-i="${i}" class="${nb.includes(i)?'on':''}" style="height:56px;font-size:18px">${k++}</button>`).join('');$('pz').querySelectorAll('button').forEach(x=>x.onclick=()=>{b=+x.dataset.i;up()});$('pzn').textContent=nb.length+' ทาง';$('pzt').textContent=nb.length===4?'ช่องว่างอยู่ตรงกลาง มีแผ่นติดอยู่ทั้ง 4 ด้าน':nb.length===3?'ช่องว่างอยู่ริมขอบ มีแผ่นติดอยู่ 3 ด้าน':'ช่องว่างอยู่มุม มีแผ่นติดอยู่แค่ 2 ด้าน'};up()}},
+ml3types:{h:'ML 3 ประเภท',s:'ซ้าย: ข้อมูลมีสี (มีเฉลย) โมเดลเรียนเส้นแบ่ง กลาง: ข้อมูลไม่มีสี (ไม่มีเฉลย) โมเดลหากลุ่มเอง ขวา: ผู้เล่นลองทำแล้วได้รางวัลกลับมา',
+html:(()=>{const r=rng(9);let s='';[10,240,470].forEach((x,k)=>{s+=`<rect x="${x}" y="30" width="200" height="170" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="0.5" stroke-dasharray="4 3"/>`+tx(x+100,14,['Supervised','Unsupervised','Reinforcement'][k],'th','middle')+tx(x+100,214,['มีเฉลย: เรียนเส้นแบ่ง','ไม่มีเฉลย: หากลุ่มเอง','ลองทำ แล้วได้รางวัล'][k],'ts','middle')});
+for(let i=0;i<7;i++){s+=dot((45+r()*55).toFixed(1),(60+r()*55).toFixed(1),5,C.b);s+=dot((125+r()*60).toFixed(1),(130+r()*55).toFixed(1),5,C.o)}s+=`<line x1="40" y1="195" x2="195" y2="50" stroke="var(--text-primary)" stroke-width="1.5"/>`;
+[[60,70],[150,80],[105,130]].forEach(([cx,cy])=>{for(let i=0;i<6;i++)s+=dot((240+cx+gau(r)*8).toFixed(1),(30+cy+gau(r)*8).toFixed(1),5,C.gr);s+=`<circle cx="${240+cx}" cy="${30+cy}" r="28" fill="none" stroke="${C.v}" stroke-width="1.5" stroke-dasharray="4 3"/>`});
+s+=box(510,48,120,34,'purple','ผู้เล่น')+box(510,146,120,34,'teal','สภาพแวดล้อม')+ar(600,84,600,142)+tx(606,114,'การกระทำ')+ar(540,144,540,86)+tx(534,114,'รางวัล','ts','end');return svg(226,s,'ML สามประเภท')})()},
+nn:{h:'Neural network: ตาข่ายของโหนด',s:'วงกลมแต่ละวงคือโหนด (เลียนแบบเซลล์ประสาท) เส้นคือการเชื่อมต่อที่มีน้ำหนัก ข้อมูลไหลจากซ้าย (feature) ไปขวา (คำตอบ) เส้นน้ำเงินคือน้ำหนักบวก เส้นส้มคือน้ำหนักลบ เส้นยิ่งหนายิ่งมีผลมาก วงกลมยิ่งเข้มแปลว่าโหนดนั้นส่งค่าออกมาสูง ลองปรับ input, จำนวนโหนด และเพิ่ม hidden layer',
+html:`<div class="grid" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:0 14px">${sld('nx1','x₁',0,1,0.1,0.8,24)}${sld('nx2','x₂',0,1,0.1,0.2,24)}${sld('nx3','x₃',0,1,0.1,0.5,24)}</div>${sld('nh','จำนวนโหนดใน hidden layer',2,6,1,4,190)}<div class="rw"><label><input type="checkbox" id="n2"> เพิ่ม hidden layer ชั้นที่ 2 (ซับซ้อนขึ้น)</label></div><svg id="nns" width="100%" viewBox="0 0 680 295" role="img" aria-label="neural network"></svg><div class="rw"><div class="st"><span>Output (ความน่าจะเป็น)</span><b id="nno"></b></div><div class="st"><span>จำนวนพารามิเตอร์</span><b id="nnp"></b></div><span class="pill a" id="nnc"></span></div><p class="s" style="margin:4px 0 0">จำนวนพารามิเตอร์ = จำนวนเส้นเชื่อม (น้ำหนัก) + จำนวน bias ของทุกโหนดที่ไม่ใช่ input ยิ่งเพิ่มโหนดหรือชั้น โมเดลยิ่งซับซ้อน</p>`,
+init(){const R=rng(21),Wt={};const getW=key=>{if(!Wt[key]){Wt[key]=[...Array(6)].map(()=>[...Array(6)].map(()=>(R()*2-1)*1.6));Wt[key+'b']=[...Array(6)].map(()=>(R()*2-1)*0.5)}return Wt[key]};const sg=z=>1/(1+Math.exp(-z));
+const up=()=>{const x=[+$('nx1').value,+$('nx2').value,+$('nx3').value];['nx1','nx2','nx3'].forEach((k,i)=>$(k+'v').textContent=x[i].toFixed(1));const h=+$('nh').value;$('nhv').textContent=h;const two=$('n2').checked,tag=two?'t':'s';const sizes=[3,h].concat(two?[3]:[]).concat([1]);const acts=[x];let params=0;
+for(let l=1;l<sizes.length;l++){const W=getW('L'+l+tag),B=Wt['L'+l+tag+'b'],prev=acts[l-1],a=[];for(let j=0;j<sizes[l];j++){let z=B[j];for(let i=0;i<sizes[l-1];i++)z+=W[j][i]*prev[i];a.push(sg(z))}acts.push(a);params+=sizes[l]*sizes[l-1]+sizes[l]}
+const Lc=sizes.length,X=l=>90+l*(500/(Lc-1)),Y=(j,n)=>130+(j-(n-1)/2)*44;let s='';
+for(let l=1;l<Lc;l++){const W=Wt['L'+l+tag];for(let j=0;j<sizes[l];j++)for(let i=0;i<sizes[l-1];i++){const w=W[j][i];s+=`<line x1="${X(l-1)}" y1="${Y(i,sizes[l-1])}" x2="${X(l)}" y2="${Y(j,sizes[l])}" stroke="${w>0?C.b:C.o}" stroke-width="${(0.5+Math.abs(w)*1.4).toFixed(2)}" opacity="0.55"/>`}}
+for(let l=0;l<Lc;l++)for(let j=0;j<sizes[l];j++){const a=acts[l][j];s+=`<circle cx="${X(l)}" cy="${Y(j,sizes[l])}" r="15" fill="${l===0?C.t:C.v}" fill-opacity="${(0.12+0.88*a).toFixed(2)}" stroke="var(--border-stronger)" stroke-width="0.5"/>`;if(l===0)s+=tx(X(l)-22,Y(j,sizes[l]),'x'+(j+1)+' = '+a.toFixed(1),'ts','end');if(l===Lc-1)s+=tx(X(l)+22,Y(j,sizes[l]),a.toFixed(2),'th')}
+['Input layer','Hidden layer 1'].concat(two?['Hidden layer 2']:[]).concat(['Output layer']).forEach((n,l)=>s+=tx(X(l),280,n,'th','middle'));
+$('nns').innerHTML=s;const o=acts[Lc-1][0];$('nno').textContent=o.toFixed(2);$('nnp').textContent=params;$('nnc').textContent=o>=0.5?'ได้ตั้งแต่ 0.5 ขึ้นไป จึงทายว่าเป็นคลาสบวก':'ได้น้อยกว่า 0.5 จึงทายว่าเป็นคลาสลบ'};
+['nx1','nx2','nx3','nh'].forEach(k=>$(k).oninput=up);$('n2').onchange=up;up()}},
+tree:{h:'Decision tree: ถามทีละคำถามจนได้คำตอบ',s:'ตัวอย่างต้นไม้อนุมัติสินเชื่อ ปรับรายได้และสถานะหนี้ แล้วดูว่าข้อมูลเดินตามเส้นทางไหน (กรอบสีเหลือง)',
+html:`${sld('tri','รายได้ต่อเดือน (บาท)',10000,80000,1000,45000,170)}<div class="rw"><label><input type="checkbox" id="trd"> มีหนี้ค้างชำระ</label><span id="trr" class="pill"></span></div><svg id="trs" width="100%" viewBox="0 0 680 240" role="img" aria-label="decision tree"></svg>`,
+init(){const up=()=>{const inc=+$('tri').value,debt=$('trd').checked;$('triv').textContent=inc.toLocaleString();const r1=inc>=30000;const hl=on=>on?` stroke="${C.am}" stroke-width="3"`:` stroke="var(--border-strong)" stroke-width="1"`;
+let s=`<line x1="340" y1="56" x2="145" y2="100"${hl(!r1)}/><line x1="340" y1="56" x2="520" y2="100"${hl(r1)}/><line x1="520" y1="146" x2="440" y2="186"${hl(r1&&debt)}/><line x1="520" y1="146" x2="590" y2="186"${hl(r1&&!debt)}/>`;
+s+=box(240,10,200,46,'gray','รายได้ ≥ 30,000 บาท?')+box(60,100,170,46,'coral','ไม่อนุมัติ')+box(420,100,200,46,'gray','มีหนี้ค้างชำระ?')+box(380,186,120,44,'coral','ไม่อนุมัติ')+box(530,186,120,44,'teal','อนุมัติ');
+s+=tx(236,74,'ไม่ใช่','ts','end')+tx(444,74,'ใช่')+tx(462,166,'ใช่','ts','end')+tx(572,166,'ไม่ใช่');const ring=(x,y,w,h)=>`<rect x="${x-4}" y="${y-4}" width="${w+8}" height="${h+8}" rx="9" fill="none" stroke="${C.am}" stroke-width="2.5"/>`;
+s+=ring(240,10,200,46);let ok=false;if(!r1)s+=ring(60,100,170,46);else{s+=ring(420,100,200,46);if(debt)s+=ring(380,186,120,44);else{s+=ring(530,186,120,44);ok=true}}
+$('trs').innerHTML=s;const t=$('trr');t.textContent=ok?'ผลลัพธ์: อนุมัติ':'ผลลัพธ์: ไม่อนุมัติ';t.className='pill '+(ok?'g':'r')};$('tri').oninput=up;$('trd').onchange=up;up()}},
+activ:{h:'Activation function: Sigmoid, tanh และ ReLU',s:'เลือกฟังก์ชันแล้วเลื่อนค่า z (ผลรวมที่เข้ามาในโหนด) ดูว่าโหนดส่งค่าอะไรออกไป',
+html:`<div class="rw"><button id="acS">Sigmoid</button><button id="acT">tanh</button><button id="acR">ReLU</button></div>${sld('acz','ค่า z ที่เข้ามา',-6,6,0.1,1)}<svg id="acs" width="100%" role="img" aria-label="กราฟ activation"></svg><div class="rw"><div class="st"><span>ค่าที่ส่งออก</span><b id="acv"></b></div><span class="pill a" id="act"></span></div>`,
+init(){let m='S';const Fn={S:[z=>1/(1+Math.exp(-z)),-0.1,1.1,'Sigmoid: บีบค่าให้อยู่ระหว่าง 0 ถึง 1 ใช้กับ output ของ binary classification'],T:[z=>Math.tanh(z),-1.1,1.1,'tanh: บีบค่าให้อยู่ระหว่าง −1 ถึง 1'],R:[z=>Math.max(0,z),-0.5,6.2,'ReLU: ถ้าติดลบให้เป็น 0 ถ้าเป็นบวกส่งผ่านตามเดิม นิยมใช้ใน hidden layer']};const up=()=>{const z=+$('acz').value;$('aczv').textContent=z.toFixed(1);const [f,y0,y1,t]=Fn[m];const xs=[...Array(121)].map((_,i)=>-6+i*0.1);plot($('acs'),[{pts:xs.map(x=>[x,f(x)]),c:C.v,line:1},{pts:[[z,y0],[z,y1]],c:C.gr,line:1,w:1,d:1},{pts:[[z,f(z)]],c:C.o,dot:1,r:6}],{x0:-6,x1:6,y0,y1,h:170,zero:1});$('acv').textContent=f(z).toFixed(3);$('act').textContent=t;['S','T','R'].forEach(k=>$('ac'+k).className=k===m?'on':'')};['S','T','R'].forEach(k=>$('ac'+k).onclick=()=>{m=k;up()});$('acz').oninput=up;up()}},
+lstm:{h:'LSTM: ใช้ 5 จุดก่อนหน้าทายจุดถัดไป (sliding window)',s:'กรอบม่วงคือหน้าต่าง 5 จุดที่ใช้เป็น input วงส้มคือจุดที่ต้องทาย กดเลื่อนหน้าต่างไปทีละช่อง',
+html:`<div class="rw"><button id="lsb"><i class="ti ti-arrow-left" aria-hidden="true"></i> ย้อน</button><button id="lsf">เลื่อนหน้าต่าง <i class="ti ti-arrow-right" aria-hidden="true"></i></button><span class="s" id="lst" style="margin:0"></span></div><svg id="lss" width="100%" viewBox="0 0 680 200" role="img" aria-label="sliding window"></svg>`,
+init(){const r=rng(31),y=[...Array(16)].map((_,t)=>10+t*0.4+2*Math.sin(t/2)+gau(r)*0.4);let w=0;const X=t=>40+t*40,Y=v=>190-(v-6)*10;const up=()=>{let s=`<rect x="${X(w)-16}" y="16" width="192" height="176" rx="8" fill="${C.v}" opacity="0.10" stroke="${C.v}" stroke-width="1"/>`+tx(X(w)+80,30,'input 5 จุด','ts','middle');y.forEach((v,t)=>{const inW=t>=w&&t<w+5,nxt=t===w+5;s+=inW?dot(X(t),Y(v).toFixed(1),6,C.v):nxt?`<circle cx="${X(t)}" cy="${Y(v).toFixed(1)}" r="8" fill="none" stroke="${C.o}" stroke-width="2.5"/>`:dot(X(t),Y(v).toFixed(1),4,C.gr,0.6)});s+=tx(X(w+5),Y(y[w+5])-20,'ทาย','th','middle');$('lss').innerHTML=s;$('lst').textContent=`ใช้วันที่ ${w+1} ถึง ${w+5} ทายวันที่ ${w+6}`};$('lsf').onclick=()=>{if(w<10)w++;up()};$('lsb').onclick=()=>{if(w>0)w--;up()};up()}},
+transfer:{h:'Pre-trained model และ Transfer learning',s:'บริษัทใหญ่เทรนโมเดลด้วยข้อมูลมหาศาล (ซ้าย) เรานำชั้นส่วนใหญ่มาใช้ต่อได้เลย แล้วเทรนเฉพาะชั้นสุดท้ายใหม่ด้วยข้อมูลของเรา (ขวา)',
+html:svg(222,tx(160,14,'Pre-trained model','th','middle')+[0,1,2,3].map(i=>box(80,32+i*40,160,32,'purple','ชั้นที่ '+(i+1))).join('')+tx(160,206,'เทรนจากข้อมูลมหาศาล','ts','middle')+ar(250,112,440,112)+tx(345,98,'Transfer learning','ts','middle')+tx(530,14,'โมเดลของเรา','th','middle')+[0,1,2].map(i=>box(450,32+i*40,160,32,'gray','ชั้นที่ '+(i+1)+' (ใช้ต่อ)')).join('')+box(450,152,160,32,'coral','ชั้นใหม่ (เทรน)')+tx(530,206,'เทรนต่อด้วยข้อมูลของเรา','ts','middle'),'transfer learning')},
+regcls:{h:'Regression กับ Classification ต่างกันที่ "คำตอบ"',s:'ซ้าย: คำตอบเป็นตัวเลข โมเดลลากเส้นผ่านจุดเพื่อทายค่า ขวา: คำตอบเป็นกลุ่ม โมเดลลากเส้นแบ่งกลุ่ม',
+html:(()=>{const r=rng(4);let s=`<rect x="10" y="30" width="320" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="0.5" stroke-dasharray="4 3"/><rect x="350" y="30" width="320" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="0.5" stroke-dasharray="4 3"/>`+tx(170,14,'Regression: ทายตัวเลข','th','middle')+tx(510,14,'Classification: ทายกลุ่ม','th','middle');
+for(let i=0;i<12;i++){const x=30+i*24,y=205-i*13+gau(r)*10;s+=dot(x,y.toFixed(1),5,C.b)}s+=`<line x1="25" y1="208" x2="315" y2="52" stroke="${C.v}" stroke-width="2.5"/>`;
+for(let i=0;i<10;i++){s+=dot((365+r()*130).toFixed(1),(45+r()*95).toFixed(1),5,C.b);s+=dot((560+r()*95).toFixed(1),(125+r()*90).toFixed(1),5,C.o)}s+=`<line x1="455" y1="228" x2="650" y2="40" stroke="var(--text-primary)" stroke-width="2"/>`;
+s+=tx(170,246,'แกนนอน = ขนาดห้อง, แกนตั้ง = ราคา','ts','middle')+tx(360,246,'น้ำเงิน = ไม่สแปม')+tx(665,246,'ส้ม = สแปม','ts','end');return svg(256,s,'regression และ classification')})()},
+kfold:{h:'แบ่งข้อมูล: train, test และ cross-validation',s:'แถวบน: แยก test ออกไปก่อน แล้วเก็บไว้วัดผลครั้งสุดท้ายเท่านั้น แถวล่าง: 5-fold cross-validation แบ่ง train เป็น 5 ส่วน แล้วสลับกันให้แต่ละส่วนเป็นตัวตรวจ 1 รอบ',
+html:(()=>{let s=tx(20,25,'ข้อมูลทั้งหมด','th')+box(140,8,420,34,'purple','train (ใช้เทรนและทำ CV)')+box(564,8,96,34,'coral','test');for(let i=0;i<5;i++){const y=66+i*32;s+=tx(20,y+13,'รอบที่ '+(i+1),'th');for(let j=0;j<5;j++){const x=140+j*84;s+=`<g class="c-${j===i?'teal':'purple'}"><rect x="${x}" y="${y}" width="80" height="26" rx="5" stroke-width="0.5"/>${j===i?tx(x+40,y+13,'ตรวจ','th','middle'):''}</g>`}s+=tx(570,y+13,'ได้คะแนนรอบ '+(i+1))}return svg(232,s,'cross validation')})()},
+dart:{h:'Bias กับ Variance ดูจากการปาเป้า',s:'จุดกลางเป้าคือคำตอบจริง จุดส้มคือผลทายเมื่อเทรนโมเดลด้วยข้อมูลต่างชุดกัน bias คือ "เล็งเบี้ยวไปจากกลางเป้า" variance คือ "กระจาย ไม่นิ่ง"',
+html:(()=>{const r=rng(12);let s=tx(290,14,'variance ต่ำ (นิ่ง)','th','middle')+tx(510,14,'variance สูง (กระจาย)','th','middle')+tx(110,100,'bias ต่ำ','th','middle')+tx(110,118,'(เล็งตรง)','ts','middle')+tx(110,250,'bias สูง','th','middle')+tx(110,268,'(เล็งเบี้ยว)','ts','middle');
+[[290,100,0,0,'ดีที่สุด'],[510,100,0,1,'variance สูง = overfitting'],[290,250,1,0,'bias สูง = underfitting'],[510,250,1,1,'แย่ที่สุด']].forEach(([cx,cy,b,v,lab])=>{[60,40,20].forEach((rr,k)=>s+=`<circle cx="${cx}" cy="${cy}" r="${rr}" fill="${k%2?'var(--surface-2)':'var(--bg-neutral)'}" stroke="var(--border-strong)" stroke-width="0.5"/>`);s+=dot(cx,cy,3,'var(--text-primary)');for(let i=0;i<8;i++){const sp=v?22:5,dx=Math.max(-45,Math.min(45,gau(r)*sp)),dy=Math.max(-45,Math.min(45,gau(r)*sp));s+=dot((cx+(b?24:0)+dx).toFixed(1),(cy+(b?-22:0)+dy).toFixed(1),4,C.o)}s+=tx(cx,cy+74,lab,'ts','middle')});return svg(336,s,'bias variance')})()},
+reg:{h:'Ridge (L2) กับ Lasso (L1) ทำอะไรกับน้ำหนัก',s:'แท่งคือค่าน้ำหนัก w ของ 6 feature เลื่อน λ เพื่อเพิ่มค่าปรับ Ridge จะหดทุกแท่งลงเรื่อย ๆ แต่ไม่ถึง 0 ส่วน Lasso ทำให้แท่งที่เล็กกลายเป็น 0 พอดี (ตัด feature นั้นทิ้ง)',
+html:`${sld('rgl','λ (ความแรงค่าปรับ)',0,2.5,0.1,0,150)}<svg id="rgs" width="100%" viewBox="0 0 680 226" role="img" aria-label="น้ำหนักหลัง regularization"></svg><div class="rw"><div class="st"><span>Lasso ตัด feature ทิ้งไป</span><b id="rgz"></b></div></div>`,
+init(){const W=[2.5,-1.8,1.2,0.6,-0.3,0.15];const up=()=>{const l=+$('rgl').value;$('rglv').textContent=l.toFixed(1);const r2=W.map(w=>w/(1+l)),r1=W.map(w=>Math.sign(w)*Math.max(Math.abs(w)-l,0));
+const panel=(x0,ws,title)=>{let s=tx(x0+150,10,title,'th','middle')+`<line x1="${x0}" y1="110" x2="${x0+300}" y2="110" stroke="var(--border-strong)" stroke-width="0.5"/>`;ws.forEach((w,i)=>{const x=x0+15+i*48,h=w*30,z=Math.abs(w)<1e-9;s+=`<rect x="${x}" y="${h>=0?110-h:110}" width="30" height="${Math.max(Math.abs(h),0.5).toFixed(1)}" rx="3" fill="${w>=0?C.b:C.o}"/>`+tx(x+15,212,'x'+(i+1),'ts','middle')+tx(x+15,h>=0?101-h:119-h,z?'0':w.toFixed(2),z?'th':'ts','middle')});return s};
+$('rgs').innerHTML=panel(20,r2,'Ridge (L2)')+panel(360,r1,'Lasso (L1)');$('rgz').textContent=r1.filter(w=>Math.abs(w)<1e-9).length+' จาก 6'};$('rgl').oninput=up;up()}},
+roc:{h:'ROC curve และ AUC',s:'เลื่อนความเก่งของโมเดล เส้นประทแยงคือการทายมั่ว (AUC = 0.5) ยิ่งเส้นโค้งเข้าใกล้มุมซ้ายบน พื้นที่ใต้กราฟ (AUC) ยิ่งใกล้ 1',
+html:`${sld('rcv','ความเก่งของโมเดล',0,0.95,0.05,0.6,150)}<svg id="rcs" width="100%" viewBox="0 0 680 318" role="img" aria-label="ROC curve"></svg><div class="rw"><div class="st"><span>AUC</span><b id="rca"></b></div><span class="pill a" id="rct"></span></div>`,
+init(){const X=x=>190+x*300,Y=y=>290-y*270;const up=()=>{const s=+$('rcv').value;$('rcvv').textContent=s.toFixed(2);const a=1-s+0.0001,pts=[...Array(51)].map((_,i)=>{const x=i/50;return[x,Math.pow(x,a)]}),auc=1/(a+1),P=pts.map(p=>X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ');
+$('rcs').innerHTML=`<rect x="190" y="20" width="300" height="270" fill="none" stroke="var(--border-strong)" stroke-width="0.5"/><polygon points="${X(0)},${Y(0)} ${P} ${X(1)},${Y(0)}" fill="${C.v}" opacity="0.15"/><line x1="${X(0)}" y1="${Y(0)}" x2="${X(1)}" y2="${Y(1)}" stroke="${C.gr}" stroke-dasharray="6 5" stroke-width="1.5"/><polyline points="${P}" fill="none" stroke="${C.v}" stroke-width="2.5"/>`+tx(340,306,'FPR = ของลบจริงที่ถูกทายผิดเป็นบวก','ts','middle')+tx(180,140,'TPR','th','end')+tx(180,158,'(recall)','ts','end')+tx(180,290,'0','ts','end')+tx(180,20,'1','ts','end')+tx(498,190,'เส้นทแยง = ทายมั่ว')+tx(340,240,'AUC = พื้นที่สีม่วง','ts','middle');$('rca').textContent=auc.toFixed(2);$('rct').textContent=auc<0.55?'ใกล้เส้นทแยง: เก่งพอ ๆ กับทายมั่ว':auc>0.9?'ใกล้มุมซ้ายบน: เก่งมาก':'ยิ่งโค้งไปทางซ้ายบน ยิ่งดี'};$('rcv').oninput=up;up()}},
+ovr:{h:'One-vs-rest: 4 คลาสใช้ binary classifier 4 ตัว',s:'แต่ละตัวถามแค่ "ใช่คลาสนี้ไหม" ถ้าไม่มีตัวไหนตอบว่าใช่ แปลว่าเป็น unknown',
+html:svg(222,box(20,88,130,48,'gray','ตัวอย่างใหม่')+['A','B','C','D'].map((c,i)=>ar(150,112,218,31+i*52)+box(220,12+i*52,170,38,'purple','เป็นคลาส '+c+' ไหม?')+ar(390,31+i*52,458,112)).join('')+box(460,82,200,60,'coral','รวมคำตอบ','ไม่มีใครตอบใช่ = unknown'),'one vs rest')},
+svm:{h:'SVM: เส้นแบ่งที่เว้นระยะ (margin) ไว้ทั้งสองข้าง',s:'เส้นทึบคือเส้นแบ่ง เส้นประสองข้างคือขอบ margin จุดที่มีวงแหวนคือจุดที่ล้ำเข้ามาในเขต margin ขยาย margin ให้กว้างขึ้น = ยอมให้ล้ำมากขึ้น (เพิ่ม slack) ซึ่งคือการทำ regularization',
+html:`${sld('svd','ความกว้าง margin',10,80,1,30,150)}<svg id="svs" width="100%" viewBox="0 0 680 260" role="img" aria-label="SVM margin"></svg><div class="rw"><div class="st"><span>จุดที่ล้ำ margin</span><b id="svn"></b></div><span class="pill a" id="svt"></span></div>`,
+init(){const r=rng(8),P=[];const cl=v=>Math.max(20,Math.min(240,v));for(let i=0;i<14;i++)P.push([200+gau(r)*35,cl(120+gau(r)*35),0]);for(let i=0;i<14;i++)P.push([470+gau(r)*35,cl(140+gau(r)*35),1]);P.push([310,90,0],[365,175,1],[300,165,0],[385,105,1]);
+const nx=0.95,ny=-0.31,nn=Math.hypot(nx,ny),c=nx*335+ny*130,dist=p=>(nx*p[0]+ny*p[1]-c)/nn,xAt=(k,y)=>(k-ny*y)/nx;
+const up=()=>{const d=+$('svd').value;$('svdv').textContent=d;const ln=(off,dash)=>{const k=c+off*nn;return `<line x1="${xAt(k,8).toFixed(1)}" y1="8" x2="${xAt(k,252).toFixed(1)}" y2="252" stroke="${dash?C.gr:'var(--text-primary)'}" stroke-width="${dash?1.5:2}" ${dash?'stroke-dasharray="6 5"':''}/>`};
+let s=`<polygon points="${[[d,8],[d,252],[-d,252],[-d,8]].map(([o,y])=>xAt(c+o*nn,y).toFixed(1)+','+y).join(' ')}" fill="${C.am}" opacity="0.12"/>`+ln(-d,1)+ln(d,1)+ln(0,0);let n=0;
+P.forEach(p=>{const inside=Math.abs(dist(p))<d;if(inside)n++;s+=dot(p[0].toFixed(1),p[1].toFixed(1),6,p[2]?C.o:C.b)+(inside?`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="10" fill="none" stroke="${C.am}" stroke-width="2"/>`:'')});
+$('svs').innerHTML=s;$('svn').textContent=n+' จุด';$('svt').textContent=d<25?'margin แคบ: เข้มงวด ยอมให้ล้ำน้อย (เสี่ยง overfit)':d>55?'margin กว้าง: ยอมให้ล้ำเยอะ (slack มาก = regularize มาก)':'ปรับเพื่อแลกระหว่างความเข้มงวดกับการยอมให้ล้ำ'};$('svd').oninput=up;up()}},
+onehot:{h:'Ordinal กับ One-hot encoding',s:'ซ้าย: หมวดที่มีลำดับ แปลงเป็นเลขเรียงกันได้ 1 คอลัมน์ ขวา: หมวดที่ไม่มีลำดับ แตกเป็นคอลัมน์ละหมวด แล้วใส่ 1 แค่ช่องเดียว',
+html:`<div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px;align-items:start"><table class="tb"><thead><tr><th>ระดับการศึกษา</th><th class="tf">Ordinal</th></tr></thead><tbody><tr><td>ประถม</td><td class="hl">0</td></tr><tr><td>มัธยม</td><td class="hl">1</td></tr><tr><td>มหาวิทยาลัย</td><td class="hl">2</td></tr></tbody></table><table class="tb"><thead><tr><th>ประเภทห้อง</th><th class="tf">Single</th><th class="tf">Deluxe</th><th class="tf">Grand</th></tr></thead><tbody><tr><td>Single</td><td class="hl">1</td><td>0</td><td>0</td></tr><tr><td>Deluxe</td><td>0</td><td class="hl">1</td><td>0</td></tr><tr><td>Grand</td><td>0</td><td>0</td><td class="hl">1</td></tr></tbody></table></div><p class="s" style="margin:8px 0 0">Ordinal ได้ 1 คอลัมน์ ส่วน One-hot ได้ 3 คอลัมน์ (เท่ากับจำนวนหมวด)</p>`},
+grid:{h:'Grid search: ต้องเทรนกี่รอบ',s:'แต่ละช่องคือชุดค่า hyper-parameter 1 ชุด และทุกชุดต้องเทรนครบทุก fold',
+html:`${sld('gda','จำนวนค่าของ HP ตัวที่ 1',1,5,1,3,170)}${sld('gdb','จำนวนค่าของ HP ตัวที่ 2',1,5,1,3,170)}${sld('gdk','จำนวน fold',2,10,1,10,170)}<div id="gdg" style="display:grid;gap:4px;margin:10px 0"></div><div class="rw"><div class="st"><span>เทรนทั้งหมด</span><b id="gdt"></b></div><span class="mono" id="gdx" style="font-size:14px"></span></div>`,
+init(){const up=()=>{const a=+$('gda').value,b=+$('gdb').value,k=+$('gdk').value;['gda','gdb','gdk'].forEach(i=>$(i+'v').textContent=$(i).value);const g=$('gdg');g.style.gridTemplateColumns=`repeat(${b},minmax(0,1fr))`;g.innerHTML=[...Array(a*b)].map((_,i)=>`<div style="background:var(--bg-accent);color:var(--text-accent);border-radius:6px;padding:6px;font-size:12px;text-align:center">ชุดที่ ${i+1}<br>เทรน ${k} รอบ</div>`).join('');$('gdt').textContent=a*b*k+' รอบ';$('gdx').textContent=`${a} × ${b} × ${k} = ${a*b*k}`};['gda','gdb','gdk'].forEach(i=>$(i).oninput=up);up()}},
+pca:{h:'PCA: หาแกนที่ข้อมูลกระจายมากที่สุด',s:'หมุนแกน (เส้นม่วง) แล้วดูว่าเมื่อฉายจุดทั้งหมดลงบนแกน จุดที่ฉายแล้ว (สีส้ม) กระจายกว้างแค่ไหน แกนที่กระจายกว้างที่สุดคือแกน PCA ที่ 1 ใช้ลดจาก 2 มิติเหลือ 1 มิติโดยเสียข้อมูลน้อยที่สุด',
+html:`${sld('pca','มุมของแกน (องศา)',0,180,1,100,150)}<svg id="pcs" width="100%" viewBox="0 0 680 300" role="img" aria-label="PCA"></svg><div class="rw"><div class="st"><span>ความกระจายตามแกนนี้</span><b id="pcv"></b></div><button id="pcb">หาแกน PCA ให้</button></div>`,
+init(){const r=rng(17),P=[...Array(60)].map(()=>{const u=gau(r)*1.5,v=gau(r)*0.4,t=0.5;return[u*Math.cos(t)-v*Math.sin(t),u*Math.sin(t)+v*Math.cos(t)]});const mx=P.reduce((s,p)=>s+p[0],0)/60,my=P.reduce((s,p)=>s+p[1],0)/60,Q=P.map(p=>[p[0]-mx,p[1]-my]);const sxx=Q.reduce((s,p)=>s+p[0]*p[0],0),syy=Q.reduce((s,p)=>s+p[1]*p[1],0),sxy=Q.reduce((s,p)=>s+p[0]*p[1],0),best=((0.5*Math.atan2(2*sxy,sxx-syy))*180/Math.PI+180)%180;
+const X=x=>340+x*60,Y=y=>150-y*60,vr=deg=>{const t=deg*Math.PI/180;return Q.reduce((s,p)=>s+(p[0]*Math.cos(t)+p[1]*Math.sin(t))**2,0)/60};
+const up=()=>{const deg=+$('pca').value;$('pcav').textContent=deg;const t=deg*Math.PI/180,ux=Math.cos(t),uy=Math.sin(t);let s=`<line x1="${X(-5*ux).toFixed(1)}" y1="${Y(-5*uy).toFixed(1)}" x2="${X(5*ux).toFixed(1)}" y2="${Y(5*uy).toFixed(1)}" stroke="${C.v}" stroke-width="2.5"/>`;Q.forEach(p=>{const d=p[0]*ux+p[1]*uy,px=d*ux,py=d*uy;s+=`<line x1="${X(p[0]).toFixed(1)}" y1="${Y(p[1]).toFixed(1)}" x2="${X(px).toFixed(1)}" y2="${Y(py).toFixed(1)}" stroke="${C.gr}" stroke-width="0.5" opacity="0.6"/>`+dot(X(p[0]).toFixed(1),Y(p[1]).toFixed(1),4,C.b)+dot(X(px).toFixed(1),Y(py).toFixed(1),3,C.o)});$('pcs').innerHTML=s;$('pcv').textContent=vr(deg).toFixed(2)+' (สูงสุด '+vr(best).toFixed(2)+')'};$('pca').oninput=up;$('pcb').onclick=()=>{$('pca').value=Math.round(best);up()};up()}},
+dendro:{h:'Hierarchical clustering: แผนภาพต้นไม้ (dendrogram)',s:'อ่านจากล่างขึ้นบน: จุดที่คล้ายกันที่สุดถูกรวมกันก่อน (agglomerative) อ่านจากบนลงล่าง: แบ่งกลุ่มใหญ่ลงมาเรื่อย ๆ (divisive) ลากเส้นตัดที่ระดับไหน ก็ได้จำนวนกลุ่มเท่ากับจำนวนเส้นที่ตัดผ่าน',
+html:(()=>{const pl=(pts,c)=>`<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="2"/>`;let s=pl([[120,250],[120,220],[200,220],[200,250]],C.b)+pl([[160,220],[160,170],[290,170],[290,250]],C.b)+pl([[390,250],[390,210],[470,210],[470,250]],C.o)+pl([[430,210],[430,160],[560,160],[560,250]],C.o)+pl([[225,170],[225,80],[495,80],[495,160]],C.gr)+`<line x1="90" y1="125" x2="600" y2="125" stroke="${C.r}" stroke-width="1.5" stroke-dasharray="6 4"/>`+tx(92,141,'ตัดตรงนี้ได้ 2 กลุ่ม');[['A',120],['B',200],['C',290],['D',390],['E',470],['F',560]].forEach(([k,x])=>s+=tx(x,266,k,'th','middle'));return svg(280,s,'dendrogram')})()},
+elbow:{h:'Elbow method: เลือกจำนวนกลุ่ม k',s:'แกนนอนคือจำนวนกลุ่ม k แกนตั้งคือความกระจายภายในกลุ่ม (inertia) เพิ่ม k แล้วค่าลดลงเสมอ แต่หลังจุด "ข้อศอก" ลดลงน้อยมาก จึงเลือก k ที่ข้อศอก',
+html:`<svg id="elb" width="100%" role="img" aria-label="elbow"></svg>`,
+init(){const v=[100,55,25,20,17,15,14,13],H=215;plot($('elb'),[{pts:v.map((y,i)=>[i+1,y]),c:C.b,line:1,dot:1,r:4}],{x0:1,x1:8,y0:0,y1:110,h:H});const sx=k=>16+(k-1)/7*608,sy=y=>H-16-y/110*(H-32);$('elb').innerHTML+=`<circle cx="${sx(3)}" cy="${sy(25)}" r="10" fill="none" stroke="${C.o}" stroke-width="2.5"/>`+tx(sx(3)+18,sy(25)-20,'ข้อศอก: k = 3','th')+v.map((y,i)=>tx(sx(i+1),H-6,'k='+(i+1),'ts','middle')).join('')}},
+mf:{h:'Matrix factorization: แยกตารางใหญ่เป็นตารางเล็กสองตาราง',s:'จำนวนหัวข้อ |T| น้อยกว่าจำนวนคำ |V| มาก ตาราง B กับ C รวมกันจึงเล็กกว่า A แต่คูณกันแล้วประมาณค่า A ได้',
+html:svg(224,box(30,40,210,150,'purple','A','เอกสาร × คำ')+tx(262,115,'≈','th','middle')+`<g class="c-teal"><rect x="285" y="40" width="56" height="150" rx="6" stroke-width="0.5"/>${tx(313,115,'B','th','middle')}</g>`+tx(363,115,'×','th','middle')+box(385,40,250,60,'coral','C','หัวข้อ × คำ')+tx(135,208,'|D| เอกสาร × |V| คำ','ts','middle')+tx(313,208,'|D| × |T|','ts','middle')+tx(510,118,'|T| หัวข้อ × |V| คำ','ts','middle'),'matrix factorization')},
+tsparts:{h:'แยก time series เป็น 3 ส่วน',s:'ข้อมูลจริง (กราฟล่างสุด) คือ trend + seasonal + residual บวกกัน',
+html:['tp1|Trend: แนวโน้มระยะยาว','tp2|Seasonal: รูปแบบที่ซ้ำเป็นรอบ (ทุก 12 จุด)','tp3|Residual: ส่วนที่เหลือแบบสุ่ม','tp4|รวมกัน = ข้อมูลจริงที่เราเห็น'].map(a=>{const[i,l]=a.split('|');return `<p class="s" style="margin:8px 0 0">${l}</p><svg id="${i}" width="100%" role="img" aria-label="${l}"></svg>`}).join(''),
+init(){const r=rng(2),n=60,T=[...Array(n)].map((_,t)=>10+0.15*t),S=[...Array(n)].map((_,t)=>3*Math.sin(2*Math.PI*t/12)),R=[...Array(n)].map(()=>gau(r)*0.8),Y=T.map((v,i)=>v+S[i]+R[i]);[[T,C.v],[S,C.t],[R,C.gr],[Y,C.b]].forEach(([a,c],k)=>{const lo=Math.min(...a),hi=Math.max(...a),pd=(hi-lo)*0.15||1;plot($('tp'+(k+1)),[{pts:a.map((v,t)=>[t,v]),c,line:1,w:k===3?2.2:1.8}],{x0:0,x1:n-1,y0:lo-pd,y1:hi+pd,h:70})})}},
+addmul:{h:'Additive กับ Multiplicative',s:'ซ้าย: แกว่งกว้างเท่าเดิมตลอด (additive) ขวา: ยิ่งค่าสูง ยิ่งแกว่งกว้าง (multiplicative)',
+html:`<div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:12px"><div><p class="s" style="margin:0">Additive: Y = T + S + R</p><svg id="am1" width="100%" role="img" aria-label="additive"></svg></div><div><p class="s" style="margin:0">Multiplicative: Y = T × S × R</p><svg id="am2" width="100%" role="img" aria-label="multiplicative"></svg></div></div>`,
+init(){const n=72,a=[...Array(n)].map((_,t)=>[t,10+0.4*t+3*Math.sin(2*Math.PI*t/12)]),m=[...Array(n)].map((_,t)=>[t,(10+0.4*t)*(1+0.3*Math.sin(2*Math.PI*t/12))]);plot($('am1'),[{pts:a,c:C.b,line:1,w:3.5}],{x0:0,x1:n-1,y0:0,y1:52,h:280});plot($('am2'),[{pts:m,c:C.o,line:1,w:3.5}],{x0:0,x1:n-1,y0:0,y1:52,h:280})}},
+arma:{h:'AR กับ MA ดึงข้อมูลจากไหนมาทาย',s:'เส้นม่วง (AR) ใช้ค่าจริงในอดีต เส้นส้มประ (MA) ใช้ความผิดพลาดของการทายครั้งก่อน ๆ ARIMA ใช้ทั้งสองอย่าง และทำ differencing ก่อน',
+html:svg(300,['y(t−1)','y(t−2)','y(t−3)'].map((l,i)=>box(30,20+i*50,130,40,'purple',l)+`<line x1="160" y1="${40+i*50}" x2="466" y2="${138+i*4}" stroke="${C.v}" stroke-width="2" marker-end="url(#arrow)"/>`).join('')+['ε(t−1)','ε(t−2)'].map((l,i)=>box(30,190+i*50,130,40,'coral',l)+`<line x1="160" y1="${210+i*50}" x2="466" y2="${158+i*4}" stroke="${C.o}" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow)"/>`).join('')+box(470,120,160,56,'teal','y(t)','ค่าที่ต้องการทาย')+tx(290,58,'AR: ใช้ค่าในอดีต')+tx(290,266,'MA: ใช้ error ของการทายก่อนหน้า'),'AR และ MA')},
+tsplit:{h:'แบ่ง train / test ของ time series',s:'สีม่วงคือ train สีส้มคือ test ต้องเอาช่วงท้ายสุดเป็น test เท่านั้น',
+html:(()=>{let s=tx(20,40,'ถูก: แบ่งตามเวลา','th')+tx(20,100,'ผิด: สุ่มแบ่ง','th');const bad=[3,7,11,14,19,22];for(let i=0;i<24;i++){const x=150+i*20;s+=`<rect x="${x}" y="28" width="18" height="24" rx="3" fill="${i>=18?C.o:C.v}" opacity="${i>=18?0.9:0.55}"/><rect x="${x}" y="88" width="18" height="24" rx="3" fill="${bad.includes(i)?C.o:C.v}" opacity="${bad.includes(i)?0.9:0.55}"/>`}s+=ar(150,140,628,140)+tx(150,156,'อดีต')+tx(628,156,'ปัจจุบัน','ts','end')+tx(390,126,'test ปนอยู่ในอดีต = เอาอนาคตไปช่วยทายอดีต','ts','middle');return svg(166,s,'การแบ่งข้อมูลตามเวลา')})()},
+ci:{h:'Confidence interval: ยิ่งมั่นใจ ช่วงยิ่งกว้าง',s:'เส้นน้ำเงินคือข้อมูลจริงในอดีต เส้นประม่วงคือค่าที่พยากรณ์ แถบสีคือช่วงความเชื่อมั่น ยิ่งพยากรณ์ไกล ช่วงยิ่งกว้าง ลองปรับ % ความเชื่อมั่น',
+html:`${sld('cic','ความเชื่อมั่น (%)',50,99,1,90,150)}<svg id="cis" width="100%" viewBox="0 0 680 220" role="img" aria-label="confidence interval"></svg><div class="rw"><div class="st"><span>ค่า z</span><b id="ciz"></b></div><span class="pill a" id="cit"></span></div>`,
+init(){const r=rng(13),Hs=[...Array(36)].map((_,t)=>20+0.2*t+3*Math.sin(2*Math.PI*t/12)+gau(r)*0.8),Fc=[...Array(13)].map((_,h)=>{const t=35+h;return 20+0.2*t+3*Math.sin(2*Math.PI*t/12)});const ei=x=>{const a=0.147,ln=Math.log(1-x*x),t=2/(Math.PI*a)+ln/2;return Math.sign(x)*Math.sqrt(Math.sqrt(t*t-ln/a)-t)};const X=t=>20+t*13.3,Y=v=>205-(v-5)*4.2;
+const up=()=>{const c=+$('cic').value;$('cicv').textContent=c;const z=Math.SQRT2*ei(c/100),hi=Fc.map((v,h)=>[35+h,v+z*1.2*Math.sqrt(h)]),lo=Fc.map((v,h)=>[35+h,v-z*1.2*Math.sqrt(h)]).reverse(),pp=a=>a.map(p=>X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ');
+$('cis').innerHTML=`<polygon points="${pp(hi)} ${pp(lo)}" fill="${C.v}" opacity="0.18"/><polyline points="${pp(Hs.map((v,t)=>[t,v]))}" fill="none" stroke="${C.b}" stroke-width="2"/><polyline points="${pp(Fc.map((v,h)=>[35+h,v]))}" fill="none" stroke="${C.v}" stroke-width="2" stroke-dasharray="6 4"/><line x1="${X(35)}" y1="10" x2="${X(35)}" y2="208" stroke="var(--border-strong)" stroke-dasharray="3 3"/>`+tx(X(35)-6,16,'อดีต','ts','end')+tx(X(35)+6,16,'อนาคต (พยากรณ์)');$('ciz').textContent=z.toFixed(3);$('cit').textContent=`ช่วง = ค่าที่ทาย ± ${z.toFixed(2)} × σ`};$('cic').oninput=up;up()}},
+prec:{h:'Python คำนวณทีละขั้นตามลำดับ precedence',s:'เลือกโจทย์แล้วกดถัดไป ส่วนที่ไฮไลต์คือส่วนที่ Python คำนวณในขั้นนั้น',
+html:`<div class="rw"><select id="prs"><option value="0">5 + 1 ** 2 / 2</option><option value="1">4 + - 1 * 4 / 2 ** 2</option><option value="2">not not (3 &gt; 5) == True</option></select><button id="prb"><i class="ti ti-arrow-left" aria-hidden="true"></i> ย้อน</button><button id="prn">ถัดไป <i class="ti ti-arrow-right" aria-hidden="true"></i></button><span class="s" id="prc" style="margin:0"></span></div><div id="prx" class="mono" style="font-size:20px;padding:14px;background:var(--bg-neutral);border-radius:var(--radius);margin:8px 0;text-align:center"></div><p class="ex" id="pre" style="margin:0"></p>`,
+init(){const E=[[['5 + [1 ** 2] / 2','ขั้นแรกทำ ** (ยกกำลัง) ก่อนทุกอย่าง: 1 ** 2 = 1'],['5 + [1 / 2]','ต่อด้วยการหาร: 1 / 2 = 0.5 (หารด้วย / ได้ทศนิยมเสมอ)'],['[5 + 0.5]','บวกทำทีหลังสุด'],['5.5','คำตอบสุดท้าย']],[['4 + - 1 * 4 / [2 ** 2]','ทำ ** ก่อน: 2 ** 2 = 4'],['4 + [- 1] * 4 / 4','เครื่องหมายลบหน้าตัวเลข (unary minus) ทำก่อนคูณหาร: ได้ −1'],['4 + [-1 * 4] / 4','คูณกับหารมีลำดับเท่ากัน ทำจากซ้ายไปขวา: −1 × 4 = −4'],['4 + [-4 / 4]','−4 / 4 = −1.0'],['[4 + -1.0]','สุดท้ายทำบวก'],['3.0','คำตอบสุดท้าย เป็น float เพราะมีการหารด้วย /']],[['not not [(3 &gt; 5)] == True','ในวงเล็บก่อน: 3 > 5 เป็นเท็จ ได้ False'],['not not [False == True]','== ทำก่อน not: False == True ได้ False'],['not [not False]','not False ได้ True'],['[not True]','not True ได้ False'],['False','คำตอบสุดท้าย']]];let e=0,k=0;
+const up=()=>{const st=E[e][k];$('prx').innerHTML=st[0].replace(/\[/g,'<span class="hl2">').replace(/\]/g,'</span>');$('pre').textContent=st[1];$('prc').textContent='ขั้นที่ '+(k+1)+' จาก '+E[e].length};$('prs').onchange=()=>{e=+$('prs').value;k=0;up()};$('prn').onclick=()=>{if(k<E[e].length-1)k++;up()};$('prb').onclick=()=>{if(k>0)k--;up()};up()}},
+loop:{h:'while loop ทำงานอย่างไร',s:'วนกลับไปเช็กเงื่อนไขทุกรอบ ถ้ายังจริงก็ทำต่อ ถ้าเท็จก็ออกจาก loop ตัวอย่างนี้วน 10 รอบ (k = 0, 2, …, 18)',
+html:svg(190,box(40,50,120,40,'gray','k = 0')+ar(160,70,228,70)+`<polygon points="300,40 370,70 300,100 230,70" fill="var(--bg-accent)" stroke="var(--border-accent)" stroke-width="1"/>`+tx(300,70,'k &lt; 20 ?','th','middle')+ar(372,70,468,70)+tx(420,58,'ใช่','ts','middle')+box(470,50,180,40,'purple','print แล้ว k += 2')+`<path d="M560 50 L560 26 L300 26 L300 38" fill="none" class="arr" marker-end="url(#arrow)"/>`+tx(430,16,'วนกลับไปเช็กใหม่','ts','middle')+ar(300,100,300,138)+tx(310,120,'ไม่ใช่')+box(240,140,120,36,'gray','จบ loop'),'while loop')},
+range:{h:'range(start, stop, step) บนเส้นจำนวน',s:'จุดม่วงคือค่าที่ for loop จะวนผ่าน เริ่มที่ start ไม่รวม stop และกระโดดทีละ step',
+html:`${sld('rgA','start (เริ่ม)',0,10,1,1,110)}${sld('rgB','stop (หยุดก่อนถึง)',1,20,1,15,110)}${sld('rgS','step (กระโดดทีละ)',1,5,1,2,110)}<svg id="rgV" width="100%" viewBox="0 0 680 80" role="img" aria-label="เส้นจำนวน"></svg><div class="rw"><div class="st"><span>จำนวนรอบ</span><b id="rgN"></b></div><span class="mono" id="rgL" style="font-size:13px"></span></div>`,
+init(){const X=v=>30+v*31;const up=()=>{const a=+$('rgA').value,b=+$('rgB').value,s=+$('rgS').value;['rgA','rgB','rgS'].forEach(k=>$(k+'v').textContent=$(k).value);const vals=[];for(let i=a;i<b;i+=s)vals.push(i);let g=`<line x1="${X(0)}" y1="40" x2="${X(20)}" y2="40" stroke="var(--border-strong)"/>`;for(let v=0;v<=20;v++){g+=`<line x1="${X(v)}" y1="35" x2="${X(v)}" y2="45" stroke="var(--border-strong)"/>`+tx(X(v),62,v,'ts','middle')+(vals.includes(v)?dot(X(v),40,7,C.v):'')}g+=`<line x1="${X(b)}" y1="22" x2="${X(b)}" y2="50" stroke="${C.r}" stroke-width="2" stroke-dasharray="3 3"/>`+tx(X(b),12,'stop (ไม่รวม)','ts',b>16?'end':'middle');$('rgV').innerHTML=g;$('rgN').textContent=vals.length+' รอบ';$('rgL').textContent='ค่า i: '+(vals.join(', ')||'ไม่มี')};['rgA','rgB','rgS'].forEach(k=>$(k).oninput=up);up()}},
+colls:{h:'เปรียบเทียบ list, tuple, dict, set',s:'กล่องแต่ละช่องคือสมาชิก 1 ตัว ตัวเลขเล็กด้านบนคือ index',
+html:(()=>{const cell=(v,i,sh)=>`<div style="text-align:center"><div style="font-size:11px;color:var(--text-muted)">${i==null?'&nbsp;':i}</div><div class="mono" style="min-width:34px;padding:6px 8px;border:0.5px solid var(--border-strong);border-radius:${sh?'999px':'6px'};background:var(--surface-2);font-size:13px">${v}</div></div>`;const yes=t=>`<span class="pill g" style="font-size:12px;padding:2px 8px"><i class="ti ti-check" aria-hidden="true"></i> ${t}</span>`,no=t=>`<span class="pill r" style="font-size:12px;padding:2px 8px"><i class="ti ti-x" aria-hidden="true"></i> ${t}</span>`;const card=(n,code,cells,tags)=>`<div class="st" style="padding:12px"><div style="font-weight:500;margin-bottom:6px">${n} <span class="mono" style="font-size:12px;color:var(--text-secondary)">${code}</span></div><div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;align-items:flex-end">${cells}</div><div style="display:flex;gap:4px;flex-wrap:wrap">${tags}</div></div>`;
+return `<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">`+card('list','[3, 1, 3]',[3,1,3].map((v,i)=>cell(v,i)).join(''),yes('มีลำดับ')+yes('แก้ไขได้')+yes('ค่าซ้ำได้'))+card('tuple','(3, 1, 3)',[3,1,3].map((v,i)=>cell(v,i)).join('')+'<i class="ti ti-lock" style="font-size:18px;color:var(--text-secondary)" aria-hidden="true"></i>',yes('มีลำดับ')+no('แก้ไขไม่ได้')+yes('ค่าซ้ำได้'))+card('dict','{"id": "P1", "price": 50}',cell('"id" → "P1"')+cell('"price" → 50'),yes('ค้นด้วย key')+yes('แก้ไขได้')+no('key ซ้ำไม่ได้'))+card('set','{3, 1, 3} ได้ {1, 3}',[1,3].map(v=>cell(v,null,1)).join(''),no('ไม่มีลำดับ')+yes('แก้ไขได้')+no('ค่าซ้ำถูกตัดทิ้ง'))+'</div>'})()},
+import:{h:'import หา module ที่ไหนบ้าง',s:'Python หาตามลำดับ ถ้าไม่เจอที่แรกจึงไปที่ถัดไป',
+html:svg(84,box(20,16,180,52,'purple','1. current directory','โฟลเดอร์ที่รันอยู่')+ar(200,42,236,42)+box(238,16,180,52,'purple','2. PYTHONPATH','โฟลเดอร์ที่ตั้งไว้')+ar(418,42,454,42)+box(456,16,200,52,'purple','3. site-packages','library ที่ติดตั้งไว้'),'ลำดับการหา module')},
+text2bin:{h:'ข้อความและสีถูกเก็บเป็นเลขฐานสองอย่างไร',s:'ตัวอักษรแต่ละตัวมีรหัสตัวเลข (ASCII) แล้วแปลงรหัสนั้นเป็นเลขฐานสอง ส่วนสีของ 1 pixel เก็บเป็นตัวเลข 3 ค่า (แดง เขียว น้ำเงิน)',
+html:`<table class="tb"><thead><tr><th>ตัวอักษร</th><th>รหัส ASCII</th><th>เลขฐานสอง (8 บิต)</th></tr></thead><tbody><tr><td class="mono">H</td><td>72</td><td class="mono">01001000</td></tr><tr><td class="mono">i</td><td>105</td><td class="mono">01101001</td></tr></tbody></table><div class="rw" style="margin-top:10px"><span style="width:40px;height:40px;border-radius:6px;background:#eb6834;display:inline-block"></span><span>1 pixel สีส้มนี้ = แดง 235, เขียว 104, น้ำเงิน 52 (แต่ละค่าใช้ 8 บิต)</span></div>`},
+gates:{h:'สัญลักษณ์เกตและตารางค่าความจริง',s:'เส้นซ้ายของแต่ละเกตคือ input (A, B) เส้นขวาคือผลลัพธ์ ตารางด้านล่างแสดงทุกกรณี',
+html:(()=>{const st='fill="var(--surface-2)" stroke="var(--text-primary)" stroke-width="1.5"',ln=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--text-primary)" stroke-width="1.5"/>`;
+const G=[['AND',95,x=>ln(x-50,32,x-25,32)+ln(x-50,58,x-25,58)+`<path d="M${x-25} 20 h22 a25 25 0 0 1 0 50 h-22 z" ${st}/>`+ln(x+22,45,x+45,45),[[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],['OR',255,x=>ln(x-50,32,x-22,32)+ln(x-50,58,x-22,58)+`<path d="M${x-30} 20 Q${x-15} 45 ${x-30} 70 Q${x+5} 70 ${x+25} 45 Q${x+5} 20 ${x-30} 20 z" ${st}/>`+ln(x+25,45,x+45,45),[[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],['XOR',425,x=>ln(x-50,32,x-24,32)+ln(x-50,58,x-24,58)+`<path d="M${x-38} 20 Q${x-23} 45 ${x-38} 70" fill="none" stroke="var(--text-primary)" stroke-width="1.5"/><path d="M${x-30} 20 Q${x-15} 45 ${x-30} 70 Q${x+5} 70 ${x+25} 45 Q${x+5} 20 ${x-30} 20 z" ${st}/>`+ln(x+25,45,x+45,45),[[0,0,0],[0,1,1],[1,0,1],[1,1,0]]],['NOT',585,x=>ln(x-50,45,x-25,45)+`<path d="M${x-25} 22 L${x+15} 45 L${x-25} 68 z" ${st}/><circle cx="${x+20}" cy="45" r="5" ${st}/>`+ln(x+25,45,x+45,45),[[0,1],[1,0]]]];
+let s='';G.forEach(([n,x,draw,tt])=>{s+=draw(x)+tx(x,92,n,'th','middle')+tx(x,114,tt[0].length===3?'A  B → ผล':'A → ผล','ts','middle');tt.forEach((r,i)=>s+=`<text class="t mono" x="${x}" y="${136+i*20}" text-anchor="middle" dominant-baseline="central">${r.length===3?r[0]+'  '+r[1]+' → '+r[2]:r[0]+' → '+r[1]}</text>`)});return svg(210,s,'logic gates')})()},
+clock:{h:'วงจรที่ทำงานตามสัญญาณนาฬิกา (เกต OR)',s:'เส้นประแนวตั้งคือจังหวะ "ขาขึ้น" ของ CLK ผลลัพธ์ Q เปลี่ยนได้เฉพาะตรงเส้นประเท่านั้น โดยใช้ค่า A OR B ก่อนขาขึ้น',
+html:(()=>{const X=t=>110+t*80,wave=(y,start,ch,c,w)=>{let pts=[[X(0),y-start*24]],lv=start;ch.forEach(([t,v])=>{pts.push([X(t),y-lv*24],[X(t),y-v*24]);lv=v});pts.push([X(6.5),y-lv*24]);return `<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="${w}"/>`};let s='';[1,3,5].forEach(t=>s+=`<line x1="${X(t)}" y1="10" x2="${X(t)}" y2="206" stroke="${C.am}" stroke-width="1.5" stroke-dasharray="5 4"/>`);
+s+=wave(50,0,[[1,1],[2,0],[3,1],[4,0],[5,1],[6,0]],'var(--text-primary)',1.5)+wave(100,0,[[2,1],[4,0]],C.b,2)+wave(150,0,[[1,1],[4.5,0]],C.b,2)+wave(200,0,[[3,1],[5,0]],C.v,3);[['CLK',38],['A',88],['B',138],['Q',188]].forEach(([n,y])=>s+=tx(30,y,n,'th'));
+[[1,'A=0, B=0 → Q=0'],[3,'A=1, B=1 → Q=1'],[5,'A=0, B=0 → Q=0']].forEach(([t,l])=>s+=tx(X(t),224,l,'ts','middle'));return svg(236,s,'timing diagram')})()},
+pipe:{h:'Pipeline ของ CPU: ทำหลายคำสั่งพร้อมกันคนละขั้น',s:'F = Fetch ดึงคำสั่ง, D = Decode ตีความคำสั่ง, E = Execute ทำงาน, W = Write back เก็บผล ในรอบนาฬิกาที่ 3 (กรอบเหลือง) CPU กำลัง Execute คำสั่งที่ 1, Decode คำสั่งที่ 2 และ Fetch คำสั่งที่ 3 พร้อมกัน',
+html:(()=>{let s=tx(20,14,'รอบนาฬิกา','ts');const st=[['F','gray'],['D','purple'],['E','teal'],['W','coral']];for(let c=0;c<6;c++)s+=tx(170+c*80+37,14,c+1,'ts','middle');for(let r=0;r<3;r++){const y=30+r*38;s+=tx(20,y+15,'คำสั่งที่ '+(r+1),'th');st.forEach(([n,col],k)=>{const x=170+(r+k)*80;s+=`<g class="c-${col}"><rect x="${x}" y="${y}" width="74" height="30" rx="5" stroke-width="0.5"/>${tx(x+37,y+15,n,'th','middle')}</g>`})}s+=`<rect x="${170+2*80-3}" y="26" width="80" height="${3*38+2}" rx="6" fill="none" stroke="${C.am}" stroke-width="2"/>`;return svg(150,s,'CPU pipeline')})()},
+swstack:{h:'ชั้นของซอฟต์แวร์',s:'แอปที่เราใช้ทำงานบน OS ส่วน OS คุยกับฮาร์ดแวร์ผ่าน device driver ตอนเปิดเครื่อง BIOS จะตรวจฮาร์ดแวร์ก่อนแล้วจึงโหลด OS',
+html:svg(250,box(40,10,420,50,'coral','แอปพลิเคชัน','Word, Chrome, เกม')+box(40,70,420,50,'purple','ระบบปฏิบัติการ (OS)','จัดสรรทรัพยากร, คุมสิทธิ์, ติดต่อเครือข่าย')+box(40,130,420,50,'teal','Device driver','ควบคุมอุปกรณ์ต่อพ่วงร่วมกับ OS')+box(40,190,420,50,'gray','ฮาร์ดแวร์','CPU, RAM, Disk, เครื่องพิมพ์')+box(490,130,170,110,'purple','BIOS','ตรวจเครื่องตอนเปิด')+`<path d="M575 128 L575 95 L462 95" fill="none" class="arr" marker-end="url(#arrow)"/>`+tx(582,112,'โหลด OS'),'software stack')}
+};
+const T=[
+{k:'ai',name:'AI และ ML',n:10,intro:'เริ่มที่หัวข้อนี้ก่อน เพราะเป็นพื้นฐานของทุกหัวข้อ คอร์สนี้มีควิซแค่ 10 ข้อ ข้อสอบส่วนที่เหลือจึงมาจากเนื้อหาในวิดีโอ ซึ่งสรุปไว้ในแต่ละบทด้านล่าง',mods:[
+{t:'เริ่มจากศูนย์: ข้อมูล โมเดล และการเรียนรู้',goal:'เข้าใจว่า machine learning คืออะไร ข้อมูลหน้าตาเป็นอย่างไร และงาน ML มีขั้นตอนอะไรบ้าง',b:[
+['h','Machine learning คืออะไร'],
+['p','Machine learning (ML) คือการให้คอมพิวเตอร์ดูตัวอย่างจำนวนมาก แล้วหา "กฎ" เองว่าข้อมูลแบบไหนให้คำตอบแบบไหน แทนที่คนจะเขียนกฎให้ทีละข้อ'],
+['p','เทียบกับนักเรียนเตรียมสอบ: นักเรียนทำข้อสอบเก่าที่มีเฉลยเยอะ ๆ (ข้อมูลฝึก) จนจับแนวได้ (โมเดล) แล้วไปทำข้อสอบจริงที่ไม่เคยเห็น (ข้อมูลทดสอบ) ถ้าทำข้อสอบจริงได้ดีแปลว่าเข้าใจจริง ถ้าทำได้แค่ข้อเก่าแปลว่าท่องจำ'],
+['p','ML เป็นส่วนหนึ่งของ AI และ deep learning ก็เป็นส่วนหนึ่งของ ML ดังภาพ'],
+['fig','aiml_nest'],
+['h','หน้าตาของข้อมูล'],
+['p','ข้อมูลที่ ML ใช้คือตาราง แต่ละแถวคือตัวอย่าง 1 ชิ้น แต่ละคอลัมน์คือข้อมูลที่เรารู้ และมีคอลัมน์หนึ่งเป็นคำตอบที่อยากให้โมเดลทาย ดูตารางตัวอย่างราคาคอนโด'],
+['lab','datatable'],
+['def',[['ตัวอย่าง (sample)','ของ 1 ชิ้นในข้อมูล คือ 1 แถวในตาราง','คอนโด 1 ห้อง'],['Feature','ข้อมูลที่เรารู้เกี่ยวกับแต่ละตัวอย่าง ใช้เป็นข้อมูลเข้า (input)','ขนาดห้อง, จำนวนห้องนอน'],['Target (label)','คำตอบที่อยากให้โมเดลทาย (output)','ราคาห้อง']]],
+['h','โมเดลเรียนรู้อย่างไร'],
+['p','โมเดลคือสูตรหรือกฎที่แปลง feature ให้เป็นคำตอบ เช่น ราคา = 0.09 × ขนาด + 0.5 ขั้นที่ให้โมเดลดูข้อมูลแล้วปรับสูตรจนทายใกล้คำตอบจริงที่สุดเรียกว่า การเทรน (training) ส่วนการนำโมเดลไปทายข้อมูลใหม่เรียกว่า การทาย (prediction หรือ inference)'],
+['fig','ml_flow'],
+['p','ระยะห่างระหว่าง "ค่าที่โมเดลทาย" กับ "คำตอบจริง" เรียกว่า error การเรียนรู้คือการปรับโมเดลให้ error น้อยลงเรื่อย ๆ นี่คือ "หัวใจของ ML" ที่ข้อสอบถาม'],
+['def',[['Error','ความต่างระหว่างค่าที่ทายกับคำตอบจริง','ทาย 5 ล้าน จริง 6 ล้าน ผิดไป 1 ล้าน'],['Train set / Test set','ข้อมูลส่วนที่ใช้ฝึก / ส่วนที่เก็บไว้ทดสอบทีหลัง','แบ่ง 80% ฝึก 20% ทดสอบ']]],
+['h','ลำดับขั้นตอนของงาน ML'],
+['steps',{t:'กดทีละขั้น',i:[['เก็บข้อมูล','รวบรวมตัวอย่างที่มีทั้ง feature และ target เช่น ข้อมูลคอนโด 1,000 ห้องพร้อมราคา'],['แบ่ง train / test','แยกข้อมูลส่วนหนึ่ง (เช่น 20%) ไว้เป็น test set และห้ามให้โมเดลเห็นตอนเทรน เพื่อใช้วัดผลแบบยุติธรรม'],['เทรนโมเดล','ให้โมเดลดูข้อมูล train แล้วปรับตัวเองให้ error ต่ำที่สุด'],['ประเมินผล','ให้โมเดลทาย test set แล้ววัดว่าผิดเท่าไร ถ้าผิดเยอะกว่าตอนเทรนมาก แปลว่าท่องจำ (overfitting)'],['นำไปใช้','ใช้โมเดลทายข้อมูลใหม่ที่ยังไม่มีคำตอบ เช่น ทายราคาห้องที่เพิ่งประกาศขาย']]}]],
+tips:['"หัวใจของกระบวนการ ML" คือ ลด error บนตัวอย่างที่ใช้เรียนรู้','ML เป็นส่วนหนึ่งของ AI (AI เป็นเรื่องที่ใหญ่กว่า)'],
+q:[['ข้อใดคือหัวใจสำคัญของกระบวนการการเรียนรู้ของเครื่อง',['ลด error บนตัวอย่างที่ใช้เรียนรู้','สร้างตัวอย่างใหม่ให้ครอบคลุมทุกกรณี','ใช้ test data ปรับให้แม่นที่สุด','แก้ error ทุกครั้งหลังทำนาย'],0,'']]},
+{t:'AI คืออะไร และนิยาม 4 กลุ่ม',goal:'รู้ว่าทำไมนิยาม AI มีหลายแบบ แยกนิยาม 4 กลุ่มได้ และรู้ว่า Turing test กับ Chinese room คืออะไร',b:[
+['h','ทำไมนิยาม AI มีหลายแบบ'],
+['p','AI (Artificial Intelligence) แปลว่าปัญญาประดิษฐ์ หรือ "ความฉลาดที่มนุษย์สร้างขึ้น" ปัญหาคือคำว่า "ความฉลาด" แต่ละคนเข้าใจไม่เหมือนกัน จึงมีนิยามหลายแบบ ข้อสอบถามว่าคำไหนตีความต่างกันมากที่สุด คำตอบคือ ความฉลาด (Intelligence)'],
+['p','นิยามที่อาจารย์ในวิดีโอชอบมาจาก Elaine Rich และ Kevin Knight (ปี 1991): AI คือการศึกษาวิธีทำให้คอมพิวเตอร์ทำสิ่งที่ "ตอนนี้" คนยังทำได้ดีกว่า เช่น เมื่อก่อนคอมพิวเตอร์จำหน้าคนไม่ได้ ตอนนี้ทำได้แล้ว งานที่ AI ต้องไล่ตามจึงเปลี่ยนไปเรื่อย ๆ'],
+['h','นิยาม 4 กลุ่ม'],
+['p','หนังสือ AI: A Modern Approach ของ Russell และ Norvig แบ่งนิยาม AI เป็น 4 กลุ่ม โดยถามสองคำถาม คือ อยากให้เครื่อง "คิด" หรือ "ทำ" และอยากให้เหมือน "มนุษย์" หรือให้ "มีเหตุผล" กดแต่ละช่องในตารางเพื่อดูความหมาย'],
+['lab','quad'],
+['def',[['Strong AI','ต้องการให้เครื่อง "คิด" เหมือนสมองมนุษย์จริง ๆ ตรงกับกลุ่ม Think like human',''],['Weak AI','ขอแค่ให้เครื่อง "ทำ" ได้ผลเหมือนมนุษย์ ตรงกับกลุ่ม Act like human','เครื่องบินบินได้โดยไม่ต้องกระพือปีก'],['Rational (มีเหตุผล)','ใช้หลักตรรกะที่อธิบายได้','ฝนตก จึงพื้นเปียก']]],
+['h','Turing test'],
+['p','Turing test เป็นตัวอย่างของกลุ่ม "ทำเหมือนมนุษย์" กดดูวิธีทดสอบทีละขั้น'],
+['steps',{t:'Turing test ทำอย่างไร',i:[['แยกห้อง','ห้องหนึ่งมีคนจริง (A) และคอมพิวเตอร์ (B) อีกห้องมีผู้ประเมินที่มองไม่เห็นว่าใครเป็นใคร'],['ถามผ่านข้อความ','ผู้ประเมินพิมพ์คำถามอะไรก็ได้ส่งไปให้ A และ B'],['A และ B ตอบ','คอมพิวเตอร์พยายามตอบให้เหมือนคนที่สุด และต้องจำได้ว่าตัวเองเคยตอบอะไรไป'],['ตัดสิน','ถ้าผู้ประเมินแยกไม่ออกว่าใครคือคอมพิวเตอร์ ถือว่าคอมพิวเตอร์ผ่าน การทดสอบนี้จึงวัด "การเลียนแบบมนุษย์ด้านการสื่อสาร"']]}],
+['h','Chinese room'],
+['p','คนที่ไม่รู้ภาษาจีนนั่งในห้องที่มีคู่มือ เมื่อได้รับคำถามภาษาจีนก็เปิดคู่มือจับคู่หาคำตอบส่งออกไป คนข้างนอกนึกว่าเขาเข้าใจภาษาจีน แสดงว่าเครื่องสามารถ "ทำเหมือนเข้าใจ" ได้โดยไม่ต้องเข้าใจจริง (เป็นตัวอย่างของกลุ่ม Act like human เช่นกัน)'],
+['p','ข้อได้เปรียบที่ AI มีเหนือคนแน่ ๆ ในตอนนี้คือ คำนวณคณิตศาสตร์ได้ดีกว่า']],
+tips:['Turing test เกี่ยวกับ "การเลียนแบบมนุษย์ด้านการสื่อสาร" (ไม่ใช่ภาษาจีน ไม่ใช่การรู้จำภาพ)','คำที่ตีความต่างกันมากที่สุดในนิยาม AI คือ "ความฉลาด"','Strong AI คือ Think like human ส่วน Weak AI คือ Act like human','ข้อได้เปรียบของ AI ที่มีมากกว่ามนุษย์คือ คำนวณคณิตศาสตร์ได้ดีกว่า'],
+q:[['การทดสอบทัวริง (Turing Test) เกี่ยวข้องกับข้อใดมากที่สุด',['ภาษาจีน','การเรียนรู้แบบเสริมแรง','การรู้จำรูปภาพตัวอักษร','การเลียนแบบมนุษย์ด้านการสื่อสาร'],3,''],['ข้อใดเป็นคำที่ตีความได้แตกต่างกันมากที่สุดในคำนิยามของ AI',['เวลา','มนุษย์','ความฉลาด','เครื่องคอมพิวเตอร์'],2,''],['Strong AI ตรงกับกลุ่มใด',['Think like human','Act like human','Act rationally','Think rationally'],0,''],['ข้อได้เปรียบของ AI ที่มีมากกว่ามนุษย์คือข้อใด',['เข้าใจมนุษย์มากกว่ามนุษย์ด้วยกัน','คำนวณทางคณิตศาสตร์ได้ดีกว่า','ค้นหาคำตอบได้หลากหลายกว่า','เข้าใจภาพและเสียงละเอียดกว่า'],1,'']]},
+{t:'AI แก้ปัญหาอย่างไร: state, การค้นหา และ heuristic',goal:'รู้ตัวอย่างการใช้ AI รู้จัก fuzzy logic และเข้าใจการแก้ปัญหาด้วยการค้นหา (BFS, DFS, heuristic)',b:[
+['h','AI อยู่รอบตัวเรา'],
+['p','ตัวอย่างจากวิดีโอ: กล้องตรวจว่าใส่หน้ากากไหมและวัดอุณหภูมิ, กล้องอ่านป้ายทะเบียน, นับรถเพื่อปรับไฟจราจร, แอปนำทางที่สั่งด้วยเสียง, รถไร้คนขับ ส่วน "ค้นประวัติคนไข้จากรหัสแท่ง (บาร์โค้ด)" ไม่ใช่ AI เพราะแค่เปิดข้อมูลตามรหัส ไม่มีการคิดหรือเรียนรู้'],
+['h','Fuzzy logic'],
+['p','ระบบแอร์ยุคแรกใช้ fuzzy logic คือการไม่แบ่งกลุ่มแบบเด็ดขาด ถ้าตั้งว่าสูง 180 ซม. ขึ้นไปคือ "คนสูง" คนสูง 179 ซม. จะกลายเป็น "ไม่สูง" ทันทีทั้งที่ต่างกันแค่ 1 ซม. fuzzy logic จึงให้เป็น "ระดับ" แทน (คำว่า fuzzy ในที่นี้ไม่ได้แปลว่าคลุมเครือ) ลองเลื่อนความสูงในกราฟ'],
+['fig','fuzzy'],
+['h','ปัญหาแบบ AI: state และ state space'],
+['p','ปัญหาแบบ AI มีโครงสร้างเหมือนเล่นเกม: เริ่มจากสถานะตอนนี้ ทำการกระทำแล้วได้สถานะใหม่ ทำไปเรื่อย ๆ จนถึงเป้าหมาย'],
+['def',[['State','สภาพของปัญหา ณ ตอนนี้','หน้าตารูบิกตอนนี้'],['Action','สิ่งที่ทำแล้ว state เปลี่ยน','หมุนรูบิก 1 ครั้ง'],['Goal state','สถานะที่ต้องการไปให้ถึง','รูบิกเรียงสีครบ'],['State space','state ที่เป็นไปได้ทั้งหมดของปัญหา','ทุกหน้าตาที่รูบิกเป็นได้']]],
+['p','ตัวอย่างในวิดีโอคือเกม 8-Puzzle: กระดาน 3×3 มีแผ่นเลข 8 แผ่นกับช่องว่าง 1 ช่อง ในโปรแกรมนิยมคิดว่า "ย้ายช่องว่าง" ช่องว่างอยู่ตรงไหนจะย้ายได้ไม่เท่ากัน ลองกดดู'],
+['fig','puzzle'],
+['f',['8-Puzzle: ช่องว่างตรงกลางเลื่อนได้ 4 ทาง, ริมขอบ 3 ทาง, มุม 2 ทาง','จำนวนทางขึ้นกับว่าช่องว่างติดกับแผ่นกี่ด้าน','ช่องว่างอยู่มุมบนซ้าย เลื่อนได้แค่ไปขวากับลงล่าง จึงได้ 2 ทาง']],
+['h','ขั้นตอนแก้ปัญหาด้วยการค้นหา'],
+['steps',{t:'กดทีละขั้น',i:[['กำหนด state เริ่มต้น','บอกว่าตอนนี้ปัญหาอยู่ในสภาพไหน เช่น กระดาน 8-Puzzle ที่ยังสลับอยู่'],['กำหนด action','บอกว่าทำอะไรได้บ้าง เช่น ย้ายช่องว่างขึ้น ลง ซ้าย ขวา'],['กำหนด goal','บอกว่าสภาพแบบไหนคือสำเร็จ เช่น เลข 1 ถึง 8 เรียงครบ'],['ค้นหา','ลองทำ action ไปเรื่อย ๆ ใน state space ด้วย BFS หรือ DFS หรือใช้ heuristic ช่วยเลือกทาง'],['ได้คำตอบ','ได้ลำดับ action ที่พาจาก state เริ่มต้นไปถึง goal']]}],
+['h','BFS กับ DFS'],
+['p','BFS (Breadth-First Search) ค้น "กว้างก่อน" ลองทุกทางในชั้นที่ 1 ให้ครบก่อนค่อยไปชั้นที่ 2 ต้องจำทางที่รอค้นไว้เยอะมาก จึงกินหน่วยความจำ'],
+['p','DFS (Depth-First Search) ค้น "ลึกก่อน" เดินทางเดียวลงไปจนสุดก่อนค่อยถอยกลับ ใช้หน่วยความจำน้อย แต่ถ้าเป้าหมายอยู่อีกกิ่งจะเสียเวลามาก (อาจารย์บอกว่าอาจนานเป็นล้านปี) ลองเทียบสองแบบในแล็บ'],
+['lab','search'],
+['f',['จำนวนโหนดในชั้นที่ d ≈ bᵈ','b คือจำนวนทางที่แตกได้แต่ละครั้ง, d คือจำนวนก้าว BFS ต้องจำทั้งชั้นนี้ไว้','แตกได้ 3 ทาง ลึก 10 ก้าว ได้ 3¹⁰ ≈ 59,000 โหนด']],
+['h','Heuristic function'],
+['p','Heuristic function คือตัวประเมินว่า state ไหน "น่าจะใกล้เป้าหมาย" เพื่อเลือกทางที่ดีโดยไม่ต้องลองทุกทาง เช่น หาเส้นทางขับรถ ให้เลือกเมืองถัดไปที่ระยะเส้นตรงถึงปลายทางสั้นที่สุด หรือใน 8-Puzzle ให้นับว่ายังมีกี่แผ่นที่วางผิดที่']],
+tips:['ปัญหาของ DFS คือ "เวลาที่ใช้ค้นหา" ส่วนปัญหาของ BFS คือหน่วยความจำ','8-Puzzle ไม่เกี่ยวกับ "การเข้าใจภาษาธรรมชาติ"','"ค้นหาประวัติคนไข้จากรหัสแท่ง" ไม่ใช่การประยุกต์ใช้ AI'],
+q:[['ข้อใดคือปัญหาของการค้นหาแบบ Depth First Search',['เวลาที่ใช้ค้นหา','หน่วยความจำที่ต้องใช้','สถานะคำตอบใกล้สถานะเดิมเกินไป','วิธีประเมินความดีของคำตอบยุ่งยาก'],0,''],['ข้อใดไม่ใช่ตัวอย่างการประยุกต์ใช้ AI',['การตอบโต้ผ่านแชตบอต','การค้นหารูปภาพด้วยรูปภาพ','การค้นหาประวัติคนไข้จากรหัสแท่ง','การค้นหาเส้นทางที่เร็วที่สุด'],2,''],['การหาวิธีเลื่อนแผ่นในเกม 8-Puzzle ไม่เกี่ยวข้องกับข้อใด',['การเข้าใจภาษาธรรมชาติ','การกำหนดสถานะของปัญหา','การใช้เหตุผลด้วยตรรกศาสตร์','การค้นหาใน state space'],0,'']]},
+{t:'Machine learning: 3 ประเภท โมเดลที่ควรรู้ และการหาเส้นที่ดีที่สุด',goal:'แยก ML 3 ประเภทได้ รู้จัก neural network และ decision tree และเข้าใจว่าคอมพิวเตอร์ "เรียน" โดยลด error อย่างไร',b:[
+['h','ML มี 3 ประเภท'],
+['p','แบ่งตามว่าข้อมูล "มีเฉลยไหม" ดูภาพแล้วอ่านความหมายด้านล่าง'],
+['fig','ml3types'],
+['def',[['Supervised learning','เรียนจากข้อมูลที่มีคำตอบ (target) เหมือนทำแบบฝึกหัดที่มีเฉลย','ทายราคาบ้าน, คัดสแปม'],['Unsupervised learning','ข้อมูลไม่มีคำตอบ ให้คอมพิวเตอร์จับกลุ่มของที่คล้ายกันเอง เรียกว่า clustering','แบ่งกลุ่มลูกค้า'],['Reinforcement learning','ลองทำทีละขั้น พอรู้ผลตอนจบจึงย้อนไปให้รางวัลกับลำดับการกระทำที่ดี ใช้กับงานควบคุม','หุ่นยนต์, เกม']]],
+['h','Neural network'],
+['p','Neural network (โครงข่ายประสาทเทียม) เลียนแบบเซลล์ประสาท ประกอบด้วยโหนดที่ต่อกันเป็นชั้น ๆ เหมือนตาข่าย ข้อมูลเข้าทางซ้ายแล้วไหลผ่านเส้นเชื่อมไปทางขวาจนได้คำตอบ ลองเลื่อนค่าและเพิ่มชั้นดู'],
+['fig','nn'],
+['p','ถ้าซ้อน hidden layer หลายชั้นเรียกว่า Deep learning และ neural network ชนิดที่เหมาะกับรูปภาพเรียกว่า CNN'],
+['h','Decision tree'],
+['p','Decision tree (ต้นไม้ตัดสินใจ) ถามคำถามใช่หรือไม่ใช่ไปทีละข้อจนได้คำตอบ ข้อดีคือคนอ่านแล้วเข้าใจได้ง่ายว่าทำไมได้คำตอบนั้น และสร้างได้เร็วแม้ข้อมูลเยอะ ใช้วิเคราะห์ เช่น ลูกค้าจะเลิกใช้บริการไหม พนักงานจะลาออกไหม ลองปรับข้อมูลแล้วดูเส้นทาง'],
+['fig','tree'],
+['h','ตัวอย่างที่ง่ายที่สุด: ลากเส้นตรง'],
+['p','ถ้ามีจุดข้อมูลหลายจุดแล้วอยากลากเส้นตรงผ่าน เส้นจะผ่านไม่ครบทุกจุด ระยะห่างระหว่างจุดกับเส้นคือ error งานของคอมพิวเตอร์คือหาเส้นที่ทำให้ error รวมน้อยที่สุด เริ่มจากสมการเส้นตรง'],
+['f',['y = mx + c','x คือข้อมูลเข้า, y คือค่าที่ทาย, m คือความชัน (x เพิ่ม 1 แล้ว y เพิ่มเท่าไร), c คือจุดที่เส้นตัดแกน y','m = 2, c = 1, x = 3 ได้ y = 2 × 3 + 1 = 7']],
+['p','แล้ววัดว่าเส้นนั้นผิดรวมเท่าไรด้วยสูตรนี้'],
+['f',['E = ½ Σ (target − output)²','target คือคำตอบจริง, output คือค่าที่ทาย, Σ แปลว่าบวกทุกตัวอย่าง ต้องยกกำลังสองเพื่อให้ error เป็นบวกเสมอ (ไม่งั้น +1 กับ −1 หักล้างกันเหลือ 0) ส่วน ½ ใส่ไว้ให้คำนวณต่อง่าย','จริง 5 และ 3 ทายได้ 4 และ 5 → error คือ 1 และ −2 → E = ½ × (1 + 4) = 2.5']],
+['p','ลองปรับ m และ c ให้เส้นแดง (error) สั้นที่สุด แล้วกดให้คอมพิวเตอร์หาเส้นที่ดีที่สุดเทียบ'],
+['lab','fitline'],
+['steps',{t:'คอมพิวเตอร์หาเส้นที่ดีที่สุดอย่างไร',i:[['เลือกรูปสมการ','เลือก representation ของโมเดล เช่น เส้นตรง y = mx + c (ถ้าข้อมูลโค้งอาจเลือกพาราโบลา y = ax² + bx + c)'],['เริ่มจากค่าสุ่ม','ตั้ง m และ c เป็นค่าใดก็ได้ก่อน'],['คำนวณ E','ดูว่าเส้นตอนนี้ผิดรวมเท่าไร'],['ปรับ m และ c','ขยับค่าไปทางที่ทำให้ E ลดลง'],['ทำซ้ำ','วนขั้นที่ 3 และ 4 จน E ต่ำที่สุด'],['ระวัง overfitting','เส้นที่ fit ข้อมูลฝึกดีที่สุดอาจทายข้อมูลใหม่ได้ไม่ดี ต้องวัดผลกับ test set ด้วย']]}],
+['h','Sigmoid: แปลงเป็นความน่าจะเป็น'],
+['p','ถ้าอยากได้คำตอบเป็นความน่าจะเป็น (0 ถึง 1) ใช้ฟังก์ชันรูปตัว S ชื่อ sigmoid'],
+['f',['σ(z) = 1 / (1 + e⁻ᶻ)','บีบค่าใด ๆ ให้อยู่ระหว่าง 0 ถึง 1','z = 0 ได้ 0.5, z ใหญ่มากได้เกือบ 1, z ติดลบมากได้เกือบ 0']],
+['fig','activ']],
+tips:['จำแนกรูปภาพ ใช้ CNN','พยากรณ์ค่าตัวเลขในอนาคต (อากาศ, หุ้น) ใช้ Linear regression','ข้อดีของ Decision tree คือมนุษย์เข้าใจผลลัพธ์ได้ง่าย','Reinforcement learning ใช้กับงานควบคุม','Clustering เป็นงานแบบ unsupervised ไม่ใช่ supervised'],
+q:[['ข้อใดเป็นข้อดีของการใช้ต้นไม้ตัดสินใจ',['ทำงานกับข้อมูลตัวเลขได้ดี','มนุษย์เข้าใจผลลัพธ์ได้ง่ายกว่าแบบอื่น','ทนต่อสัญญาณรบกวน','จำลองเซลล์ประสาทของมนุษย์'],1,''],['ในการจำแนกรูปภาพ นิยมใช้การเรียนรู้แบบใด',['ทฤษฎีของเบย์','CNN','ต้นไม้ตัดสินใจ','Linear regression'],1,''],['อัลกอริทึมใดเหมาะกับการพยากรณ์แนวโน้มค่าในอนาคต เช่น ค่าคุณภาพอากาศ',['ต้นไม้ตัดสินใจ','ทฤษฎีของเบย์','Linear regression','CNN'],2,''],['Reinforcement learning เหมาะกับงานใด',['จัดกลุ่มลูกค้า','งานควบคุมที่รู้ผลตอนจบ','ทำนายราคาบ้าน','ลดมิติข้อมูล'],1,'']]},
+{t:'การนำ ML ไปใช้จริง และเครื่องมือ',goal:'รู้จัก LSTM เข้าใจว่า error แต่ละแบบมีต้นทุนต่างกัน รู้ 3 เหตุผลที่ AI บูม และรู้จัก transfer learning',b:[
+['h','LSTM: ทายข้อมูลตามเวลา'],
+['p','LSTM (Long Short-Term Memory) เป็น neural network สำหรับข้อมูลที่เรียงตามเวลา วิธีที่วิดีโอสอนคือใช้ข้อมูล 5 วันก่อนหน้าทายวันที่ 6 แล้วเลื่อนไปทีละวัน เรียกว่า sliding window ใช้ทายราคาหุ้นหรือจำนวนผู้ป่วย'],
+['fig','lstm'],
+['h','Error แต่ละแบบเสียหายไม่เท่ากัน'],
+['p','ความผิดพลาดของโมเดลมี 2 แบบ ยกตัวอย่างชุดตรวจ ATK'],
+['def',[['False Negative (FN)','โมเดลบอกว่า "ไม่ใช่" แต่ความจริง "ใช่"','ติดเชื้อแต่ ATK ขึ้นลบ'],['False Positive (FP)','โมเดลบอกว่า "ใช่" แต่ความจริง "ไม่ใช่"','ไม่ติดเชื้อแต่ ATK ขึ้นบวก']]],
+['p','ช่วงระบาดแรก FN ร้ายแรงกว่า เพราะคนติดเชื้อจะออกไปแพร่เชื้อ แต่พอเป็นโรคประจำถิ่น FP กลับเสียหายมากกว่า เพราะคนเสียโอกาสไปทำงาน ต้นทุนของ error จึงขึ้นกับสถานการณ์ กดเปลี่ยนสถานการณ์ดู'],
+['lab','cost'],
+['h','ทำไม AI บูม'],
+['p','วิดีโอบทที่ 10 ให้เหตุผล 3 ข้อ'],
+['lab','boom'],
+['def',[['GPU','การ์ดจอที่คำนวณพร้อมกันได้จำนวนมาก เดิมทำมาเพื่อเกม ใช้เทรน deep learning','']]],
+['h','Pre-trained model และ Transfer learning'],
+['p','Pre-trained model คือโมเดลที่บริษัทใหญ่เทรนด้วยข้อมูลมหาศาลแล้วแจกให้คนอื่นใช้ Transfer learning คือการเอาโมเดลนั้นมาเทรนต่ออีกนิดด้วยข้อมูลของเรา ประหยัดทั้งเวลาและเครื่อง'],
+['fig','transfer'],
+['h','เครื่องมือที่ควรรู้จัก'],
+['def',[['Python','ภาษาหลักที่ใช้ทำ AI และ ML',''],['Google Colab','เขียน Python บนเว็บ มี library ML ติดตั้งไว้แล้ว',''],['Hugging Face','คลังโมเดลสำเร็จรูป',''],['OpenCV','library ประมวลผลภาพ',''],['ChatGPT','ทำนายคำถัดไปจากข้อความ',''],['Low-code / No-code','เครื่องมือที่แทบไม่ต้องเขียนโค้ด','']]]],
+tips:['Transfer learning คือการนำ pre-trained model มาเทรนต่อด้วยข้อมูลของเรา','3 เหตุผลที่ AI บูมคือ Algorithm, Tools, Computing power ตัวหลอกที่ควรระวังคือ "จำนวนภาษาโปรแกรมลดลง"'],
+q:[['Transfer learning คืออะไร',['ย้ายโมเดลข้ามเครื่อง','นำ pre-trained model มาเทรนต่อด้วยข้อมูลของเรา','เทรนใหม่ตั้งแต่ศูนย์','แปลงภาษาโปรแกรม'],1,''],['ข้อใดไม่ใช่เหตุผลที่ AI/ML เติบโต',['Algorithm พัฒนาขึ้น','Tools ใช้ง่ายขึ้น','Computing power / GPU','จำนวนภาษาโปรแกรมลดลง'],3,'']]}],
+fc:[['Rich & Knight (1991)','ทำให้คอมพิวเตอร์ทำสิ่งที่ตอนนี้คนยังทำได้ดีกว่า'],['Strong AI','Think like human'],['Weak AI','Act like human'],['Turing test','แยกไม่ออกว่าคนหรือเครื่อง (การสื่อสาร)'],['Chinese room','ทำเหมือนเข้าใจ โดยไม่เข้าใจจริง'],['Fuzzy logic','ให้ค่าเป็นระดับ ไม่ตัดขาด'],['Heuristic','ประเมินว่า state ไหนน่าจะดี'],['BFS','กินหน่วยความจำ'],['DFS','กินเวลา'],['E','½ Σ(target − output)²'],['Sigmoid','บีบค่าให้อยู่ 0 ถึง 1'],['Transfer learning','pre-trained + ข้อมูลของเรา']]},
+{k:'sup',name:'Supervised',n:15,intro:'การเรียนแบบมีเฉลย หัวข้อนี้ออกสอบเยอะที่สุด ควรเรียนหัวข้อ AI และ ML ให้เข้าใจก่อน',mods:[
+{t:'Supervised learning และ Regression',goal:'แยก regression กับ classification ได้ รู้ว่า parameter กับ hyper-parameter ต่างกันอย่างไร และคำนวณตัววัดผลของ regression ได้',b:[
+['h','Supervised learning คืออะไร'],
+['p','Supervised learning คือการเรียนจากข้อมูลที่มีเฉลย ทุกแถวต้องมีทั้ง feature (ข้อมูลที่รู้) และ target (คำตอบ) ถ้าข้อมูลไม่มี target จะใช้วิธีนี้ไม่ได้'],
+['h','Regression กับ Classification'],
+['p','งาน supervised มี 2 ชนิด ดูจากว่า "คำตอบหน้าตาเป็นอย่างไร" ถ้าคำตอบเป็นตัวเลขต่อเนื่อง เช่น ราคา 3.25 ล้าน หรืออุณหภูมิ 31.4 องศา เรียกว่า Regression ถ้าคำตอบเป็นกลุ่ม เช่น สแปมหรือไม่สแปม เรียกว่า Classification (ส่วน clustering เป็นงาน unsupervised ไม่ใช่ supervised)'],
+['fig','regcls'],
+['h','Parameters กับ Hyper-parameters'],
+['p','ในโมเดลมีค่า 2 แบบที่ข้อสอบชอบถาม เปรียบกับนักเรียน: สิ่งที่นักเรียนจำได้จากการอ่าน คือ parameters ส่วนตารางอ่านหนังสือที่ครูกำหนดให้ คือ hyper-parameters'],
+['def',[['Model parameter','ค่าในสูตรที่คอมพิวเตอร์หาเองตอนเทรน','น้ำหนัก w ในสมการ'],['Hyper-parameter','ค่าที่คนตั้งเองก่อนเทรน เพื่อคุมวิธีเรียนของโมเดล แล้วลองหลายค่าเพื่อหาค่าที่ดีที่สุด','degree ของสมการ, λ, ความลึกของต้นไม้'],['Learning algorithm','วิธีที่คอมพิวเตอร์ใช้หาค่า parameters โดยทำให้ loss ต่ำที่สุด',''],['Loss function','สูตรวัดว่าทายผิดมากแค่ไหน ยิ่งต่ำยิ่งดี','MSE']]],
+['steps',{t:'การเทรนแบบ supervised ทีละขั้น',i:[['เตรียมข้อมูล','ทุกแถวต้องมี feature และ target'],['เลือกโมเดลและตั้ง hyper-parameter','เช่น เลือก linear regression แบบ degree 3'],['learning algorithm หา parameters','ปรับน้ำหนัก w ไปเรื่อย ๆ ให้ loss ต่ำที่สุด'],['วัดผลด้วย metric','ใช้ข้อมูลที่โมเดลไม่เคยเห็น เช่น วัด RMSE บน test set'],['ใช้ทาย','นำโมเดลไปทายข้อมูลใหม่ (inference)']]}],
+['h','Linear regression'],
+['p','Linear regression คือ regression แบบเส้นตรง แต่ละ feature มีน้ำหนักของตัวเอง บวกค่าคงที่อีก 1 ตัว'],
+['f',['ŷ = w₀ + w₁x₁ + w₂x₂ + … + wₙxₙ','ŷ คือค่าที่ทาย, x คือ feature แต่ละตัว, w คือน้ำหนัก, w₀ คือค่าคงที่ ดังนั้นจำนวน parameters = จำนวน feature + 1','4 features ได้ w₁ ถึง w₄ บวก w₀ รวม 5 parameters']],
+['h','วัดผล regression'],
+['p','ใช้ตัวเลขด้านล่าง ห้ามใช้ Accuracy เพราะ accuracy นับ "ถูกหรือผิด" ซึ่งใช้กับ classification ทุกสูตรใช้ตัวอย่างเดียวกัน คือ ค่าจริง 2, 4, 6 และทายได้ 3, 4, 5'],
+['f',['MSE = (1/N) Σ (y − ŷ)²','Mean Squared Error: เอา error แต่ละตัวยกกำลังสองแล้วหาค่าเฉลี่ย (N คือจำนวนตัวอย่าง) ยิ่งน้อยยิ่งดี','error คือ −1, 0, 1 → (1 + 0 + 1) / 3 ≈ 0.67']],
+['f',['RMSE = √MSE','ถอดรากของ MSE เพื่อให้หน่วยเดียวกับคำตอบ','√0.67 ≈ 0.82']],
+['f',['MAE = (1/N) Σ |y − ŷ|','ค่าเฉลี่ยของ error โดยไม่สนเครื่องหมาย','(1 + 0 + 1) / 3 ≈ 0.67']],
+['f',['R² = 1 − Σ(y − ŷ)² / Σ(y − ȳ)²','บอกว่าโมเดลอธิบายข้อมูลได้ดีแค่ไหน (ȳ คือค่าเฉลี่ยของคำตอบจริง) ช่วงที่สอนคือ 0 ถึง 1 ยิ่งใกล้ 1 ยิ่งดี','ȳ = 4 → Σ(y − ȳ)² = 4 + 0 + 4 = 8 → R² = 1 − 2/8 = 0.75']],
+['f',['NRMSE = RMSE / (y_max − y_min)','RMSE ที่หารด้วยช่วงของข้อมูล เพื่อเทียบข้ามชุดข้อมูลได้ มีค่าตั้งแต่ 0 ขึ้นไปไม่จำกัด','']],
+['h','Cross-validation'],
+['p','Cross-validation (CV) คือการแบ่งข้อมูลฝึกเป็นหลายส่วนแล้วสลับกันเป็นตัวตรวจ ใช้เลือก hyper-parameter โดยไม่ต้องแตะ test set'],
+['fig','kfold']],
+tips:['Accuracy ใช้วัด regression ไม่ได้','"Hyper-parameter เป็นค่าที่ learning algorithm เปลี่ยนแปลง" เป็นข้อความที่ผิด','Linear regression ทาย target ที่เป็นตัวเลขต่อเนื่อง ไม่ใช่ค่าไม่ต่อเนื่อง','ช่วงของ R² คือ [0, 1] และช่วงของ NRMSE คือ [0, ∞)'],
+q:[['ข้อใดไม่สามารถใช้เป็น Evaluation metric สำหรับปัญหา Regression',['RMSE','MAE','Accuracy','R-squared'],2,''],['Linear regression ที่มี 4 features มี model parameters กี่ตัว',['4','5','8','16'],1,'4 น้ำหนัก + 1 ค่าคงที่'],['ข้อใดกล่าวผิดเกี่ยวกับ Hyper-parameters',['เป็นค่าที่กำหนดก่อนเทรน','หาค่าที่เหมาะสมได้จาก cross-validation','เป็นค่าที่ learning algorithm เปลี่ยนแปลง','ควบคุมการหาค่า model parameters'],2,'']]},
+{t:'Overfitting, Underfitting และ Regularization',goal:'บอกได้ว่าโมเดล underfit หรือ overfit จาก error เข้าใจ bias กับ variance และรู้ว่า Ridge กับ Lasso ทำอะไร',b:[
+['h','ความซับซ้อนของโมเดล'],
+['p','ความซับซ้อน (model complexity) คือความยืดหยุ่นของเส้นที่โมเดลวาดได้ เส้นตรงซับซ้อนน้อย เส้นโค้งหลายหยักซับซ้อนมาก ในสมการ polynomial ยิ่ง degree (กำลังสูงสุดของ x) มาก ยิ่งซับซ้อน'],
+['h','Underfitting และ Overfitting'],
+['def',[['Underfitting','โมเดลง่ายเกิน จับรูปแบบไม่ได้ ผิดเยอะทั้ง train และ test (เหมือนนักเรียนที่อ่านแค่หัวข้อ)',''],['Overfitting','โมเดลซับซ้อนเกิน จำแม้แต่ noise ทำ train ได้เกือบเต็ม แต่ผิดเยอะกับ test (เหมือนนักเรียนท่องเฉลย)','']]],
+['p','ลองเลื่อน degree: 1–2 คือ underfit, 3–5 พอดี, 6–9 overfit แล้วดูกราฟล่างว่า train error ลดลงเสมอ แต่ test error ลดก่อนแล้วพุ่งขึ้น นี่คือนิยาม overfitting ในข้อสอบ'],
+['lab','overfit'],
+['h','Bias กับ Variance'],
+['p','Bias คือความผิดจากโมเดลที่ง่ายเกิน (เหมือนเล็งเบี้ยว) Variance คือความไม่นิ่ง เปลี่ยนข้อมูลนิดเดียวผลเปลี่ยนเยอะ (เหมือนปากระจาย) โมเดลที่ดีต้องมีทั้ง bias ต่ำและ variance ต่ำ'],
+['fig','dart'],
+['f',['Total error = Bias² + Variance + Irreducible error','Irreducible error คือความผิดที่เกิดจาก noise ในข้อมูลเอง ไม่ว่าจะเลือกโมเดลไหนก็ลดไม่ได้','']],
+['h','ตรวจและแก้ overfitting'],
+['steps',{t:'ตรวจว่าโมเดลเป็นแบบไหน',i:[['ดู train error','ถ้าสูง แปลว่าโมเดลยังเรียนไม่ได้'],['ดู test error','วัดบนข้อมูลที่โมเดลไม่เคยเห็น'],['เทียบสองค่า','train สูงและ test สูง คือ underfitting / train ต่ำแต่ test สูงมาก คือ overfitting / ต่ำทั้งคู่ คือพอดี'],['แก้ไข','underfit: เพิ่มความซับซ้อน / overfit: เพิ่มข้อมูล, ลดความซับซ้อน หรือใส่ regularization']]}],
+['p','การแบ่ง train/test หรือทำ cross-validation ใช้ "ตรวจ" overfitting, ปรับ hyper-parameter และเลือกโมเดล แต่ไม่ได้ "ป้องกัน" overfitting และข้อมูล test ต้องไม่ถูกใช้ในขั้นไหนเลยจนกว่าจะวัดผลครั้งสุดท้าย'],
+['h','Regularization'],
+['p','Regularization คือการเพิ่ม "ค่าปรับ" ใน loss เมื่อน้ำหนัก w ใหญ่เกินไป ทำให้โมเดลไม่กล้าโค้งมาก ความแรงของค่าปรับคือ λ (แลมบ์ดา) ถ้า λ ใหญ่เกินไปจะกลายเป็น underfitting (ลองเลือก λ ในแล็บ overfitting ด้านบน)'],
+['f',['Ridge (L2) = MSE + λ Σ w²','ค่าปรับคือผลรวมน้ำหนักยกกำลังสอง ทำให้น้ำหนักหดเข้าใกล้ 0 (เรียกอีกชื่อว่า weight decay)','']],
+['f',['Lasso (L1) = MSE + λ Σ |w|','ค่าปรับคือผลรวมค่าสัมบูรณ์ของน้ำหนัก ทำให้บางน้ำหนักกลายเป็น 0 พอดี เท่ากับตัด feature นั้นทิ้งอัตโนมัติ','']],
+['f',['Elastic Net = MSE + λ₁ Σ|w| + λ₂ Σ w²','ใช้ทั้ง L1 และ L2 พร้อมกัน','']],
+['p','ดูความต่างของ Ridge กับ Lasso: เลื่อน λ แล้วสังเกตว่าแท่งไหนหายไปเป็น 0'],
+['fig','reg']],
+tips:['โมเดลที่ดีควรมี low bias และ low variance','Error ที่ไม่ขึ้นกับโมเดลคือ Irreducible error','Ridge ใช้ L2 ไม่ใช่ L1','การทำ train-test split ไม่ได้ "ป้องกัน" overfitting','แก้ overfitting: เพิ่มข้อมูล, ใส่ regularization, ลด degree (ตอบ "ถูกทุกข้อ")'],
+q:[['ข้อใดคือคำจำกัดความของ Overfitting',['Training error สูง','เพิ่ม complexity แล้ว training error ลดลง แต่ test error เพิ่มขึ้น','Test error < Training error','Training error < Test error'],1,''],['ข้อใดไม่ใช่เหตุผลในการทำ train-test split หรือ cross-validation',['เพื่อป้องกัน Overfitting','เพื่อตรวจว่า Overfitting หรือไม่','เพื่อ Tune hyper-parameters','เพื่อ Model selection'],0,''],['Error ประเภทใดไม่ขึ้นอยู่กับโมเดลที่เลือกใช้',['Bias','Variance','Irreducible error','ถูกทุกข้อ'],2,''],['ข้อใดกล่าวผิดเกี่ยวกับ Ridge regression',['มี regularization term','ใช้ L2-norm','ใช้ L1-norm','มีชื่อเรียกว่า weight decay'],2,'']]},
+{t:'Classification และการวัดผล',goal:'แยก classification 3 แบบได้ คำนวณ accuracy, precision, recall, F1 จาก confusion matrix ได้ และอ่าน ROC เป็น',b:[
+['h','Classification มี 3 แบบ'],
+['def',[['Binary','มีคำตอบแค่ 2 แบบ','สแปมหรือไม่สแปม, รีวิวบวกหรือลบ'],['Multi-class','มีหลายคลาส แต่ตอบได้คลาสเดียว','รู้จำเสียงพูดว่าเป็นคำไหน'],['Multi-label','หนึ่งตัวอย่างมีได้หลายคำตอบพร้อมกัน','เพลงเป็นทั้ง Pop และ Jazz']]],
+['h','Logistic regression'],
+['p','ชื่อมีคำว่า regression แต่ใช้ทำ binary classification โดยคำนวณคะแนนแล้วส่งผ่าน sigmoid ให้ได้ความน่าจะเป็น 0 ถึง 1 ถ้าได้ตั้งแต่ 0.5 ขึ้นไปทายว่าเป็นคลาสบวก loss ที่ใช้เรียกว่า cross-entropy'],
+['f',['p = σ(wᵀx) = 1 / (1 + e^(−wᵀx))','wᵀx คือผลรวมของ น้ำหนัก × feature ทุกตัว','p = 0.73 จึงทายว่าเป็นคลาสบวก']],
+['h','หลายคลาส แต่มีแค่ binary classifier'],
+['p','ใช้วิธี One-vs-rest: สร้าง classifier คลาสละ 1 ตัว แต่ละตัวถามแค่ว่า "ใช่คลาสนี้ไหม"'],
+['fig','ovr'],
+['f',['One-vs-rest ใช้ K ตัว, One-vs-one ใช้ K(K − 1) / 2 ตัว','K คือจำนวนคลาส','4 คลาส: One-vs-rest ใช้ 4 ตัว (คำตอบในควิซ) ส่วน 6 ตัวคือตัวหลอก']],
+['h','Confusion matrix'],
+['p','ตาราง 2×2 ที่นับว่าโมเดลทายถูกผิดแบบไหนกี่ครั้ง ทุก metric ของ classification คำนวณจากตารางนี้ (ห้ามใช้ MSE) เริ่มจากรู้จัก 4 ช่องก่อน'],
+['def',[['TP (True Positive)','ของจริงเป็นบวก และโมเดลทายว่าบวก (ถูก)','คนป่วย ทายว่าป่วย'],['TN (True Negative)','ของจริงเป็นลบ และโมเดลทายว่าลบ (ถูก)','คนปกติ ทายว่าปกติ'],['FP (False Positive)','ของจริงเป็นลบ แต่โมเดลทายว่าบวก (ผิด)','คนปกติ ทายว่าป่วย'],['FN (False Negative)','ของจริงเป็นบวก แต่โมเดลทายว่าลบ (ผิด)','คนป่วย ทายว่าปกติ']]],
+['steps',{t:'คำนวณ metric ทีละขั้น (ตัวอย่าง TP 40, FP 10, FN 20, TN 30)',i:[['นับ 4 ช่อง','ทายถูก: TP = 40, TN = 30 / ทายผิด: FP = 10, FN = 20 / รวม 100'],['Accuracy','ทายถูกทั้งหมด ÷ ทั้งหมด = (40 + 30) / 100 = 0.70'],['Precision','ดูเฉพาะที่โมเดลบอกว่าบวก (TP + FP = 50) ถูกจริง 40 → 40 / 50 = 0.80'],['Recall','ดูเฉพาะที่เป็นบวกจริง (TP + FN = 60) จับได้ 40 → 40 / 60 ≈ 0.67'],['F1','ค่ากลางของ precision กับ recall = 2 × 0.8 × 0.67 / (0.8 + 0.67) ≈ 0.73']]}],
+['p','ลองปรับตัวเลขเองในแล็บ แล้วดูทุก metric เปลี่ยนตาม'],
+['lab','confusion'],
+['f',['Specificity = TN / (TN + FP) และ FPR = 1 − Specificity','Specificity คือของลบจริงทายถูกกี่ %, FPR คือของลบจริงที่ถูกทายผิดเป็นบวกกี่ %','30 / 40 = 0.75 ดังนั้น FPR = 0.25']],
+['h','ข้อมูลไม่สมดุล (imbalanced)'],
+['p','ถ้าป่วย 5 คนจาก 100 คน โมเดลที่ทายว่า "ไม่ป่วย" ทุกคนได้ accuracy 95% แต่จับคนป่วยไม่ได้เลย (recall = 0) ลองกดปุ่ม Imbalanced ในแล็บด้านบน'],
+['p','วิธีแก้: Oversampling (เพิ่มตัวอย่างของคลาสที่น้อย), Undersampling (ลดตัวอย่างของคลาสที่เยอะ) หรือเพิ่มน้ำหนักให้คลาสที่น้อยใน loss สิ่งสำคัญคือต้องแบ่ง train/test ก่อน แล้วค่อย oversample เฉพาะ train ไม่งั้นข้อมูลที่ถูกสร้างซ้ำจะไปโผล่ใน test'],
+['h','ROC curve และ AUC'],
+['p','ROC คือกราฟที่แกนตั้งเป็น TPR (recall) แกนนอนเป็น FPR เส้นทแยงมุมคือการทายมั่ว พื้นที่ใต้กราฟเรียกว่า AUC ยิ่งใกล้ 1 ยิ่งดี'],
+['fig','roc']],
+tips:['ห้ามใช้ MSE วัด classification','เส้นทแยงมุมใน ROC คือ random classifier','ห้าม oversample ก่อน train-test split','Output activation ของ binary classification คือ sigmoid','Genre เพลงคือ multi-label, สแปมคือ binary, รู้จำเสียงพูดคือ multi-class','Precision ไม่ควรใช้วัดผลโดยลำพัง ต้องดูคู่กับ recall'],
+q:[['เส้นทแยงมุมใน ROC curve ใกล้เคียงกับ classifier ประเภทใด',['Perfect classifier','Random classifier','Classifier ที่ overfit','Classifier ที่ underfit'],1,''],['ทำนาย genre ของเพลง (1 เพลงเป็นได้หลายแนว) เป็น classification ประเภทใด',['Binary','Multi-class','Multi-label'],2,''],['ควรทำ Oversampling ก่อน train-test split หรือไม่',['ควร','ไม่ควร'],1,''],['Multi-class 4 คลาส ที่รองรับ unknown class ต้องใช้ binary classifier อย่างน้อยกี่ตัว',['1','3','4','6'],2,''],['Output activation function สำหรับ binary classification คือ',['Tanh','ReLU','Sigmoid','ไม่ใช้'],2,'']]},
+{t:'โมเดลยอดนิยม: Linear, Neural network, SVM, Decision tree และ Ensemble',goal:'รู้ว่าแต่ละโมเดลทำงานอย่างไร และรู้วิธีลดความซับซ้อนของแต่ละโมเดล',b:[
+['h','Linear models'],
+['p','Linear regression ที่ใส่ regularization มีชื่อเฉพาะ: ใช้ L2 เรียก Ridge, ใช้ L1 เรียก Lasso, ใช้ทั้งคู่เรียก Elastic Net ถ้า feature อยู่ในสเกลเดียวกัน feature ที่สำคัญที่สุดคือตัวที่น้ำหนักห่างจาก 0 มากที่สุด โดยไม่สนเครื่องหมาย'],
+['f',['ŷ = σ(4.6x₁ − 5.2x₂ + 1.2x₃ + 0.004x₄)','โจทย์ในควิซ: feature สเกลเท่ากัน ตัวไหนสำคัญที่สุด','ดูน้ำหนักที่ห่างจาก 0 มากที่สุดคือ −5.2 จึงตอบ x₂']],
+['h','Neural network'],
+['p','Neural network ประกอบด้วยชั้นของโหนด ชั้นแรกคือ input layer (feature) ชั้นกลางคือ hidden layer ชั้นสุดท้ายคือ output layer (คำตอบ) แต่ละเส้นเชื่อมมีน้ำหนัก ลองเพิ่มโหนดหรือเพิ่มชั้น แล้วดูว่าจำนวนพารามิเตอร์เพิ่มขึ้น ซึ่งแปลว่าโมเดลซับซ้อนขึ้น'],
+['fig','nn'],
+['p','แต่ละโหนดใช้ activation function เพื่อให้โมเดลเรียนรูปแบบโค้งได้ hidden layer ใช้ได้ทั้ง ReLU, tanh, sigmoid ส่วน output ของ binary classification ใช้ sigmoid ลดความซับซ้อนได้ด้วยการลดจำนวนชั้นหรือจำนวนโหนด'],
+['fig','activ'],
+['h','SVM'],
+['p','SVM (Support Vector Machine) หาเส้นแบ่งสองคลาสที่เว้นระยะห่าง (margin) จากทั้งสองฝั่งให้กว้างที่สุด ทายด้วยเครื่องหมายของ wᵀx การทำ regularization ใน SVM คือการยอมให้บางจุดล้ำเข้ามาใน margin ได้ เรียกว่าเพิ่ม slack variable'],
+['fig','svm'],
+['f',['SVM: ทายว่าบวกเมื่อ wᵀx ≥ 0','ตอนเทรนหา w ที่ทำให้ ½‖w‖ ต่ำสุด โดยทุกจุดต้องได้ y × (wᵀx) ≥ 1 (y เป็น +1 หรือ −1)','']],
+['h','Decision tree'],
+['p','ต้นไม้ถามคำถามทีละข้อ แต่ละครั้งเลือกคำถามที่แบ่งข้อมูลให้ "บริสุทธิ์" ที่สุด (กลุ่มย่อยมีคลาสเดียวมากที่สุด) วัดด้วย Gini index'],
+['fig','tree'],
+['f',['Gini = 1 − Σ pₖ²','pₖ คือสัดส่วนของคลาส k ในกลุ่มนั้น ยิ่งต่ำยิ่งบริสุทธิ์','มีคลาสเดียว: 1 − 1² = 0 / ครึ่งต่อครึ่ง: 1 − 0.5² − 0.5² = 0.5 / 80 ต่อ 20: 1 − 0.64 − 0.04 = 0.32']],
+['lab','gini'],
+['steps',{t:'Decision tree ถูกสร้างอย่างไร',i:[['ลองทุกคำถาม','ลองแบ่งข้อมูลด้วยทุก feature และทุกค่า threshold เช่น รายได้ ≥ 20,000, ≥ 30,000, …'],['คำนวณ Gini','ดูว่าแต่ละการแบ่งทำให้กลุ่มย่อยบริสุทธิ์แค่ไหน'],['เลือกคำถามที่ดีที่สุด','เลือกการแบ่งที่ Gini ต่ำที่สุด ณ ขั้นนั้น การเลือกดีที่สุดเฉพาะหน้าแบบนี้เรียกว่า greedy algorithm'],['ทำซ้ำในแต่ละกิ่ง','ทำขั้นที่ 1 ถึง 3 กับกลุ่มย่อยแต่ละกลุ่ม'],['หยุด','เมื่อกลุ่มบริสุทธิ์แล้ว หรือถึงความลึกสูงสุด หรือจำนวนตัวอย่างน้อยกว่า min samples split']]}],
+['p','ต้นไม้ไม่ต้อง scale ข้อมูล ใช้ได้ทั้ง classification และ regression ลดความซับซ้อนได้ด้วยการจำกัดความลึก หรือเพิ่ม min samples split'],
+['h','Ensemble: รวมหลายโมเดล'],
+['p','Ensemble คือการรวมหลายโมเดลแล้วตัดสินร่วมกัน เหมือนถามความเห็นหลายคน ได้ผลดีเมื่อโมเดลแต่ละตัวหลากหลาย มี 3 แบบ คือ Bagging, Boosting และ Stacking (เทรนโมเดลอีกตัวมารวมคำตอบ) สลับดูสองแบบหลัก'],
+['lab','ensemble'],
+['steps',{t:'Boosting ทำงานอย่างไร',i:[['เทรนต้นที่ 1','ใช้ weak learner เช่น stump (ต้นไม้ลึก 1 ชั้น)'],['ดูจุดที่ผิด','หาว่าต้นแรกทายผิดตรงไหน'],['ให้ต้นถัดไปแก้','AdaBoost: เพิ่มน้ำหนักให้จุดที่ผิด / Gradient Boosting และ XGBoost: ให้ต้นใหม่เรียน residual (error ที่เหลือ)'],['ทำซ้ำ','สร้างต้นต่อไปทีละต้น (ทำพร้อมกันไม่ได้ เพราะต้องรอต้นก่อน)'],['รวมคำตอบ','รวมทุกต้นแบบถ่วงน้ำหนัก']]}]],
+tips:['AdaBoost คือเพิ่มน้ำหนักให้จุดที่ผิด (ไม่ได้ fit residual)','Tree-based models ไม่ต้องทำ feature scaling','Bagging สร้างโมเดลพร้อมกันได้ ส่วน Boosting ทำพร้อมกันไม่ได้','Gini index วัดความไม่บริสุทธิ์ (impurity)','การสร้าง decision tree เป็น greedy algorithm','Random Forest = Bagging ของต้นไม้ + สุ่ม feature รวมคำตอบด้วยค่าเฉลี่ยหรือโหวต'],
+q:[['โมเดลใดไม่ได้ fit error ของต้นก่อนหน้า แต่ให้น้ำหนักมากขึ้นกับ sample ที่ทายผิด',['AdaBoost','Gradient Boosting','XGBoost','ถูกทุกข้อ'],0,''],['โมเดลในตัวเลือกใดไม่จำเป็นต้องทำ Feature scaling',['Linear regression','Neural network','Tree-based models','Support vector machine'],2,''],['ตัวเลือกใดเป็นการลด model complexity ของ Decision tree',['เพิ่มความลึกของต้นไม้','เพิ่มจำนวน samples น้อยสุดที่จะเกิดการ split','ลดจำนวน samples น้อยสุดที่จะเกิดการ split'],1,''],['Node ที่มี sample คลาสเดียวทั้งหมด มีค่า Gini เท่าใด',['0','0.5','1','∞'],0,'']]},
+{t:'โปรเจกต์ ML ตั้งแต่ต้นจนจบ: เตรียมข้อมูล ลำดับขั้นตอน และการจูน',goal:'รู้ลำดับขั้นตอนทั้งหมดของโปรเจกต์ ML ว่าแต่ละขั้นทำอะไร และทำผิดลำดับแล้วจะเกิดอะไรขึ้น',b:[
+['p','บทนี้รวมทุกขั้นตั้งแต่ได้ข้อมูลมาจนได้โมเดลที่ใช้ได้ กดดูภาพรวมทีละขั้นก่อน จากนั้นด้านล่างจะอธิบายขั้นที่สำคัญทีละขั้นพร้อมภาพ'],
+['steps',{t:'ลำดับขั้นตอนของโปรเจกต์ ML (end-to-end)',i:[['สำรวจข้อมูล','ดูว่ามี feature อะไร target คืออะไร มีข้อมูลหายไหม และจำนวนแต่ละคลาสสมดุลไหม'],['แบ่ง train / test','แยก test set ออกไปก่อนทำอย่างอื่นทั้งหมด ทุกขั้นหลังจากนี้เรียนจาก train เท่านั้น ถ้าทำขั้นอื่นก่อน split จะเกิด data leakage (ข้อมูลรั่ว)'],['จัดการ missing values','ลบแถว, ลบคอลัมน์ (ถ้าหายเยอะ เช่น 95%) หรือเติมค่าด้วยค่าเฉลี่ยของ train'],['Feature engineering และ encoding','สร้าง feature ใหม่ที่ช่วยโมเดล และแปลงข้อมูลหมวดเป็นตัวเลข (ordinal หรือ one-hot)'],['Feature scaling','ปรับสเกล: ใช้ fit_transform กับ train แล้วใช้ transform กับ test ด้วยค่าเดิม (โมเดลแบบต้นไม้ข้ามขั้นนี้ได้)'],['แก้ข้อมูลไม่สมดุล (ถ้ามี)','oversample หรือ undersample เฉพาะ train'],['เลือกโมเดลและจูน hyper-parameter','ลองหลายโมเดลและหลายค่าด้วย cross-validation บน train (grid search หรือ randomized search)'],['เทรนโมเดลสุดท้าย','เทรนด้วยค่า hyper-parameter ที่ดีที่สุดบน train ทั้งหมด'],['ประเมินบน test','วัดผลครั้งเดียวตอนจบ ได้คะแนนที่บอกความสามารถกับข้อมูลใหม่จริง'],['วิเคราะห์โมเดล','ดูว่าโมเดลผิดตรงไหน (confusion matrix, กราฟค่าจริงเทียบค่าทาย) และ feature ไหนสำคัญ (SHAP)']]}],
+['note','กฎที่ต้องจำ: อะไรก็ตามที่ "เรียนรู้จากข้อมูล" เช่น ค่าเฉลี่ยที่ใช้เติม, สเกล, การ oversample, การเลือกโมเดล ต้องทำหลัง split และใช้แค่ข้อมูล train เสมอ'],
+['p','ทดสอบความเข้าใจ: เรียงขั้นตอนหลักให้ถูก'],
+['lab','pipeline'],
+['def',[['Data leakage','ข้อมูลจาก test แอบเข้าไปมีผลตอนเทรน ทำให้คะแนนดีเกินจริง',''],['fit_transform','เรียนค่า (เช่น ค่าเฉลี่ย สเกล) จากข้อมูลแล้วแปลง ใช้กับ train',''],['transform','แปลงด้วยค่าที่เรียนไว้แล้ว ใช้กับ validation และ test','']]],
+['h','ขั้นที่ 3: จัดการข้อมูลที่หาย'],
+['p','ข้อมูลหาย (missing values) จัดการได้ 3 แบบ: ลบแถวที่หาย, ลบทั้งคอลัมน์ (ถ้าหายเยอะ เช่น 95%) หรือเติมค่าแทน (imputation) เช่น เติมด้วยค่าเฉลี่ย ค่าเฉลี่ยต้องคำนวณจาก train เท่านั้น แล้วใช้ค่าเดียวกันเติมใน test'],
+['f',['ค่าที่ใช้เติม = ค่าเฉลี่ยของ train','ใช้ค่านี้เติมทั้งใน train และ test','train = 10, 20, 10, 30, 20 → 90 / 5 = 18 (ห้ามรวมค่าใน test มาคิด)']],
+['h','ขั้นที่ 4: Feature engineering และ encoding'],
+['p','Feature engineering คือการสร้างหรือแปลง feature ให้โมเดลเรียนง่ายขึ้น เช่น สร้าง feature "อัตราการใช้บัตรเครดิตต่อวงเงิน" จุดประสงค์คือให้ข้อมูลเหมาะกับการเทรน แปลความหมายง่ายขึ้น และทำให้ความสัมพันธ์กับคำตอบซับซ้อนน้อยลง ข้อห้ามคือห้ามใช้ target มาสร้าง feature เพราะเท่ากับแอบดูเฉลย'],
+['f',['Mutual information มีค่าตั้งแต่ 0 ขึ้นไป','วัดความสัมพันธ์ระหว่างสองตัวแปร 0 แปลว่าไม่สัมพันธ์กัน ติดลบไม่ได้และไม่มีค่าสูงสุด','']],
+['p','คอมพิวเตอร์รับได้แต่ตัวเลข ข้อมูลที่เป็นหมวด (categorical) จึงต้องแปลงก่อน มี 2 วิธี ดูตาราง'],
+['fig','onehot'],
+['def',[['Ordinal encoding','ใช้กับหมวดที่มีลำดับ แทนด้วยเลข 0, 1, 2 ได้ 1 คอลัมน์','ประถม, มัธยม, มหาวิทยาลัย'],['One-hot encoding','ใช้กับหมวดที่ไม่มีลำดับ สร้างคอลัมน์ละหมวดแล้วใส่ 1 แค่ช่องเดียว K หมวดได้ K คอลัมน์ ระยะห่างระหว่างแต่ละคู่เท่ากันเสมอ','ประเภทห้อง Single, Deluxe, Grand']]],
+['h','ขั้นที่ 5: Feature scaling'],
+['p','บางโมเดล (linear, neural network, SVM) ไวต่อขนาดตัวเลข เช่น เงินเดือนหลักหมื่นจะกลบอายุหลักสิบ จึงต้องปรับให้อยู่สเกลใกล้กัน Min-max และ standardization ไม่เปลี่ยนรูปร่างการกระจายของข้อมูล ส่วน power transform เปลี่ยนรูปร่าง โมเดลแบบต้นไม้ไม่ต้อง scale'],
+['f',['Min-max: x′ = (x − min) / (max − min)','ย่อให้อยู่ช่วง 0 ถึง 1 (min และ max คำนวณจาก train)','x = 70, min = 50, max = 100 → 20 / 50 = 0.4']],
+['f',['Standardization: z = (x − μ) / σ','ทำให้ค่าเฉลี่ยเป็น 0 และส่วนเบี่ยงเบนเป็น 1 (μ คือค่าเฉลี่ย, σ คือส่วนเบี่ยงเบนมาตรฐาน จาก train)','x = 70, μ = 60, σ = 5 → (70 − 60) / 5 = 2']],
+['h','ขั้นที่ 7: จูน hyper-parameter'],
+['p','Grid search ลองทุกคู่ของค่าที่กำหนด Randomized search สุ่มค่าจากช่วงที่กำหนดและกำหนดจำนวนรอบเองได้ ถ้าค่าที่ดีที่สุดอยู่ที่ขอบของช่วงที่ลอง ให้ขยายช่วงแล้วลองต่อ ลองปรับจำนวนค่าแล้วดูว่าต้องเทรนกี่รอบ'],
+['fig','grid'],
+['f',['จำนวนรอบเทรน = (จำนวนค่าของ HP ตัวที่ 1) × (จำนวนค่าของ HP ตัวที่ 2) × … × จำนวน fold','ทุกชุดค่าต้องเทรนครบทุก fold','ต้นไม้ 10, 50, 100 ต้น (3 ค่า) × ความลึก 5, 10, 15 (3 ค่า) × 10-fold = 90 รอบ']],
+['h','ขั้นที่ 10: วิเคราะห์โมเดล'],
+['p','ดูว่าโมเดลผิดตรงไหน (confusion matrix สำหรับ classification, กราฟค่าจริงเทียบค่าทายสำหรับ regression) และใช้ SHAP ดูว่าแต่ละ feature ดันผลการทายขึ้นหรือลงเท่าไร SHAP ใช้ได้กับทุกโมเดล ทั้ง regression และ classification']],
+tips:['ลำดับที่ไม่เหมาะสม: ทำ fit_transform หรือ oversample ก่อน split','Impute test ด้วยค่าเฉลี่ยจาก train (ควิซตอบ 18)','"นำ feature และ target ไปทำ clustering แล้วใช้ cluster เป็น feature ใหม่" ไม่ใช่ feature engineering ที่ถูกต้อง','Randomized search ไม่ได้ใช้ตอนรู้ค่าที่แน่นอนแล้ว (นั่นคือ grid search)','feature ที่หายไป 95% ให้ลบ feature นั้นทิ้ง'],
+q:[['Grid search: ต้นไม้ 3 ค่า × ความลึก 3 ค่า และ 10-fold CV ต้องเทรนทั้งหมดกี่รอบ',['1','10','60','90'],3,''],['Training set มีค่า 10, 20, 10, 30, 20 ถ้าใช้ค่าเฉลี่ย impute missing values ใน test set ควรใช้ค่าใด',['18','20','18.75','0'],0,''],['แปลงประเภทห้อง 3 แบบด้วย One-hot encoding ได้ feature vector กี่มิติ',['1','3','5','7'],1,''],['ฟังก์ชัน fit_transform ใน sklearn ควรใช้กับข้อมูลใด',['Training set','Test set','Validation set','ทุกชุด'],0,'']]}],
+fc:[['Regression','ทายตัวเลขต่อเนื่อง'],['Classification','ทายกลุ่ม'],['Hyper-parameter','ค่าที่คนตั้งก่อนเทรน'],['Overfitting','train ดี test แย่'],['Ridge / Lasso','L2 / L1'],['Precision','TP / (TP + FP)'],['Recall','TP / (TP + FN)'],['F1','2PR / (P + R)'],['Gini','1 − Σp² (บริสุทธิ์ = 0)'],['Bagging','สร้างพร้อมกันแล้วโหวต'],['Boosting','สร้างทีละตัว แก้ตัวก่อน'],['ขั้นแรกของโปรเจกต์','แบ่ง train / test ก่อนทุกอย่าง']]},
+{k:'un',name:'Unsupervised',n:7,intro:'การเรียนแบบไม่มีเฉลย ควรเรียนหัวข้อ AI และ ML ก่อน',mods:[
+{t:'Unsupervised learning และการวัดความคล้าย',goal:'รู้ว่า unsupervised ต่างจาก supervised อย่างไร รู้ขั้นตอนการทำ clustering และเลือกวิธีวัดระยะให้เหมาะกับข้อมูลได้',b:[
+['h','Unsupervised learning คืออะไร'],
+['p','Unsupervised learning คือการเรียนจากข้อมูลที่ไม่มีคำตอบ ส่วนใหญ่ใช้จับกลุ่มของที่คล้ายกันเข้าด้วยกัน เรียกว่า clustering เช่น แบ่งลูกค้าเป็นกลุ่มตามพฤติกรรมการซื้อ ความต่างจาก supervised คือ supervised มีตัวอย่างคำตอบ (target) แต่ unsupervised ไม่มี'],
+['p','กลุ่ม (cluster) ที่ดี: สมาชิกในกลุ่มเดียวกันคล้ายกันมาก สมาชิกต่างกลุ่มต่างกันมาก และไม่มีกลุ่มที่เล็กจนไม่มีประโยชน์'],
+['steps',{t:'ขั้นตอนการทำ clustering',i:[['เลือกวิธีวัดความใกล้','ข้อมูลตัวเลขใช้ Euclidean หรือ Manhattan ข้อมูลหมวดใช้ Hamming ข้อความใช้ cosine (อธิบายต่อด้านล่าง)'],['ลดมิติ (ถ้ามี feature เยอะ)','ใช้ PCA หรือ t-SNE (บทถัดไป)'],['เลือกอัลกอริทึม','k-means, hierarchical หรือ DBSCAN (บทถัดไป)'],['จับกลุ่ม','รันอัลกอริทึม'],['ประเมินผล','เทียบกับข้อมูลที่มีเฉลย หรือดูความคล้ายในกลุ่มกับความต่างระหว่างกลุ่ม']]}],
+['h','Distance และ Similarity'],
+['def',[['Distance (ระยะห่าง)','ยิ่งน้อยยิ่งใกล้ ยาวได้ไม่จำกัด',''],['Similarity (ความคล้าย)','ยิ่งมากยิ่งคล้าย มีค่าสูงสุดจำกัด','สูงสุดได้ 1'],['Vector (เวกเตอร์)','ชุดตัวเลขที่ใช้แทนตัวอย่าง 1 ตัว','(1, 2) คือจุดที่ x = 1, y = 2']]],
+['p','มี 4 วิธีที่ต้องรู้ ลองขยับจุด A และ B แล้วดูค่าทั้งสามเปลี่ยน เส้นม่วงคือ Euclidean เส้นส้มประคือ Manhattan'],
+['lab','dist'],
+['f',['Euclidean = √[(a₁ − b₁)² + (a₂ − b₂)² + …]','ระยะเส้นตรงแบบไม้บรรทัด เหมาะกับตัวเลขต่อเนื่อง','A(1, 2) และ B(4, 6) → √(3² + 4²) = √25 = 5']],
+['f',['Manhattan = |a₁ − b₁| + |a₂ − b₂| + …','ระยะแบบเดินตามถนนที่เป็นตาราง เหมาะกับตัวเลข','A(1, 2) และ B(4, 6) → 3 + 4 = 7']],
+['f',['Hamming = จำนวนตำแหน่งที่ไม่เหมือนกัน','เทียบทีละช่อง เหมาะกับข้อมูลหมวด','แดง-S-ชาย กับ แดง-M-หญิง ต่างกัน 2 ช่อง จึงได้ 2']],
+['f',['Cosine = (A·B) / (‖A‖ × ‖B‖)','ดูว่าลูกศรสองอันชี้ไปทางเดียวกันไหม ไม่สนความยาว เหมาะกับข้อความ (A·B คือคูณช่องที่ตรงกันแล้วบวก, ‖A‖ คือความยาวเวกเตอร์) ได้ค่า −1 ถึง 1','(1, 0, 1) กับ (1, 1, 0): A·B = 1, ความยาว √2 ทั้งคู่ → 1 / 2 = 0.5']],
+['h','ประเมินผล clustering'],
+['p','ทำได้โดยใช้ข้อมูลที่มีเฉลยมาเทียบ, วัดความคล้ายในกลุ่มกับความต่างระหว่างกลุ่ม หรือดูความแปรปรวนในกลุ่ม แต่ถ้าแค่ได้ 4 กลุ่มที่ขนาดเท่ากัน ยังสรุปไม่ได้ว่าดี']],
+tips:['Hamming distance ใช้กับข้อมูลหมวด (categorical)','ข้อความที่ผิด: "Cosine similarity เหมาะกับข้อมูลที่แต่ละมิติกระจายไม่เท่ากัน"','Distance ยาวได้ไม่จำกัด แต่ similarity มีค่าสูงสุดจำกัด','ได้ 4 กลุ่มที่ขนาดเท่ากัน สรุปไม่ได้','ความต่างของ supervised และ unsupervised คือ supervised มีตัวอย่าง target แต่ unsupervised ไม่มี'],
+q:[['Hamming distance เหมาะกับข้อมูลแบบใด',['ตัวเลขต่อเนื่อง','ข้อมูลหมวด (categorical)','ข้อความยาว','รูปภาพ'],1,''],['ข้อใดไม่ถูกต้อง',['Euclidean เหมาะกับตัวเลขต่อเนื่อง','Hamming เหมาะกับข้อมูลชนิดกลุ่ม','Manhattan เหมาะกับตัวเลข','Cosine เหมาะกับข้อมูลที่แต่ละมิติกระจายไม่เท่ากัน'],3,''],['Clustering ได้ 4 กลุ่ม แต่ละกลุ่มมีสมาชิกพอ ๆ กัน ข้อใดถูก',['ขนาด cluster เหมาะสม','ข้อมูลกระจายตัวดี','จำนวน cluster เหมาะสม','ไม่สามารถสรุปได้'],3,''],['distance กับ similarity ต่างกันอย่างไร',['distance ยาวได้ไม่จำกัด แต่ similarity มีค่าสูงสุดจำกัด','distance มีค่าต่ำสุด แต่ similarity ไม่มี','distance ต่อเนื่อง similarity ไม่ต่อเนื่อง','distance ใช้กับตัวเลข similarity ใช้กับข้อมูลกลุ่ม'],0,'']]},
+{t:'ลดมิติข้อมูล และวิธีจับกลุ่ม',goal:'เข้าใจ PCA และ t-SNE และรู้ขั้นตอนของ k-means, DBSCAN และ hierarchical clustering',b:[
+['h','ลดมิติ: PCA และ t-SNE'],
+['p','Dimensionality reduction (การลดมิติ) คือการลดจำนวน feature โดยเก็บข้อมูลสำคัญไว้ ทำเพื่อให้พล็อตดูได้ ประหยัดพื้นที่ และเก็บเฉพาะส่วนที่มีประโยชน์'],
+['p','PCA หาทิศทางที่ข้อมูลกระจายมากที่สุดแล้วฉายข้อมูลลงไป เป็นวิธีเชิงเส้น ลองหมุนแกนแล้วดูว่ามุมไหนจุดส้มกระจายกว้างที่สุด'],
+['fig','pca'],
+['p','t-SNE เป็นวิธีไม่เชิงเส้น พยายามให้จุดที่อยู่ใกล้กันยังอยู่ใกล้กัน เหมาะกับข้อมูลที่เป็นรูปโค้ง'],
+['h','k-means'],
+['steps',{t:'k-means ทำงานอย่างไร',i:[['เลือก k','กำหนดว่าจะแบ่งกี่กลุ่ม'],['วาง centroid','วางจุดศูนย์กลาง (centroid) k จุดไว้ก่อน'],['จัดเข้ากลุ่ม','ให้ทุกจุดเข้ากลุ่มของ centroid ที่ใกล้ที่สุด'],['ย้าย centroid','ย้าย centroid ไปที่ค่าเฉลี่ยของสมาชิกในกลุ่ม (คอลัมน์ที่เป็นข้อมูลหมวดใช้ค่าที่พบบ่อยที่สุด หรือ mode)'],['ทำซ้ำ','วนขั้นที่ 3 และ 4 จน centroid ไม่ขยับ']]}],
+['p','ข้อจำกัดคือเส้นแบ่งกลุ่มของ k-means เป็นเส้นตรง จึงแยกข้อมูลรูปโค้งไม่ได้ กดปุ่ม k-means เพื่อดูทีละรอบ (ปุ่ม DBSCAN อธิบายในหัวข้อถัดไป)'],
+['lab','moons'],
+['p','เลือก k ได้ 3 แบบ: ลองหลายค่าจากน้อยไปมาก, ตั้งให้มากกว่าที่คาดไว้นิดหนึ่ง หรือใช้ elbow method ตามกราฟนี้'],
+['fig','elbow'],
+['h','DBSCAN'],
+['steps',{t:'DBSCAN ทำงานอย่างไร',i:[['ตั้งค่า','eps คือรัศมีที่นับว่าใกล้ และ min_samples คือต้องมีเพื่อนบ้านอย่างน้อยกี่จุด'],['หาจุดหลัก','จุดที่มีเพื่อนบ้านในรัศมี eps ครบ min_samples เรียกว่าจุดหลัก (core point)'],['รวมกลุ่ม','จุดหลักที่อยู่ใกล้กันต่อกันเป็นกลุ่มเดียว แล้วดึงจุดรอบ ๆ เข้ากลุ่มด้วย'],['ที่เหลือคือ noise','จุดที่ไม่อยู่กลุ่มไหนเลยถูกตีเป็น noise']]}],
+['p','ข้อดีของ DBSCAN: ไม่ต้องกำหนดจำนวนกลุ่มก่อน และรองรับกลุ่มรูปร่างอะไรก็ได้ กดปุ่ม DBSCAN ในแล็บด้านบนเพื่อเทียบกับ k-means'],
+['h','Hierarchical clustering'],
+['steps',{t:'แบบรวมขึ้น (agglomerative) ทำงานอย่างไร',i:[['เริ่ม','ทุกจุดเป็นกลุ่มของตัวเอง'],['รวมคู่ที่ใกล้ที่สุด','หาสองกลุ่มที่ใกล้กันที่สุดแล้วรวมกัน'],['ทำซ้ำ','รวมไปเรื่อย ๆ จนเหลือกลุ่มเดียว ได้แผนภาพต้นไม้ (dendrogram)'],['ตัด','ลากเส้นตัดที่ระดับที่ต้องการ ได้จำนวนกลุ่มตามจำนวนเส้นที่ตัดผ่าน']]}],
+['fig','dendro'],
+['p','อีกแบบคือแบบแบ่งลง (divisive) เริ่มจากกลุ่มใหญ่กลุ่มเดียวแล้วแบ่งย่อยลงมา และกำหนดเงื่อนไขเพื่อให้ได้กลุ่มที่มีประโยชน์ได้ เช่น จำนวนสมาชิกขั้นต่ำ ความแปรปรวนสูงสุด ความลึกสูงสุด']],
+tips:['k-means (k = 2) กับข้อมูลพระจันทร์เสี้ยว ได้เส้นตรงผ่าแต่ละวง (รูป C ในควิซ)','จุดเด่นของ density-based คือรองรับ cluster ได้หลายรูปทรง','ข้อมูลธุรกรรม: ยอดเงินและเวลาเป็นตัวเลข ใช้ mean ส่วนประเภทร้านและ timezone เป็นหมวด ใช้ mode','Hierarchical ทำได้ทั้งแบ่งลงและรวมขึ้น','ข้อมูลรูปโค้งที่ต้องลดเหลือ 1 มิติ ใช้ t-SNE'],
+q:[['k-means (k = 2) กับข้อมูลรูปพระจันทร์เสี้ยวสองวง น่าจะได้ผลแบบใด',['แยกสองวงได้สมบูรณ์','เส้นตรงแนวทแยงผ่าแต่ละวงเป็นสองท่อน','ทุกจุดเป็น noise','ได้ลำดับชั้น'],1,''],['จุดเด่นของ density-based clustering คืออะไร',['หาจุดกึ่งกลางได้ง่าย','รองรับรูปร่างของ cluster หลายแบบ','แบ่งเป็นลำดับชั้นได้สะดวก','กำหนดจำนวน cluster ได้'],1,''],['ข้อมูลมียอดเงิน, ช่วงเวลา (ตัวเลข) และประเภทร้าน, timezone (หมวด) ควรเลือกตัวแทน cluster อย่างไร',['Mean ทั้งหมด','Mode ทั้งหมด','Mean ของตัวเลข และ Mode ของหมวด','Mode ของตัวเลข และ Mean ของหมวด'],2,''],['ควรเลือกจำนวน cluster (k) อย่างไร',['ทดลองทีละค่าจากน้อยไปมาก','ตั้งให้มากกว่าที่คาดไว้ระดับหนึ่ง','ใช้ elbow method','ถูกทุกข้อ'],3,'']]},
+{t:'กฎความสัมพันธ์, Topic model และ Semi-supervised',goal:'คำนวณ support, confidence, lift ได้ และรู้จัก topic model กับ semi-supervised learning',b:[
+['h','Association rule'],
+['p','Association rule (กฎความสัมพันธ์) หาว่าสินค้าอะไรมักถูกซื้อด้วยกัน เขียนเป็น {ขนมปัง} → {นม} แปลว่า "คนที่ซื้อขนมปังมักซื้อนมด้วย" ใช้จัดชั้นวางหรือแนะนำสินค้า'],
+['steps',{t:'หากฎความสัมพันธ์ทีละขั้น',i:[['นับ support','นับว่าแต่ละชุดสินค้าปรากฏในกี่ตะกร้า'],['เก็บ frequent itemset','เก็บเฉพาะชุดที่ปรากฏบ่อยพอ (support ถึงเกณฑ์)'],['สร้างกฎ','จากชุดสินค้า สร้างกฎแบบ A → B'],['คำนวณ confidence และ lift','ดูว่ากฎแรงแค่ไหน และแรงกว่าความบังเอิญไหม'],['เลือกกฎ','เก็บกฎที่ confidence และ lift สูง']]}],
+['def',[['Itemset','ชุดของสินค้า','{ขนมปัง, นม}'],['Support','ความถี่ที่ชุดสินค้านั้นปรากฏ (ใช้กับ itemset ชุดเดียว)',''],['Confidence','ถ้ามี A แล้วมี B ด้วยกี่ % (บอกความสัมพันธ์ระหว่าง 2 ชุด)',''],['Lift','confidence เทียบกับโอกาสปกติที่จะมี B ถ้ามากกว่า 1 แปลว่าสัมพันธ์จริง','']]],
+['p','ลองปรับจำนวนตะกร้า แต่ละช่องคือ 1 ตะกร้า แล้วดูทั้ง 3 ค่า'],
+['lab','assoc'],
+['f',['Support(A → B) = จำนวนตะกร้าที่มีทั้ง A และ B / จำนวนตะกร้าทั้งหมด','','100 ตะกร้า มีทั้งขนมปังและนม 30 → 30 / 100 = 0.30']],
+['f',['Confidence(A → B) = จำนวนที่มีทั้ง A และ B / จำนวนที่มี A','','มีขนมปัง 40 ตะกร้า ในนั้นมีนมด้วย 30 → 30 / 40 = 0.75']],
+['f',['Lift = Confidence / (จำนวนที่มี B / ทั้งหมด)','มากกว่า 1 แปลว่าซื้อด้วยกันบ่อยกว่าบังเอิญ, เท่ากับ 1 แปลว่าไม่เกี่ยวกัน, น้อยกว่า 1 แปลว่าไม่ค่อยซื้อด้วยกัน','มีนม 50 จาก 100 → 0.75 / 0.5 = 1.5']],
+['h','Topic model'],
+['p','Topic model ใช้หาหัวข้อที่ซ่อนอยู่ในเอกสารจำนวนมาก วิธีหนึ่งคือ matrix factorization คือแยกตารางใหญ่ "เอกสาร × คำ" เป็นสองตารางเล็ก "เอกสาร × หัวข้อ" กับ "หัวข้อ × คำ" ใช้พื้นที่น้อยลงและบอกได้ว่าแต่ละหัวข้อมีคำอะไร'],
+['fig','mf'],
+['p','อีกวิธีคือ LDA เมื่อมีเอกสารใหม่ วิธี matrix factorization ให้นำเวกเตอร์มาคูณกัน ส่วน LDA ให้ fit เอกสารใหม่กับโมเดลเดิม'],
+['h','Semi-supervised learning'],
+['p','มีข้อมูลที่มีเฉลยแค่นิดเดียว แต่มีข้อมูลไม่มีเฉลยจำนวนมาก แล้วใช้ข้อมูลที่ไม่มีเฉลยช่วยให้โมเดลแม่นขึ้น หรือช่วยปรับโมเดลให้เข้ากับข้อมูลชุดใหม่']],
+tips:['Support ใช้กับ itemset ชุดเดียว ส่วน confidence บอกความสัมพันธ์ของ 2 ชุด','หา topic vector ของเอกสารใหม่: ตอบ "ถูกทั้งสองข้อ" (MF คูณเวกเตอร์ และ LDA fit กับโมเดลเดิม)','เกณฑ์ว่า frequent itemset น่าสนใจ คือจำนวนครั้งที่ปรากฏในข้อมูล'],
+q:[['support กับ confidence ต่างกันอย่างไร',['ไม่แตกต่างกัน','support ใช้กับ itemset ชุดเดียว ส่วน confidence บอกความสัมพันธ์ของ itemset 2 ชุด','support มีค่าติดลบได้','confidence ใช้เลือก itemset'],1,''],['100 ตะกร้า มีขนมปัง 40 ตะกร้า และมีทั้งขนมปังกับนม 30 ตะกร้า confidence ของ {ขนมปัง} → {นม} เท่ากับ',['0.30','0.40','0.75','1.33'],2,'30 / 40']]}],
+fc:[['Unsupervised','ไม่มีเฉลย หากลุ่มเอง'],['Distance vs Similarity','ไม่จำกัด / มีค่าสูงสุด'],['Euclidean','ระยะเส้นตรง'],['Manhattan','ระยะเดินตามตาราง'],['Hamming','ข้อมูลหมวด'],['Cosine','ทิศทาง (ข้อความ)'],['PCA / t-SNE','เชิงเส้น / ไม่เชิงเส้น'],['k-means','เส้นแบ่งตรง แยกรูปโค้งไม่ได้'],['DBSCAN','ตามความหนาแน่น มี noise'],['Elbow','เลือก k'],['Support','ทั้ง A และ B / ทั้งหมด'],['Confidence','ทั้ง A และ B / มี A']]},
+
+{k:'ts',name:'Time series',n:8,intro:'ข้อมูลที่เรียงตามเวลา ควรเรียนหัวข้อ AI และ ML กับ Supervised ก่อน',mods:[
+{t:'Time series, ส่วนประกอบ และ Stationary',goal:'รู้ว่าอะไรคือ time series แยกส่วนประกอบ 3 ส่วนได้ และรู้ขั้นตอนทำข้อมูลให้ stationary',b:[
+['h','Time series คืออะไร'],
+['p','Time series (อนุกรมเวลา) คือข้อมูลที่เก็บเรียงตามเวลา เช่น ปริมาณฝนรายวัน ราคาหุ้นรายวัน อุณหภูมิรายปี ส่วน "ค่าไฟของทุกห้องในคอนโดเดือนมกราคม" ไม่ใช่ time series เพราะเป็นข้อมูลหลายห้องในเวลาเดียว ไม่ได้ดูการเปลี่ยนแปลงตามเวลา'],
+['def',[['Univariate','ดูตัวแปรเดียวตามเวลา','ยอดขายรายวันของร้านเดียว'],['Multivariate','ดูหลายตัวแปรพร้อมกัน','ผู้ป่วย COVID รายวันของหลายประเทศในกราฟเดียว']]],
+['h','3 ส่วนประกอบ'],
+['p','Time series แยกได้เป็น 3 ส่วน (decomposition) ดูภาพว่าเมื่อบวกสามส่วนเข้าด้วยกันแล้วได้ข้อมูลจริง'],
+['fig','tsparts'],
+['def',[['Trend','แนวโน้มระยะยาว ขึ้นหรือลงเรื่อย ๆ',''],['Seasonal','รูปแบบที่ซ้ำเป็นรอบ (มีหลายรอบซ้อนกันได้ เช่น รายสัปดาห์และรายปี)','ยอดขายสูงทุกธันวาคม'],['Residual','ส่วนที่เหลือแบบสุ่ม','']]],
+['p','ฟังก์ชัน seasonal_decompose ใน library statsmodels แยกให้ได้ อ่านผลโดย: เส้นเรียบคือ trend เส้นที่แกว่งเป็นจังหวะคือ seasonal เส้นที่สั่นมั่วคือ residual'],
+['h','Additive กับ Multiplicative'],
+['p','การรวมสามส่วนมี 2 แบบ ดูจากว่าการแกว่งกว้างขึ้นไหม'],
+['fig','addmul'],
+['f',['Additive: Y = T + S + R','T คือ trend, S คือ seasonal, R คือ residual ใช้เมื่อแกว่งด้วยขนาดคงที่','']],
+['f',['Multiplicative: Y = T × S × R','ใช้เมื่อแกว่งกว้างขึ้นตามระดับข้อมูล ใส่ log แล้วจะกลายเป็น log(Y) = log(T) + log(S) + log(R) คือแบบ additive','']],
+['h','Stationary'],
+['p','Stationary คือ time series ที่ค่าเฉลี่ย ความแปรปรวน และความสัมพันธ์กับอดีต ไม่เปลี่ยนไปตามเวลา ถ้าตัดเป็นสองครึ่ง ทั้งสองครึ่งจะมีค่าเฉลี่ยและความแปรปรวนใกล้กัน ข้อมูลที่มี trend หรือ seasonal จึงไม่ stationary และโมเดล ARIMA ต้องการข้อมูลที่ stationary'],
+['def',[['Lag','ระยะย้อนหลัง','lag 1 คือก่อนหน้า 1 ช่วง, lag 12 คือ 12 ช่วงก่อน'],['Autocorrelation (ACF)','ความสัมพันธ์ระหว่างค่าตอนนี้กับค่าในอดีต',''],['ADF test','การทดสอบทางสถิติว่า stationary หรือไม่',''],['p-value','ตัวเลขทางสถิติ ถ้าน้อยกว่า 0.05 ถือว่าผลมีนัยสำคัญ','']]],
+['steps',{t:'ทำให้ข้อมูล stationary ทีละขั้น (ลองทำตามในแล็บด้านล่าง)',i:[['พล็อตดู','ดูว่ามี trend, seasonal หรือแกว่งกว้างขึ้นไหม'],['ถ้าแกว่งกว้างขึ้น ใส่ log','เปลี่ยน multiplicative ให้เป็น additive'],['ถ้ามี trend ทำ differencing','ลบค่าก่อนหน้า 1 ช่วง: yₜ − yₜ₋₁'],['ถ้ามี seasonal ทำ seasonal differencing','ลบค่าเมื่อ 1 รอบก่อน: yₜ − yₜ₋ₘ (รายเดือนใช้ m = 12)'],['ตรวจซ้ำ','เส้นค่าเฉลี่ยเคลื่อนที่ต้องนิ่ง และ ADF test ได้ p-value น้อยกว่า 0.05']]}],
+['lab','decomp'],
+['f',['Differencing: yₜ − yₜ₋₁','yₜ คือค่า ณ เวลา t, yₜ₋₁ คือค่าก่อนหน้า 1 ช่วง ใช้ตัด trend','ข้อมูล 10, 12, 15 → หลัง differencing ได้ 2, 3']],
+['f',['Seasonal differencing: yₜ − yₜ₋ₘ','m คือความยาวของรอบ ใช้ตัด seasonal (ในควิซใช้ m = 6)','']],
+['f',['ADF test: p-value &lt; 0.05 แปลว่า stationary','สมมติฐานตั้งต้นของ ADF คือ "ไม่ stationary" ถ้า p น้อยจึงปฏิเสธสมมติฐานนั้นได้','p = 0.005 หรือ 0.01 → stationary']],
+['p','หลักฐานที่บอกว่า stationary มี 4 อย่าง: ค่าเฉลี่ยเคลื่อนที่คงที่, ไม่มี seasonal, ADF test ได้ p-value น้อยกว่า 0.05 และ autocorrelation ตั้งแต่ lag 1 ขึ้นไปไม่มีนัยสำคัญ']],
+tips:['ค่าไฟทุกห้องในเดือนเดียว ไม่ใช่ time series','แกว่งกว้างขึ้นตามระดับข้อมูล คือ multiplicative','Stationary: แบ่งเป็นสองครึ่งแล้ว variance เท่ากัน','มี trend และ seasonal คาบ 6 (additive): ใช้ differencing และ seasonal differencing คาบ 6 ไม่ต้อง log','ข้อความที่ผิด: "Trend บอกความสัมพันธ์ระหว่างเวลาปัจจุบันกับเวลาก่อนหน้า" (นั่นคือ autocorrelation)'],
+q:[['ข้อใดไม่ใช่ time series',['ปริมาณน้ำฝนรายวันในปี 2020','ค่าไฟฟ้าของห้องทุกห้องในคอนโดเดือนมกราคม 2020','ราคาหุ้นรายวัน','อุณหภูมิเฉลี่ยรายปี 1950–2000'],1,''],['Time series ที่ seasonal แกว่งกว้างขึ้นตามระดับข้อมูล เป็นประเภทใด',['Additive','Multiplicative','Pseudo-additive'],1,''],['ข้อใดกล่าวถูกต้องที่สุดเกี่ยวกับ stationary',['ไม่มี seasonal แต่มี trend ได้','variance ต่ำกว่า non-stationary','แบ่งเป็นสองส่วนแล้ว variance ของสองครึ่งเท่ากัน','วิเคราะห์ยากกว่า non-stationary'],2,''],['ข้อมูลมี trend และ seasonal คาบ 6 ต้องทำอะไรให้เป็น stationary',['differencing อย่างเดียว','differencing และ seasonal differencing คาบ 6','ต้อง log ด้วยทุกครั้ง','ทำไม่ได้'],1,''],['ADF test ได้ p-value = 0.01 ควรสรุปว่า',['Stationary','Non-stationary','มี seasonal','ต้อง log'],0,'']]},
+{t:'Smoothing (ทำให้เส้นเรียบ)',goal:'รู้ว่า smoothing ใช้ทำอะไร คำนวณ MA และ EMA ได้ และรู้ว่าเมื่อไรใช้ Holt-Winters',b:[
+['h','Smoothing คืออะไร'],
+['p','ข้อมูลจริงมักมีสัญญาณรบกวน (noise) ทำให้มองแนวโน้มยาก Smoothing คือการทำให้เส้นเรียบขึ้น ใช้ลด noise ทำให้เห็นลักษณะสำคัญชัดขึ้น และใช้พยากรณ์ได้ แต่ smoothing ทำให้ข้อมูล stationary ไม่ได้ (ต้องใช้ differencing)'],
+['h','Moving average กับ Exponential smoothing'],
+['p','Moving average (MA) คือการเฉลี่ย w จุดล่าสุด ทุกจุดมีน้ำหนักเท่ากัน ส่วน exponential smoothing (EMA) ให้น้ำหนักจุดล่าสุดมากที่สุด ค่า α (อัลฟา) คุมว่าจะเชื่อค่าล่าสุดแค่ไหน α สูงแปลว่าตามข้อมูลใหม่ได้เร็ว ลองปรับทั้งสองค่า'],
+['lab','smooth'],
+['f',['MAₜ = (yₜ + yₜ₋₁ + … + yₜ₋w₊₁) / w','w คือจำนวนจุดที่นำมาเฉลี่ย (window)','ข้อมูล 4, 6, 8 กับ w = 3 → (4 + 6 + 8) / 3 = 6']],
+['f',['sₜ = α × yₜ + (1 − α) × sₜ₋₁','sₜ คือค่าที่ smooth แล้ว ณ เวลา t, yₜ คือค่าจริงล่าสุด, sₜ₋₁ คือค่าที่ smooth ครั้งก่อน','α = 0.3, ค่าเดิม = 10, ค่าใหม่ = 20 → 0.3 × 20 + 0.7 × 10 = 13']],
+['h','Exponential smoothing 3 ระดับ'],
+['def',[['Single','ดูแค่ระดับของข้อมูล',''],['Double (Holt)','เพิ่มการจับ trend',''],['Triple (Holt-Winters)','เพิ่มการจับ seasonal ข้อมูลที่มี seasonality จึงใช้แบบนี้','']]]],
+tips:['ข้อมูลมี seasonality ให้ใช้ Triple exponential (Holt-Winters)','ใช้ moving average แทน EMA เมื่อต้องการให้น้ำหนักทุกจุดเท่ากัน','สิ่งที่ไม่ใช่ประโยชน์ของ smoothing คือ เปลี่ยน non-stationary ให้เป็น stationary'],
+q:[['ถ้าต้องการ smoothing ข้อมูลที่มี seasonality แต่ไม่มี trend ควรใช้แบบใด',['Moving average','Single exponential','Double exponential','Triple exponential'],3,''],['ข้อใดไม่ใช่ประโยชน์ของการ smoothing',['นำมาทำนายอนาคตได้','ลด noise ในข้อมูล','ทำให้ลักษณะสำคัญเด่นชัดขึ้น','เปลี่ยนข้อมูล non-stationary ให้เป็น stationary'],3,'']]},
+{t:'การสร้างโมเดลพยากรณ์ (ARIMA) และเรื่องขั้นสูง',goal:'เข้าใจ AR, MA, ARIMA รู้ขั้นตอนพยากรณ์ที่ถูกต้อง และอ่าน confidence interval เป็น',b:[
+['h','AR และ MA'],
+['p','AR (Autoregressive) คือการทายค่าตอนนี้จากค่าในอดีตของตัวเอง เช่น ใช้ 2 ช่วงล่าสุด เรียกว่า AR(2) ส่วน MA model (คนละอย่างกับ moving average smoothing) คือการทายโดยใช้ "ความผิดพลาดของการทายครั้งก่อน ๆ" เป็นข้อมูลเข้า คล้าย linear regression ที่ feature คือ error เก่า'],
+['fig','arma'],
+['f',['AR(p): yₜ = c + φ₁yₜ₋₁ + … + φₚyₜ₋ₚ + εₜ','p คือจำนวนค่าในอดีตที่ใช้, φ คือน้ำหนัก, ε คือ error','']],
+['f',['MA(q): yₜ = μ + εₜ + θ₁εₜ₋₁ + … + θ_qεₜ₋q','q คือจำนวน error ในอดีตที่ใช้, μ คือค่าเฉลี่ย','']],
+['h','ARIMA และ SARIMA'],
+['p','ARMA คือ AR รวมกับ MA ส่วน ARIMA เพิ่มตัว I (Integrated) คือทำ differencing ให้ด้วย จึงรับมือข้อมูลที่มี trend ได้ และ SARIMA เพิ่มส่วน seasonal เข้าไปอีก ทั้งหมดทำงานดีกับข้อมูลที่ stationary และเมื่อพฤติกรรมในอดีตบอกอนาคตได้ ไม่มีโมเดลไหนดีที่สุดกับข้อมูลทุกแบบ'],
+['f',['ARIMA(p, d, q)','p คือส่วน AR, d คือจำนวนครั้งที่ทำ differencing, q คือส่วน MA','ARIMA(1, 1, 0) คือ AR 1 ตัว และ differencing 1 ครั้ง']],
+['steps',{t:'ขั้นตอนพยากรณ์ด้วย ARIMA',i:[['แบ่ง train / test ตามเวลา','ช่วงแรกฝึก ช่วงท้ายสุดทดสอบ ห้ามสุ่ม (ดูภาพด้านล่าง)'],['ทำให้ stationary','หาว่าต้องทำ differencing กี่ครั้ง จะได้ค่า d'],['เลือก p และ q','ดู autocorrelation และเทียบค่า AIC หรือผลบน validation (ห้ามเลือกจาก training error)'],['Fit โมเดล','เทรน ARIMA(p, d, q)'],['พยากรณ์พร้อม confidence interval','ได้ค่าทายและช่วงความเชื่อมั่น'],['วัดผลบน test','เทียบค่าที่ทายกับค่าจริงในช่วง test (ถ้ามีช่วงที่มีเหตุการณ์พิเศษต้องจัดการแยก)']]}],
+['fig','tsplit'],
+['h','Confidence interval'],
+['p','Confidence interval (ช่วงความเชื่อมั่น) คือช่วงที่ค่าจริงน่าจะอยู่ ยิ่งต้องการความมั่นใจสูง ช่วงยิ่งกว้าง และยิ่งพยากรณ์ไกล ช่วงยิ่งกว้าง ใช้ตรวจความผิดปกติ (anomaly) ได้ เช่น ค่าจริงหลุดช่วงไปมาก ลองปรับ %'],
+['fig','ci'],
+['f',['ช่วงความเชื่อมั่น = ค่าที่ทาย ± z × σ','z ของ 90% = 1.645, 95% = 1.96, 99% = 2.576 ดังนั้น % ยิ่งสูง ช่วงยิ่งกว้าง','']],
+['h','เครื่องมือและข้อควรระวัง'],
+['p','Facebook Prophet เป็นเครื่องมือพยากรณ์ที่รองรับ seasonal หลายระดับ วันหยุด และหา outlier ได้ แต่ถ้าข้อมูลจริงต่างจากข้อมูลที่ใช้สร้างโมเดลมาก ก็ทำงานได้ไม่ดีเหมือนโมเดลอื่น'],
+['p','ควรใช้ supervised ML แทน time series เมื่อมีข้อมูลน้อย เช่น มี seasonal แค่รอบเดียว และไม่ควรเลือกโมเดลที่ซับซ้อนที่สุดเสมอ']],
+tips:['ข้อความที่ผิด: "เลือกค่า p, q ที่ทำให้ error น้อยที่สุดใน training data"','ข้อความที่ผิด: "SARIMA ได้ผลดีที่สุดเพราะรับมือข้อมูลได้ทุกประเภท"','Confidence interval กว้างขึ้นตาม % ความเชื่อมั่น','ตัว I ใน ARIMA ทำให้รับมือข้อมูลที่มี trend ได้','ข้อความที่ผิด: "ควรใช้โมเดลที่ซับซ้อนที่สุดเพื่อรับมือข้อมูลทุกรูปแบบ"'],
+q:[['ข้อใดไม่ถูกต้องเกี่ยวกับโมเดล ARMA, ARIMA และ SARIMA',['AR ใช้ประโยชน์จาก autocorrelation','ส่วน I ใน ARIMA ทำให้รับมือข้อมูลที่มี trend ได้','ให้เลือกค่า p, q ที่ error น้อยที่สุดใน training data','MA ใช้ความผิดพลาดของการทายก่อนหน้าเป็น feature'],2,''],['ข้อใดถูกต้องที่สุดเกี่ยวกับ confidence interval',['% เท่ากันจะกว้างเท่ากันเสมอ','กว้างขึ้นตาม % ความเชื่อมั่น','90% CI คือ 9–11 แปลว่าค่าจริงอยู่ในช่วง 8–12','ใช้หา anomaly ไม่ได้'],1,''],['ค่า d ในโมเดล ARIMA(p, d, q) หมายถึงอะไร',['จำนวน lag ของส่วน AR','จำนวน lag ของ error ในส่วน MA','จำนวนครั้งที่ทำ differencing','ความยาวของรอบ seasonal'],2,'']]}],
+fc:[['Time series','ข้อมูลเรียงตามเวลา'],['Trend / Seasonal / Residual','แนวโน้ม / รอบซ้ำ / ส่วนที่เหลือ'],['Additive / Multiplicative','บวกกัน / คูณกัน'],['Stationary','ค่าเฉลี่ยและความแปรปรวนคงที่'],['ADF','p &lt; 0.05 แปลว่า stationary'],['Differencing','ค่าตอนนี้ − ค่าก่อนหน้า'],['MA (smoothing)','เฉลี่ยน้ำหนักเท่ากัน'],['EMA','αyₜ + (1 − α)sₜ₋₁'],['Holt-Winters','ระดับ + trend + seasonal'],['ARIMA(p, d, q)','AR, differencing, MA'],['เลือก p, q','validation หรือ AIC'],['Train/test','แบ่งตามเวลา ห้ามสุ่ม']]},
+{k:'py',name:'Python',n:5,intro:'ข้อสอบ Python ส่วนใหญ่คือการคิดผลลัพธ์ของโค้ด จึงต้องเข้าใจลำดับการคำนวณและวิธีตัดข้อความ',mods:[
+{t:'Python และ Jupyter เบื้องต้น + การคำนวณ',goal:'รู้ว่า Python รันโค้ดอย่างไร ใช้ Jupyter เป็น และคิดผลของนิพจน์ตามลำดับ precedence ได้',b:[
+['h','Python คืออะไร และรันโค้ดอย่างไร'],
+['p','Python เป็นภาษาโปรแกรมระดับสูง (high-level) คือเขียนใกล้ภาษาคน ไม่ใช่ภาษาเครื่อง ใช้ได้หลายงาน (general-purpose) และเขียนได้หลายสไตล์ (multi-paradigm)'],
+['steps',{t:'Python รันโค้ดอย่างไร',i:[['เขียนโค้ด','เขียนในไฟล์ .py หรือใน cell ของ Jupyter (.ipynb)'],['แปลงเป็น byte code','interpreter แปลงโค้ดเป็น byte code (ไฟล์ .pyc)'],['รันบน virtual machine','virtual machine ของ Python รันทีละคำสั่ง'],['เจอ error ก็หยุด','เช่น IndentationError (ย่อหน้าผิด) หรือ TypeError (ใช้ข้อมูลผิดชนิด) จะหยุดที่บรรทัดนั้น']]}],
+['def',[['Interpreter','แปลและรันทีละคำสั่ง (Python เป็นแบบนี้)',''],['Compiler','แปลทั้งโปรแกรมทีเดียวเป็นภาษาเครื่อง',''],['Dynamically typed','ไม่ต้องประกาศชนิดตัวแปร ระบบรู้เองตอนรัน','x = 5 แล้วเปลี่ยนเป็น x = "hi" ได้'],['int / float / str / bool','จำนวนเต็ม / ทศนิยม / ข้อความ / จริงหรือเท็จ','5 / 5.0 / "5" / True']]],
+['h','Jupyter notebook'],
+['p','Jupyter notebook คือโปรแกรมเขียนโค้ดผ่านเว็บเบราว์เซอร์ ไฟล์นามสกุล .ipynb แบ่งเป็นช่อง (cell) สองแบบ Code cell ใช้เขียนโปรแกรม Markdown cell ใช้เขียนคำอธิบาย (### คือหัวข้อ, เว้น 4 ช่องหน้าบรรทัดคือ code block) ตัวที่ทำให้ Jupyter รันได้หลายภาษาเรียกว่า Kernel'],
+['p','กด Shift+Enter เพื่อรัน cell แล้วไป cell ถัดไป ถ้าอยู่ cell สุดท้ายจะสร้าง cell ใหม่ให้ (3 cell กลายเป็น 4) แต่ถ้าไม่ได้อยู่ cell สุดท้ายจะแค่เลื่อนลง ในโหมดคำสั่งกด m เพื่อเปลี่ยนเป็น Markdown และ y เพื่อเปลี่ยนเป็น Code คำสั่ง pip install notebook ใช้ติดตั้ง ส่วนคำสั่งเปิดคือ jupyter notebook'],
+['h','การคำนวณและลำดับ precedence'],
+['p','Python ไม่ได้คำนวณจากซ้ายไปขวาเสมอ แต่ทำตามลำดับความสำคัญ (precedence) ของเครื่องหมาย เหมือนคณิตศาสตร์ที่คูณหารก่อนบวกลบ เครื่องหมายที่ต้องรู้: ** คือยกกำลัง, / คือหารได้ทศนิยมเสมอ, // คือหารแล้วปัดลง, % คือเศษจากการหาร'],
+['f',['** → -x → * / // % → + - → == &lt; &gt; → not → and → or','ลำดับจากทำก่อนไปทำทีหลัง (ซ้ายสุดทำก่อน)','']],
+['p','กดดูวิธีคิดทีละขั้นของโจทย์จากควิซ'],
+['fig','prec'],
+['f',['13 // 2 = 6 และ 13 % 2 = 1','// คือหารแล้วปัดลง, % คือเศษ','−7 // 2 = −4 เพราะปัดลงไปทางลบ']],
+['f',['2 ** 3 ** 2 = 512','** ทำจากขวาไปซ้าย: 3 ** 2 = 9 ก่อน แล้วจึง 2 ** 9','']],
+['f',['int + float ได้ float และ / ได้ float เสมอ','','3 + 4.0 = 7.0 และ 4 / 2 = 2.0']],
+['h','ข้อห้ามที่ทำให้ error'],
+['p','ชื่อตัวแปรห้ามขึ้นต้นด้วยตัวเลขและห้ามมีขีด (-) เช่น one_or_2 ใช้ได้ แต่ 1_or_2 และ one-or-two ใช้ไม่ได้ เอาข้อความบวกกับตัวเลขตรง ๆ ไม่ได้ เช่น "1" + 2 จะเกิด TypeError และ Python ตัวพิมพ์เล็กใหญ่ต่างกัน (case sensitive) Print ไม่ใช่ print']],
+tips:['ข้อความที่ผิด: "Python เป็น low-level language"','ข้อความที่ผิด: "Interpreter แปลทั้งโปรแกรมในทีเดียว"','pip install notebook คือคำสั่งติดตั้ง ไม่ใช่คำสั่งเปิด','Byte code ถูก execute บน virtual machine','ตัวที่ทำให้ Jupyter เข้าใจหลายภาษาคือ Kernel'],
+q:[['จงหาค่า 5 + 1 ** 2 / 2',['18.0','5.0','5.5','6.0'],2,''],['ข้อใดเป็นชื่อตัวแปรที่ใช้ได้',['1_or_2','one_or_2','one-or-two','Val-1-2'],1,''],['Notebook มี 3 cell อยู่ที่ cell สุดท้าย กด Shift+Enter แล้วจะมีกี่ cell',['2','3','4','5'],2,''],['Byte code ของ Python (.pyc) ถูก execute ที่ใด',['CPU','Virtual machine','ถูกทั้งสองข้อ','ผิดทั้งสองข้อ'],1,'']]},
+{t:'ข้อความ (String) และการวนซ้ำ',goal:'ตัดข้อความด้วย slicing ได้ เข้าใจ if/elif และนับจำนวนรอบของ loop ได้',b:[
+['h','String และ index'],
+['p','String คือข้อความ เขียนอยู่ในเครื่องหมายคำพูด แต่ละตัวอักษรมีเลขตำแหน่ง (index) เริ่มที่ 0 นับจากซ้าย หรือใช้เลขติดลบนับจากขวา (−1 คือตัวสุดท้าย) String แก้ไขทีละตัวไม่ได้ (immutable) เช่น S[0] = "R" จะเกิด error'],
+['h','Slicing'],
+['p','s[start:stop:step] หมายถึงเอาตั้งแต่ตำแหน่ง start ถึง stop − 1 (ไม่รวม stop) โดยกระโดดทีละ step ลองพิมพ์ค่าในแล็บแล้วดูช่องที่ถูกเลือก'],
+['f',['s[start:stop:step]','เอาตำแหน่ง start, start + step, start + 2step … ที่ยังน้อยกว่า stop','"Hello, it’s me"[1:-5:2] → ตำแหน่ง 1, 3, 5, 7 = "el,i"']],
+['lab','slice'],
+['p','คำสั่ง .find("x") บอกตำแหน่งที่เจอ ถ้าไม่เจอจะได้ −1 เช่น "Dog"[:1] คือ "D" แล้ว .find("g") ได้ −1 ส่วน len() นับจำนวนตัวอักษรรวมช่องว่าง เช่น len("Hello For!") = 10'],
+['h','if / elif / else'],
+['p','การเลือกทำตามเงื่อนไข Python จะทำเฉพาะเงื่อนไขแรกที่เป็นจริงเท่านั้น แล้วข้ามที่เหลือทั้งหมด เช่น a = 2 แล้ว if a >= 2: x = 1 elif a == 2: x = 3 จะได้ x = 1 เพราะเงื่อนไขแรกจริงแล้ว'],
+['h','Loop'],
+['p','while ทำซ้ำตราบใดที่เงื่อนไขยังจริง ไม่รู้ล่วงหน้าว่ากี่รอบ จึงเป็น indefinite loop ดูภาพการทำงาน'],
+['fig','loop'],
+['p','for วนตามจำนวนที่แน่นอน จึงเป็น definite loop มักใช้คู่กับ range ลองปรับ start, stop, step แล้วดูว่าได้กี่รอบ คำสั่ง break ออกจาก loop ทันที ส่วน continue ข้ามไปรอบถัดไป'],
+['fig','range'],
+['f',['จำนวนรอบของ range(a, b, s) = (b − a) / s แล้วปัดขึ้น','ไม่รวมค่า b','range(1, 15, 2) = 1, 3, …, 13 ได้ 7 รอบ / range(2, 20, 3) ได้ 6 รอบ']]],
+tips:['"Dog"[:1].find("g") ได้ −1','ข้อความที่ผิด: "while loop เป็น definite loop"','len("Hello For!") = 10','k = 0 แล้ว while k &lt; 20: k += 2 วน 10 รอบ'],
+q:[['กำหนด S = "Dog" ผลลัพธ์ของ S[:1].find("g") คือ',['0','-1','2','3'],1,''],['ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับ while loop',['ทำตามคำสั่งเมื่อเงื่อนไขเป็นจริง','while loop เป็น definite loop','ต้องมีตัวแปรที่ทำให้หลุดจาก loop ได้','ไม่มีข้อใดผิด'],1,'']]},
+{t:'Collections, Function, ไฟล์ และ Module',goal:'แยก list, tuple, dict, set ได้ เรียก function ให้ถูก เลือก mode เปิดไฟล์ได้ และรู้ว่า import หา module ที่ไหน',b:[
+['h','ที่เก็บข้อมูลหลายชิ้น (collections)'],
+['p','Python มี 4 แบบ ดูความต่างจากการ์ด'],
+['fig','colls'],
+['p','คำสั่งที่ออกสอบ: list.append(x) เพิ่ม 1 ตัวต่อท้าย ส่วน list.extend([...]) เพิ่มทุกตัวจากอีก list / dict เพิ่ม key ด้วย d["color"] = "silver" และลบด้วย del d["price"] หรือ d.pop("price") / set ใช้ | (รวม), &amp; (ส่วนที่ซ้ำกัน), ^ (ส่วนที่ไม่ซ้ำกัน) / tuple("1234") ได้สมาชิก 4 ตัวเป็น string'],
+['h','Function'],
+['p','Function คือชุดคำสั่งที่ตั้งชื่อไว้เรียกใช้ซ้ำ ข้อดีคือใช้ซ้ำได้ (reusability), แบ่งโปรแกรมเป็นส่วน (modularity) และดูแลง่าย (maintainability) ตอนเรียกใช้ต้องใส่ argument แบบระบุตำแหน่งก่อนแบบระบุชื่อเสมอ'],
+['def',[['Positional argument','ส่งค่าตามตำแหน่ง','f(1, 2)'],['Keyword argument','ส่งค่าโดยระบุชื่อ','f(a=1, b=2)'],['*args','รับกี่ค่าก็ได้ (รวมถึง 0 ค่า)','def f(*a)'],['**kwargs','รับ keyword อะไรก็ได้','def f(**k)'],['Lambda','ฟังก์ชันสั้นไม่มีชื่อ เหมาะกับใช้ครั้งเดียว ไม่ต้องเขียน return','lambda x: x * 2']]],
+['h','การเปิดไฟล์'],
+['def',[['"r"','อ่าน (ไฟล์ต้องมีอยู่แล้ว ไม่งั้น error)',''],['"w"','เขียนทับ (ถ้าไม่มีไฟล์จะสร้างให้)',''],['"a"','เขียนต่อท้าย',''],['+','เติมท้าย mode เพื่อให้ทั้งอ่านและเขียน','"w+", "r+"'],['with','เปิดแล้วปิดไฟล์ให้อัตโนมัติ','with open("a.txt") as f:']]],
+['h','Module และ import'],
+['p','Module คือไฟล์ Python ที่เก็บฟังก์ชันไว้ให้ import ไปใช้ ถ้า import math as m ต้องเรียกผ่าน m.sqrt() เท่านั้น ถ้ารันไฟล์นั้นโดยตรง ค่า __name__ จะเป็น "__main__" ลำดับขนาดจากใหญ่ไปเล็กคือ package, ไฟล์ Python, function เวลาสั่ง import Python หา module ตามลำดับนี้'],
+['fig','import'],
+['p','ฝึกทายผลโค้ดก่อนกดดูคำตอบ'],
+['lab','predict']],
+tips:['ลบ key ที่ถูกต้องคือ del d["price"] (ตัวเลือก .del(), = None, popitem("price") ผิดหมด)','func(*a, b=True) ส่ง argument กี่ค่าก็ได้','import หา module ที่ current directory ก่อน','สิ่งที่ไม่ใช่ประโยชน์ของ function คือ availability','tuple("1234") ได้สมาชิก 4 ตัวเป็น string "1", "2", "3", "4"'],
+q:[['func(*arg1, arg2=True) ต้องใส่ argument จำนวนกี่ค่า',['1 ค่า','2 ค่า','อย่างน้อย 1 ค่า','กี่ค่าก็ได้'],3,''],['ถ้าต้องการลบ key "price" ออกจาก dict ต้องเขียนอย่างไร',['product.del("price")','product["price"] = None','del product["price"]','product.popitem("price")'],2,''],['คำสั่ง import random จะหา module ที่ใดเป็นลำดับแรก',['site-package folder','current directory','PYTHONPATH','folder ที่ติดตั้ง python'],1,'']]}],
+fc:[['/ กับ //','ได้ float เสมอ / ปัดลง'],['%','เศษจากการหาร'],['**','ยกกำลัง ทำจากขวาไปซ้าย'],['String','immutable แก้ทีละตัวไม่ได้'],['.find() ไม่เจอ','−1'],['while / for','indefinite / definite'],['list / tuple','แก้ได้ / แก้ไม่ได้'],['dict','key ห้ามซ้ำ ลบด้วย del'],['set','ไม่มีลำดับ ไม่มีค่าซ้ำ'],['*args','รับกี่ค่าก็ได้'],['__name__','"__main__" เมื่อรันไฟล์ตรง'],['Kernel','ทำให้ Jupyter รันหลายภาษาได้']]},
+
+{k:'cp',name:'คอมพิวเตอร์',n:5,intro:'ข้อสอบส่วนนี้ส่วนใหญ่ตรงกับควิซในคอร์ส เน้นเลขฐานสอง เกตตรรกะ และหน้าที่ของฮาร์ดแวร์กับซอฟต์แวร์',mods:[
+{t:'คอมพิวเตอร์เก็บข้อมูลอย่างไร (เลขฐานสอง)',goal:'แปลงเลขฐานสองกับฐานสิบได้ และรู้ว่าข้อความกับภาพถูกเก็บอย่างไร',b:[
+['h','สวิตช์ 0 และ 1'],
+['p','คอมพิวเตอร์ทำงานด้วยไฟฟ้า ข้างในคือสวิตช์เล็ก ๆ จำนวนมากที่ปิดหรือเปิด แทนด้วย 0 และ 1 สวิตช์เหล่านี้คือทรานซิสเตอร์ ซึ่งทำหน้าที่เป็นสวิตช์เชิงไฟฟ้า เลขที่มีแค่ 0 กับ 1 เรียกว่าเลขฐานสอง และหนึ่งหลักเรียกว่า 1 บิต (bit) ก่อนยุคไฟฟ้ามีเครื่องคำนวณแบบเฟือง ซึ่งใช้การทดรอบของเฟืองแทนการทดเลข'],
+['h','อ่านเลขฐานสอง'],
+['p','แต่ละหลักมีค่าประจำตำแหน่ง จากขวาไปซ้ายคือ 1, 2, 4, 8, 16, 32, 64, 128 แล้วบวกเฉพาะหลักที่เป็น 1 ลองกดสลับบิตในแล็บ'],
+['f',['ฐานสอง → ฐานสิบ = บวกค่าประจำตำแหน่งของหลักที่เป็น 1','','1011 = 8 + 2 + 1 = 11 / 10010000 = 128 + 16 = 144']],
+['lab','binary'],
+['f',['n บิต แทนได้ 2ⁿ แบบ','','8 บิต = 2⁸ = 256 แบบ (unsigned คือ 0 ถึง 255)']],
+['steps',{t:'แปลงฐานสิบเป็นฐานสอง (ตัวอย่าง 13)',i:[['13 ÷ 2','ได้ 6 เศษ 1'],['6 ÷ 2','ได้ 3 เศษ 0'],['3 ÷ 2','ได้ 1 เศษ 1'],['1 ÷ 2','ได้ 0 เศษ 1 (หยุดเมื่อได้ 0)'],['อ่านเศษจากล่างขึ้นบน','1, 1, 0, 1 จึงได้ 1101 ตรวจ: 8 + 4 + 1 = 13']]}],
+['h','จำนวนลบ'],
+['p','วิธีที่ง่ายที่สุดคือใช้บิตซ้ายสุดเป็นเครื่องหมาย (1 คือลบ, 0 คือบวก) เรียกว่า sign-magnitude เช่น 10010000 คือ −16 ส่วนวิธีที่คอมพิวเตอร์ใช้จริงคือ two’s complement'],
+['f',['Two’s complement: ค่าลบ = กลับทุกบิต แล้วบวก 1','','5 = 00000101 → กลับบิตได้ 11111010 → บวก 1 ได้ 11111011 = −5 (ช่วง 8 บิตคือ −128 ถึง 127)']],
+['h','ข้อความและภาพ'],
+['p','ข้อความเก็บโดยให้ตัวอักษรแต่ละตัวมีรหัสตัวเลข (ASCII หรือ Unicode) แล้วเก็บเรียงกัน รูปภาพเก็บโดยแบ่งเป็นจุดเล็ก ๆ (pixel) แล้วเก็บสีของแต่ละจุด หรือเก็บเป็นสมการเส้น (ภาพ vector)'],
+['fig','text2bin'],
+['p','จริง ๆ แล้วทุกไฟล์เป็นเลขฐานสองทั้งหมด ไฟล์ JPG จากมือถือเปิดในคอมได้เพราะโปรแกรมทั้งสองฝั่งเข้าใจข้อตกลงรูปแบบไฟล์ (format) เดียวกัน']],
+tips:['10010000 ตอบ "ถูกทุกตัวเลือก" (บิตซ้ายเป็นเครื่องหมายแล้วเป็นลบ, unsigned = 144, 8 บิตแทนได้ 256 แบบ)','ทรานซิสเตอร์ใช้แทนสวิตช์เชิงไฟฟ้า','คอมพิวเตอร์เก็บข้อความโดยมองเป็นลำดับตัวอักษร แล้วใช้รหัสฐานสองแทนตัวอักษรแต่ละตัว'],
+q:[['ข้อมูลเลขฐานสอง 8 หลัก 10010000 ข้อใดถูกต้อง',['ถ้าบิตซ้ายเป็นเครื่องหมาย เลขนี้เป็นจำนวนลบ','ถ้าไม่มีเครื่องหมาย เลขนี้คือ 144','8 หลักแทนได้ 256 รูปแบบ','ถูกทุกตัวเลือก'],3,''],['ทรานซิสเตอร์ถูกใช้อย่างไรในระบบคอมพิวเตอร์',['ใช้แทนสวิตช์เชิงไฟฟ้า','ใช้แทนสวิตช์เชิงกล','ใช้แทนตัวต้านทาน','ใช้แทนตัวนำไฟฟ้า'],0,'']]},
+{t:'วงจรดิจิทัล (เกตตรรกะ)',goal:'รู้กฎของเกต AND, OR, XOR, NOT คำนวณแบบหลายบิตได้ และอ่าน timing diagram เป็น',b:[
+['h','เกตตรรกะ'],
+['p','เกตตรรกะ (logic gate) คือวงจรเล็ก ๆ ที่รับค่า 0 หรือ 1 เข้ามา แล้วให้ผลออกเป็น 0 หรือ 1 ตามกฎ: AND ได้ 1 เมื่อทั้งสองเป็น 1, OR ได้ 1 เมื่อมีอย่างน้อยหนึ่งตัวเป็น 1, XOR ได้ 1 เมื่อสองตัว "ต่างกัน", NOT กลับค่า ดูสัญลักษณ์และตารางค่าความจริง'],
+['fig','gates'],
+['h','คำนวณหลายบิต'],
+['p','ถ้าโจทย์ให้เลขหลายบิต ให้ทำทีละหลักแนวตั้ง เช่น 0100 AND 0010: หลักแรก 0 AND 0 = 0, หลักที่สอง 1 AND 0 = 0, หลักที่สาม 0 AND 1 = 0, หลักที่สี่ 0 AND 0 = 0 จึงได้ 0000 ลองกดเปลี่ยนบิตดู'],
+['lab','logic'],
+['f',['De Morgan: NOT(A AND B) = (NOT A) OR (NOT B)','อีกแบบ: NOT(A OR B) = (NOT A) AND (NOT B)','วงจรในควิซ NOT((NOT A) AND (NOT B)) = A OR B']],
+['f',['Half adder: sum = A XOR B, carry = A AND B','วงจรบวกเลข 1 บิตสองตัว','1 + 1 → sum = 0, carry = 1 (คือ 10 ในฐานสอง)']],
+['h','วงจรตามสัญญาณนาฬิกา'],
+['p','วงจรบางแบบทำงานตามสัญญาณนาฬิกา (clock) จะเปลี่ยนผลลัพธ์เฉพาะตอนสัญญาณ "ขาขึ้น" (เปลี่ยนจาก 0 เป็น 1) โดยใช้ค่า input ก่อนขาขึ้น ช่วงอื่นผลลัพธ์จะค้างไว้ ดูตัวอย่างวงจร OR'],
+['fig','clock']],
+tips:['0100 AND 0010 = 0000 และ 0100 OR 0010 = 0110','A = 0, B = 1 เข้าเกต XOR ได้ 1','วงจรที่ทำงานตาม clock: Q เปลี่ยนเฉพาะตอนขาขึ้น (รูป C ในควิซ)'],
+q:[['A = 0100 และ B = 0010 ผลลัพธ์ของ A AND B คือ',['0000','0110','1000','1001'],0,''],['A = 0100 และ B = 0010 ผลลัพธ์ของ A OR B คือ',['0000','0110','1000','1001'],1,''],['A = 0 และ B = 1 เข้าเกต XOR ได้ผลลัพธ์ใด',['0','1','0 หรือ 1 ก็ได้','2'],1,'']]},
+{t:'ฮาร์ดแวร์ สถาปัตยกรรม และซอฟต์แวร์',goal:'รู้หน้าที่ของ CPU และหน่วยความจำแต่ละแบบ รู้ 4 ขั้นของ pipeline และรู้หน้าที่ของ OS, BIOS, driver',b:[
+['h','CPU'],
+['p','CPU (หน่วยประมวลผลกลาง) คือส่วนที่คำนวณ ความเร็วสัญญาณนาฬิกา (clock) ที่สูงขึ้นทำให้ทำงานได้มากขึ้นในเวลาเท่าเดิม จำนวน core (แกนประมวลผล) ที่มากขึ้นทำให้ทำหลายงานพร้อมกันได้ แบ่งงานใหญ่ให้เสร็จเร็วขึ้นได้ และให้หลายคนใช้พร้อมกันได้'],
+['h','หน่วยความจำ'],
+['p','หน่วยความจำเรียงจากเร็วที่สุดไปช้าที่สุดตามพีระมิด ยิ่งอยู่บนยิ่งเร็วและแพง แต่จุได้น้อย'],
+['lab','memory'],
+['def',[['Volatile','ข้อมูลหายเมื่อไฟดับ','RAM, cache, register'],['Non-volatile','เก็บข้อมูลได้แม้ไม่มีไฟ','Disk, SSD, ROM']]],
+['h','CPU ทำงานทีละคำสั่งอย่างไร'],
+['steps',{t:'4 ขั้นของแต่ละคำสั่ง',i:[['Fetch','ดึงคำสั่งถัดไปจากหน่วยความจำ'],['Decode','ตีความรหัสคำสั่งว่าให้ทำอะไร เพื่อเตรียมสั่งการส่วนต่าง ๆ'],['Execute','ทำงานตามคำสั่ง เช่น คำนวณ'],['Write back','เก็บผลลัพธ์']]}],
+['p','CPU ทำหลายคำสั่งพร้อมกันคนละขั้นได้ เหมือนสายพานโรงงาน เรียกว่า pipeline'],
+['fig','pipe'],
+['h','ภาษาที่ใช้สั่งคอมพิวเตอร์'],
+['p','คนสั่งคอมพิวเตอร์ได้หลายระดับ: ภาษาเครื่อง (ชุดคำสั่งที่เป็นเลขฐานสอง), ภาษาแอสเซมบลี (ภาษาเครื่องที่เขียนเป็นตัวอักษรให้คนอ่านง่าย) และภาษาระดับสูง (เช่น Python) CPU แปลงคำสั่งเป็นสัญญาณควบคุมให้ฮาร์ดแวร์ทุกชิ้นทำงานร่วมกัน ชุดคำสั่งของ CPU มีจำกัด ถ้าไม่มีคำสั่งที่ต้องการก็ใช้หลายคำสั่งประกอบกัน'],
+['h','ซอฟต์แวร์ระบบ'],
+['steps',{t:'เปิดเครื่องแล้วเกิดอะไรขึ้น',i:[['กดเปิด','ไฟเข้าเครื่อง'],['BIOS ตรวจฮาร์ดแวร์','ตรวจว่าอุปกรณ์ต่าง ๆ ทำงานปกติ'],['โหลด OS','BIOS โหลดระบบปฏิบัติการขึ้นมา'],['OS โหลด driver','เพื่อคุยกับอุปกรณ์ต่อพ่วง เช่น เครื่องพิมพ์'],['เปิดแอป','แอปทำงานบน OS โดยขอทรัพยากรจาก OS']]}],
+['fig','swstack'],
+['p','OS (ระบบปฏิบัติการ เช่น Windows, Android) จัดสรรทรัพยากรให้โปรแกรม ควบคุมสิทธิ์ผู้ใช้ และติดต่อเครือข่าย ระวังว่า Apple, Google, Microsoft เป็นชื่อบริษัท ไม่ใช่ OS']],
+tips:['หน่วยความจำที่เก็บข้อมูลได้แม้ไม่มีไฟเลี้ยงคือ Disk','Decode คือตีความรหัสคำสั่งเพื่อเตรียมสั่งการส่วนต่าง ๆ','ระบบปฏิบัติการในตัวเลือกคือ Android','Device driver คือควบคุมอุปกรณ์ต่อพ่วง ส่วนการตรวจฮาร์ดแวร์ตอนเปิดเครื่องคือ BIOS'],
+q:[['หน่วยความจำแบบใดเก็บข้อมูลได้แม้ไม่มีไฟเลี้ยง',['RAM','Disk','Cache','CPU'],1,''],['Device driver มีหน้าที่อะไร',['จัดสรรทรัพยากรให้ซอฟต์แวร์','ตรวจสอบฮาร์ดแวร์เมื่อเปิดเครื่อง','ควบคุมอุปกรณ์ต่อพ่วงโดยทำงานร่วมกับระบบปฏิบัติการ','จำลองการทำงานของอุปกรณ์'],2,''],['ภาษาแอสเซมบลีคืออะไร',['ภาษาที่เทียบเท่าภาษาเครื่อง แต่เขียนให้อ่านง่ายขึ้น','ภาษาโปรแกรมระดับสูง','ภาษากลางที่ใช้กับคอมพิวเตอร์ได้หลายชนิด','ภาษากำหนดการทำงานร่วมกันของอุปกรณ์'],0,''],['ขั้นตอน decode instruction ใน pipeline ทำงานอะไร',['อ่านรหัสคำสั่งเข้ามา','ตีความรหัสคำสั่งเพื่อเตรียมสั่งการ','คำนวณค่าผลลัพธ์','แปลงผลลัพธ์เพื่อเก็บในหน่วยความจำ'],1,''],['ตัวเลือกใดเป็นระบบปฏิบัติการ',['Apple','Google','Microsoft','Android'],3,'']]}],
+fc:[['n บิต','แทนได้ 2ⁿ แบบ'],['10010000','= 144'],['1011','= 11'],['XOR','ต่างกันได้ 1'],['De Morgan','NOT(NOT A AND NOT B) = A OR B'],['ทรานซิสเตอร์','สวิตช์เชิงไฟฟ้า'],['Volatile','RAM, Cache, Register'],['Non-volatile','Disk, SSD, ROM'],['Pipeline','Fetch → Decode → Execute → Write back'],['BIOS','ตรวจฮาร์ดแวร์ตอนเปิดเครื่อง'],['Driver','คุมอุปกรณ์ต่อพ่วงร่วมกับ OS']]},
+
+{k:'mix',name:'สุ่มทดสอบ',n:15,mods:[],fc:[]}];
+const S={};let cur=0;const STP=[];const sc=k=>{const v=S[k]||[0,0];return v[0]+'/'+v[1]};
+function nav(){$('nav').innerHTML=T.map((t,i)=>`<button class="nv${i===cur?' on':''}" data-i="${i}">${t.k==='mix'?'':(i+1)+'. '}${t.name}<small>${t.k==='mix'?'ทุกหัวข้อ · '+sc('mix'):'ออก '+t.n+' ข้อ · '+sc(t.k)}</small></button>`).join('');$('nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{render(+b.dataset.i);window.scrollTo(0,0)});const on=$('nav').querySelector('.on');if(on&&on.scrollIntoView)on.scrollIntoView({block:'nearest',inline:'center'})}
+function quizInto(el,qs,k){el.innerHTML=qs.map((q,i)=>`<div class="q" data-i="${i}"><p class="qt">${i+1}. ${q[0]}${q[4]?` <span class="pill a" style="font-size:11px;padding:1px 6px">${q[4]}</span>`:''}</p>${q[1].map((o,j)=>`<button class="op" data-j="${j}">${o}</button>`).join('')}<p class="why"></p></div>`).join('');el.querySelectorAll('.q').forEach(d=>{const q=qs[+d.dataset.i];d.querySelectorAll('.op').forEach(b=>b.onclick=()=>{if(d.dataset.done)return;d.dataset.done=1;const j=+b.dataset.j,ok=j===q[2];d.querySelectorAll('.op')[q[2]].classList.add('g');if(!ok)b.classList.add('r');const w=d.querySelector('.why');w.style.color=ok?'var(--text-success)':'var(--text-danger)';w.textContent=(ok?'ถูกต้อง':'ยังไม่ถูก ข้อที่ถูกไฮไลต์สีเขียว')+(q[3]?' · '+q[3]:'');S[k]=S[k]||[0,0];S[k][1]++;if(ok)S[k][0]++;const ts=$('tsc');if(ts)ts.textContent=sc(k);nav()})})}
+function blk(b){const [ty,v]=b;
+if(ty==='h')return `<h3 class="bh">${v}</h3>`;
+if(ty==='p')return `<p class="ex">${v}</p>`;
+if(ty==='note')return `<div class="note"><i class="ti ti-alert-circle" aria-hidden="true"></i><span>${v}</span></div>`;
+if(ty==='def')return `<div class="gl">${v.map(g=>`<div class="gt">${g[0]}</div><div class="gd">${g[1]}${g[2]?`<span class="gx">ตัวอย่าง: ${g[2]}</span>`:''}</div>`).join('')}</div>`;
+if(ty==='f')return `<div class="fx"><div class="fxm">${v[0]}</div>${v[1]?`<div class="fxe">${v[1]}</div>`:''}${v[2]?`<div class="fxx"><span>ตัวอย่าง</span>${v[2]}</div>`:''}</div>`;
+if(ty==='fig'){const f=F[v];return `<div class="fig"><p class="fh">${f.h}</p>${f.s?`<p class="s">${f.s}</p>`:''}<div class="sx">${f.html}</div></div>`}
+if(ty==='lab'){const l=L[v];return `<div class="lab"><p class="lb"><i class="ti ti-flask" aria-hidden="true"></i> แล็บ: ${l.h}</p><p class="s">${l.s}</p><div class="sx">${l.html}</div></div>`}
+if(ty==='steps'){const id=STP.length;STP.push(v);return `<div class="stp" data-s="${id}"><p class="fh"><i class="ti ti-list-numbers" aria-hidden="true"></i> ${v.t}</p><div class="stn">${v.i.map((x,j)=>`<button data-j="${j}"><span class="sn">${j+1}</span>${x[0]}</button>`).join('')}</div><div class="stb"></div><div class="rw" style="margin:8px 0 0"><button class="sp"><i class="ti ti-arrow-left" aria-hidden="true"></i> ขั้นก่อนหน้า</button><button class="snx">ขั้นถัดไป <i class="ti ti-arrow-right" aria-hidden="true"></i></button><span class="s sc" style="margin:0"></span></div></div>`}
+return ''}
+function initSteps(){document.querySelectorAll('.stp').forEach(el=>{const d=STP[+el.dataset.s];let k=0;const bs=el.querySelectorAll('.stn button');const set=()=>{bs.forEach((b,j)=>{b.classList.toggle('on',j===k);b.classList.toggle('dn',j<k)});el.querySelector('.stb').innerHTML=`<p class="stt">ขั้นที่ ${k+1}: ${d.i[k][0]}</p><p class="ex" style="margin:0">${d.i[k][1]}</p>`;el.querySelector('.sc').textContent=`${k+1} จาก ${d.i.length}`};bs.forEach(b=>b.onclick=()=>{k=+b.dataset.j;set()});el.querySelector('.sp').onclick=()=>{if(k>0)k--;set()};el.querySelector('.snx').onclick=()=>{if(k<d.i.length-1)k++;set()};set()})}
+function modHTML(m,i){return `<section class="md" id="m-${i}"><div class="mh"><span class="mn">บทที่ ${i+1}</span><h2 class="mt">${m.t}</h2></div><p class="goal"><i class="ti ti-target" aria-hidden="true"></i> บทนี้: ${m.goal}</p>${m.b.map(blk).join('')}
+${m.tips.length?`<div class="sec tipbox"><p class="lb"><i class="ti ti-target-arrow" aria-hidden="true"></i> สรุปจุดที่ข้อสอบชอบถาม</p><ul class="tp">${m.tips.map(t=>`<li>${t}</li>`).join('')}</ul></div>`:''}
+${m.q.length?`<div class="sec"><p class="lb"><i class="ti ti-checkbox" aria-hidden="true"></i> ลองตอบ</p><div class="qz" data-m="${i}"></div></div>`:''}</section>`}
+function render(i){cur=i;STP.length=0;nav();const t=T[i];try{history.replaceState(null,'','#'+t.k)}catch(e){}
+if(t.k==='mix'){$('view').innerHTML=`<div class="rw" style="margin:0 0 1rem"><div class="st"><span>สุ่มจากทุกหัวข้อ</span><b>15 ข้อ</b></div><div class="st"><span>คะแนนรวม</span><b id="tsc">${sc('mix')}</b></div></div><section class="md"><div class="mh"><h2 class="mt">สุ่มทดสอบรวม</h2></div><p class="s" style="margin-top:10px">คละทุกหัวข้อเหมือนวันสอบจริง กดสุ่มใหม่เพื่อเปลี่ยนชุดข้อสอบ</p><div class="qz" id="qzm"></div><button id="qr" style="margin-top:12px"><i class="ti ti-refresh" aria-hidden="true"></i> สุ่มใหม่</button></section>`;const go=()=>{const all=T.flatMap(x=>(x.mods||[]).flatMap(m=>m.q.map(q=>[...q,x.name])));for(let a=all.length-1;a>0;a--){const b=Math.floor(Math.random()*(a+1));[all[a],all[b]]=[all[b],all[a]]}quizInto($('qzm'),all.slice(0,15),'mix')};$('qr').onclick=go;go();return}
+let h=`<div class="rw" style="margin:0 0 .75rem"><div class="st"><span>ออกสอบ</span><b>${t.n} ข้อ</b></div><div class="st"><span>ควิซหัวข้อนี้</span><b id="tsc">${sc(t.k)}</b></div><p class="s" style="margin:0;flex:1;min-width:200px">${t.intro}</p></div><div class="toc">${t.mods.map((m,j)=>`<button data-j="${j}"><span class="mn">${j+1}</span> ${m.t}</button>`).join('')}<button data-j="fc"><i class="ti ti-cards" aria-hidden="true"></i> แฟลชการ์ด</button></div>`;
+h+=t.mods.map(modHTML).join('');h+=`<section class="md" id="m-fc"><div class="mh"><span class="mn">ทวน</span><h2 class="mt">แฟลชการ์ด</h2></div><p class="s" style="margin-top:10px">นึกคำตอบในใจก่อน แล้วกดการ์ดเพื่อพลิกดู</p><div class="fcg">${t.fc.map((f,j)=>`<button class="fc" data-j="${j}">${f[0]}</button>`).join('')}</div></section>`;
+$('view').innerHTML=h;t.mods.forEach(m=>m.b.forEach(b=>{if(b[0]==='fig'&&F[b[1]].init)F[b[1]].init();if(b[0]==='lab'&&L[b[1]].init)L[b[1]].init()}));initSteps();document.querySelectorAll('.qz[data-m]').forEach(el=>quizInto(el,t.mods[+el.dataset.m].q,t.k));document.querySelectorAll('.fc').forEach(b=>b.onclick=()=>{const f=t.fc[+b.dataset.j],on=b.classList.toggle('on');b.innerHTML=on?f[1]:f[0]});document.querySelectorAll('.toc button').forEach(b=>b.onclick=()=>{const el=$('m-'+b.dataset.j);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})})}
+const start=T.findIndex(t=>'#'+t.k===location.hash);render(start>=0?start:0);
+</script>
+</main>
+</body>
+</html>
